@@ -1,0 +1,19 @@
+.
+├── client
+|   ├── css
+|   |   └── style.css
+|   ├── js
+|   |   ├── chat.js
+|   |   ├── fortmatTimeStamp.js
+|   |   └── socket.io
+|   └── index.html      
+├── server
+|   ├── controllers
+|   |   └── chat.js
+|   ├── mongoDB
+|   |   ├── chatSchema.js
+|   |   └── dbconnection.js
+|   └── routes
+|       └── chat.js
+├── app.js
+└── package.json
