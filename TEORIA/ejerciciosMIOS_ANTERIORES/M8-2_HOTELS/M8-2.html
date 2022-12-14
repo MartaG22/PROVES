@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M8-2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">"
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="./M8-2_hotels.css" rel="stylesheet">
+</head>
+
+<body>
+    <h2>Mòdul 8 - Exercici 2</h2>
+    <p style="font-family:monospace">
+        Demanen crear una aplicació per donar d’alta, modificar, veure i eliminar hotels. <br><br>
+
+        <b>La classe hotel</b> haurà de tenir els següents atributs: nom, nombre d’habitacions, nombre de plantes i
+        superfície
+        total de l’hotel. Com a mètodes només haurà de tenir els getters i setters propis de la classe i un mètode
+        anomenat
+        calcularManteniment(). Aquest mètode ha de tenir en compte que cada persona del servei pot atendre 20
+        habitacions i haurà de mostrar quantes persones són necessàries per atendre el servei d’habitacions de l’hotel i
+        quin és el
+        cost total destinat al servei sabent que aquestes persones cobren 1.500€ al mes.<br><br>
+
+        La funció <b>crearHotel()</b> haurà de demanar a l’usuari que introdueixi per pantalla les dades de nom, nombre
+        d’habitacions, nombre de plantes i superfície total de l’hotel (o haurà de rebre aquestes dades per paràmetre).
+        Un cop hagi demanat totes aquestes dades, s’ha d’instanciar l’objecte de la classe i afegir-lo a un array
+        d’hotels. <br><br>
+
+        La funció <b>donarDeBaixaHotel()</b> haurà de rebre el nom de l'hotel que es vol donar de baixa. L’usuari
+        introduirà el nom de l’hotel i si l’hotel està dintre de l’array, l’eliminarem i mostrarem un missatge per
+        pantalla informant l’usuari que hem eliminat l’hotel. Si no hem trobat l’hotel dintre de l’array, avisarem
+        l’usuari dient que
+        l’hotel no estava dintre de la nostra aplicació. <br><br>
+
+        La funció <b>veureHotel()</b> haurà de rebre el nom de l'hotel que vol que mostrem per pantalla, si l’hotel està
+        a la nostra aplicació, li mostrarem l’hotel, si no hi és, informarem l’usuari dient que l’hotel que ens ha
+        demanat no està
+        dintre de la nostra aplicació.
+        Quan mostrem l’hotel, a més, de mostrar el nombre d’habitacions, nombre de plantes i superfície total de l’hotel
+        també es cridarà al mètode <b>calcularManteniment()</b>. <br><br>
+
+        La funció <b>modificarHotel()</b> haurà de rebre el nom de l'hotel que volem modificar. L’usuari introduirà el
+        nom de
+        l’hotel. Si el tenim a l’aplicació, li demanarem si vol modificar el nombre d’habitacions, el nombre de plantes
+        o la
+        superfície total de l’hotel. Farem la modificació pertinent i avisarem a l’usuari que la modificació s’ha
+        realitzat.
+    </p>
+    <hr><br>
+    <button type="button" onclick="checkHotel()">Registrar Hotel</button>
+    <button type="button" onclick="checkHotel()">Mostrar Hotel</button>
+    <button type="button" onclick="deleleHotel()">Donar de Baixa l'Hotel</button>
+    <button type="button" onclick="modifyHotel()">Modificar dades de l'Hotel</button>
+
+    <button type="button" onclick="ListHotel()">Mostrar Llistat d'Hotels</button>
+
+
+    <br>
+    <!-- <input id="findHotel" type="text" value="Hotel Arts" /> -->
+    <div class="squareMessage" stile="none">
+        <p id="showMessage" style.height="0px"></p>
+        <p id="showModifies"></p>
+    </div>
+
+
+    <script src="./M8-2_hotels.js"></script>
+    <script src="./M8-2_mainHotelsB.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "30c0cc8b-3d5c-4c9c-b304-9e2bc7e9c18e",
+		"name": "Postman Collection - Joc Daus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/players",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nomJugador\": \"Omar\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"players"
+					]
+				},
+				"description": "Crear un nou Jugador"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/players/ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nomJugador\": \"Gandalf\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/players/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"players",
+						"2"
+					]
+				},
+				"description": "Modifica el nom d'un Jugador, pel seu ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"players"
+					]
+				},
+				"description": "Retorna un llistat de tots els Jugadors, amb el seu percentatge d'èxit corresponent"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/games/ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"2"
+					]
+				},
+				"description": "Fa una tirada de Daus, per un jugador específic, pel seu ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/games/ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"1"
+					]
+				},
+				"description": "Esborra les jugades d'un Jugador, pel seu ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/games/ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"1"
+					]
+				},
+				"description": "Retorna un llistat de les jugades d'un Jugador, pel seu ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/ranking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"1"
+					]
+				},
+				"description": "Retorna el llistat de tots els Jugadors, amb el seu Id i nom, junt amb el seu percentatge d'èxit."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/ranking/loser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ranking/loser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ranking",
+						"loser"
+					]
+				},
+				"description": "Retorna el Jugador amb el percentatge d'èxit més baix."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/ranking/winner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ranking/winner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ranking",
+						"winner"
+					]
+				},
+				"description": "Mostrarà el Jugador amb el percentatge d'èxit més gran."
+			},
+			"response": []
+		}
+	]
+}
