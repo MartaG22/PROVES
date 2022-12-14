@@ -1,3 +1,10 @@
+body {
+    background: rgb(32, 32, 32);
+    color: #fff;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+}
+
 .container{
     width: 40%;
     margin: auto;
@@ -17,7 +24,9 @@ h1{
     width: 50%;
     height: 30%;
     border-radius: 7px;
-    background: rgba(106, 90, 205);
+    /* background: rgba(106, 90, 205); */
+    background: #822252;
+
     color: #fff;
 }
 
