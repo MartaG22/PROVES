@@ -1,0 +1,17 @@
+#index-body {
+    background-color: var(--color-background);
+}
+
+#caja {
+    width: 100%;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    border-style: solid;
+    width: 190px;
+    height: auto;
+    padding: 4px 10px;
+    margin: 20px auto 1px;
+    display: block;
+    position: relative;
+    bottom: 0px;
+    margin-bottom: 0.5rem;
+}

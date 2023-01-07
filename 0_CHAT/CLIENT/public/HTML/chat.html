@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Win95 chat</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
+    </head> 
+    <body id="chat-body">
+        <header class="header">
+            <div>
+            <h1 id="roomName" class="header-roomname"></h1>
+            <h1 id="userName" class="header-username"></h1  >
+            </div>
+            <img src="../img/win-logo.jpg" alt="win95Logo" />
+            <h1 class="welcome">Welcome to Win95 Chat</h1>
+             <button class="button-logout" onclick="logout()">EXIT</button>
+       </header>
+       <div class="chat-container">
+            <div id="room" class="room">
+                <button class="room-header" type="button">Rooms</button>
+                <form id="roomForm" class="room-form" onsubmit="createRoom()">
+                    <input class="input" type="text" id="newRoom" name="newRoom" placeholder="New room... " maxlength="16" spellcheck="false" autocomplete="off" required>
+                    <input class="button" type="submit" value="New">
+                </form>
+               <ul id="roomList" class="room-ul"></ul>
+            </div>
+            <div class="space-chat"></div>
+            <div id="chat" class="chat">
+                <ul id="messageList" class="chat-ul"></ul>
+                <form id="messageForm" class="chat-form" onsubmit="return sendMessage()">
+                    <input class="input" type="text" id="newMessage" name="newMessage" placeholder="Type a message..." autocomplete="off" autofocus>
+                    <input class="button" type="submit" value="Send">
+                </form>
+            </div>
+            <div class="space-chat"></div>
+            <div id="user" class="user">
+                <button class="user-header" type="button">Users Online</button>
+                <ul id="userList" class="user-ul"></ul>
+            </div>
+        </div>
+    </div>
+        <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+        <script src="../js/sockets.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="../js/utils.js"></script>
+        <script src="../js/rooms.js"></script>
+        <script src="../js/users.js"></script>
+        <script src="../js/logout.js"></script>
+        <script src="../js/messages.js"></script>
+    </body>
+</html>
+
