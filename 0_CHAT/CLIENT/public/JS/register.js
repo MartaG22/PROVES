@@ -10,6 +10,8 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
       const registerError = document.querySelector("#register-error");
       const apiUrl = 'http://localhost:3000';
   
+      console.log("userName:", userName, "password:", password);
+
       const regex = /\s/;
       if(regex.test(userName)){
           registerError.innerHTML = 'El nombre de usuario no es válido';
@@ -21,7 +23,7 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
           return;
       }
      
-      fetch(apiUrl + '/users/register', {
+      fetch(apiUrl + '/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({userName, password, rePassword})
