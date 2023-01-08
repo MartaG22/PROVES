@@ -7,7 +7,8 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
       const password = document.querySelector('entry-form [name="contrasenya"]').value;
       const apiUrl = "http://localhost:3000";
       console.log(userName,contrasenya)
-      fetch(apiUrl + "/users/login", {
+      
+      fetch(apiUrl + "/login", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, password }),

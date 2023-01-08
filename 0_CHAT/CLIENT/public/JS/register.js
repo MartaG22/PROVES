@@ -3,13 +3,15 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
       e.preventDefault();
   
       sessionStorage.clear();
-  
+      
       const userName = document.querySelector('.entry-form [name="username"]').value;
       const password = document.querySelector('.entry-form [name="password"]').value;
       const rePassword = document.querySelector('.entry-form [name="repassword"]').value;
       const registerError = document.querySelector("#register-error");
       const apiUrl = 'http://localhost:3000';
-  
+      
+    //   document.getElementById(login-error).innerHTML = "";
+    //   registerError.innerHTML = "";
       console.log("userName:", userName, "password:", password);
 
       const regex = /\s/;
@@ -26,13 +28,13 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
       fetch(apiUrl + '/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({userName, password, rePassword})
+          body: JSON.stringify({userName, password})
       })
       .then(res => res.json())
       .then(data => {
           if (data.status === 'ok') {
-              console.log('DATA', data) //puesto por mi
-              window.location.replace('./index.html')
+            //   window.location.replace('./index.html')  //! ???
+              window.location.replace('./login.html')
           } else {
               registerError.innerHTML = data.message;
           }
