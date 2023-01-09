@@ -22,7 +22,7 @@ const authentication = async(req, res, next) => {
     }
     
     // Valida si la CONTRASENYA és correcta!!!
-    const bcriptPassword = await bcrypt.compare(password, user[0].password);
+    const bcriptPassword = await bcrypt.compare(password, user.password);
     if (!bcriptPassword) {
         return res.status(400).send({
             status: 'fail',

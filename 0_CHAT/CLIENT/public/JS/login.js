@@ -6,7 +6,7 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
       const userName = document.querySelector('entry-form [name="usuari"]').value;
       const password = document.querySelector('entry-form [name="contrasenya"]').value;
       const apiUrl = "http://localhost:3000";
-      console.log(userName,contrasenya)
+      console.log(userName, password)
       
       fetch(apiUrl + "/login", {
         method: "post",
@@ -22,12 +22,13 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
               sessionStorage.userName == data.user.userName
             ) {
               document.getElementById("login-error").innerHTML =
-                "Ya tienes sesion iniciada.";
+                "Ja tens sessió iniciada.";
             } else {
               sessionStorage.clear();
-              sessionStorage.userId = data.user.userId;
-              sessionStorage.userName = data.user.userName;
-              sessionStorage.token = data.token;
+              sessionStorage.userId = data.user.idUsuari;
+              sessionStorage.userName = data.user.nomUsuari;
+              sessionStorage.token = data.user.passwordUsuari;
+              // sessionStorage.token = data.token;
     
               window.location.assign("./xat.html");
             }
