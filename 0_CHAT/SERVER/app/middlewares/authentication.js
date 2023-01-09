@@ -1,28 +1,29 @@
 const jwt = require('jsonwebtoken');
-//const bcrypt = require('bcrypt');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 const Usuari = require('../models/dbUsuari.js');
 
 const authentication = async(req, res, next) => {
 
     const user = await req.body;
-
+    console.log('user en authentication:',)
     // const userName = req.body.userName;
     // const password = req.body.password;
      
-    //check if credentials provided
+    // Valida si s'han introduit dades
     if (!user.userName) return res.status(400).send({ status: "fail", message: `username not provided`});
     if (!user.password) return res.status(400).send({ status: "fail", message: `password not provided`});
 
-    // Check if user exists
+    // Valida si l'USUARI està enregistrat
     const userFind = await Usuari.find({nomUsuari: user.userName});
-    if (userExists.length !== 0) {
-        return res.status(400).send({ status: "fail", message: `Wrong username`});
+    if (userFind.length !== 0) {
+        return res.status(400).send({ status: "fail", message: `No existeix aquest Usuari!`});
     }
     
-    // Check if password is correct
-    if (!await bcrypt.compare(password, user[0].password)) {
+    // Valida si la CONTRASENYA és correcta!!!
+    const bcriptPassword = await bcrypt.compare(password, user[0].password);
+    if (!bcriptPassword) {
         return res.status(400).send({
             status: 'fail',
             message: "Wrong password"

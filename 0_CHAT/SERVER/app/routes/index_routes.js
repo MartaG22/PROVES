@@ -1,8 +1,7 @@
 const express = require('express');
 // const app = express();
 const routes = express.Router();
-const authentication = require('../middlewares/authentication.js')
-
+const {authJWT, authentication} = require('../middlewares/authentication.js')
 // const dbUsuaris = require('../models/dbUsuari.js');
 // const dbRooms = require('../models/dbRoom');
 

@@ -24,9 +24,9 @@
                 <p><input class="input container-input" autocomplete="off" type="password" name="repassword"
                         placeholder="Confirm Password" spellcheck="false" required></p>
                 <input class="button" type="submit" value="Enter">
-                <label> <input type="reset" name="borrar" class="button" value="Borrar"></label>
+                <label> <input type="reset" name="borrar" class="button" value="Borrar" onclick=deleteError()></label>
 
-                <div class="error-container"><span id="register-error" class="error"></span></div>
+                <div class="error-container"><span id="showError" class="error"></span></div>
             </form>
             <div class="entry-info">
                 <p class="entry-info">Already have an account?<a href="./login.html" id="link_login">Sign in</a></p>

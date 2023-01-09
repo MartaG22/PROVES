@@ -29,7 +29,7 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
               sessionStorage.userName = data.user.userName;
               sessionStorage.token = data.token;
     
-              window.location.assign("./chat.html");
+              window.location.assign("./xat.html");
             }
           } else {
             document.getElementById("login-error").innerHTML = data.message;

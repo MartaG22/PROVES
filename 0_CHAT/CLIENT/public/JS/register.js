@@ -7,7 +7,7 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
       const userName = document.querySelector('.entry-form [name="username"]').value;
       const password = document.querySelector('.entry-form [name="password"]').value;
       const rePassword = document.querySelector('.entry-form [name="repassword"]').value;
-      const registerError = document.querySelector("#register-error");
+      const registerError = document.querySelector("#showError");
       const apiUrl = 'http://localhost:3000';
       
     //   document.getElementById(login-error).innerHTML = "";
@@ -41,4 +41,9 @@ document.querySelector(".entry-form").addEventListener('submit', e => {
       }).catch(err => registerError.innerHTML = err.message);
   
   })
+
+  function deleteError() {
+          showError.innerHTML = "";
+
+  }
   
