@@ -7,22 +7,26 @@ const Usuari = require('../models/dbUsuari.js');
 const authentication = async(req, res, next) => {
 
     const user = await req.body;
-    console.log('user en authentication:',)
+    console.log('user en authentication:', user)
     // const userName = req.body.userName;
     // const password = req.body.password;
      
     // Valida si s'han introduit dades
-    if (!user.userName) return res.status(400).send({ status: "fail", message: `username not provided`});
-    if (!user.password) return res.status(400).send({ status: "fail", message: `password not provided`});
+    if (!user.userName) return res.status(400).json({ status: "fail", message: `username not provided`});
+    if (!user.password) return res.status(400).json({ status: "fail", message: `password not provided`});
 
     // Valida si l'USUARI està enregistrat
     const userFind = await Usuari.find({nomUsuari: user.userName});
-    if (userFind.length !== 0) {
-        return res.status(400).send({ status: "fail", message: `No existeix aquest Usuari!`});
+    const passwordUsuari = userFind[0].nomUsuari
+    console.log('userFind', userFind, 'passwordUsuari', passwordUsuari)
+    if (userFind.length == 0) {
+        return res.status(400).json({ status: "fail", message: `No existeix aquest Usuari!`});
     }
     
     // Valida si la CONTRASENYA és correcta!!!
-    const bcriptPassword = await bcrypt.compare(password, user.password);
+    console.log('<<<< user.password >>>>', user.password, '<<<< userFind.passwordUsuari >>>>', userFind[0].passwordUsuari)
+    const bcriptPassword = await bcrypt.compare(user.password, userFind[0].passwordUsuari);
+    console.log('bcriptPassword', bcriptPassword)
     if (!bcriptPassword) {
         return res.status(400).send({
             status: 'fail',

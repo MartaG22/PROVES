@@ -4,8 +4,14 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 // console.log("User",Usuari);
 
+
+// const userLogin = async (req, res) => {
+//     console.log('HOLAAA en loginUserController')
+// }
+
+
 const userLogin = async (req, res) => {
-    console.log("HOLLLLLLLAAAAAA")
+    console.log('HOLAAA en loginUserController')
     try {
         const user = await req.body;
         const userFind = await Usuari.findOne({ nomUsuari: user.userName});
@@ -21,18 +27,19 @@ const userLogin = async (req, res) => {
         const accessToken = jwt.sign(currentUser, process.env.ACCESS_TOKEN_KEY)
         console.log('accessToken', accessToken)
 
-        // res.status(201).send({
-        //     status: "success", 
-        //     user,
-        //     accessToken
-        // });
+        res.status(201).send({
+            status: "success", 
+            user,
+            accessToken
+        });
 
         
     } catch {
-        res.status(500).send({
-            status: 'error',
-            message: err.message
-        })
+        res.status(500).json({error: message});
+        // res.status(500).send({
+        //     status: 'error',
+        //     message: error.message
+        // })
 
     }
 }

@@ -10,8 +10,9 @@ const loginUser = require('../controllers/user/loginUserController.js');
 const createRoom = require('../controllers/room/createRoomController.js');
 
 routes.post('/register', registerUser);
-// routes.post('/login', authentication, loginUser);
-routes.post('/login',  loginUser);
+routes.post('/login', authentication, loginUser);
+// routes.post('/login',  loginUser);
+
 // routes.post('/newUser', registerUser)
 // routes.post('/newRoom', createRoom);
 
