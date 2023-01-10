@@ -27,7 +27,7 @@ const userLogin = async (req, res) => {
         const accessToken = jwt.sign(currentUser, process.env.ACCESS_TOKEN_KEY)
         console.log('accessToken', accessToken)
 
-        res.status(201).send({
+        res.status(201).json({
             status: "success", 
             currentUser,
             accessToken
