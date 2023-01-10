@@ -23,7 +23,7 @@ const userLogin = async (req, res) => {
             passwordUsuari: userFind.passwordUsuari
         };
         
-        console.log('currentUser', currentUser)
+        console.log('currentUser is: ' + currentUser)
         const accessToken = jwt.sign(currentUser, process.env.ACCESS_TOKEN_KEY)
         console.log('accessToken', accessToken)
 

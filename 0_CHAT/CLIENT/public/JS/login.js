@@ -16,17 +16,18 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
     })
         .then((res) => res.json())
         .then((data) => {
-            if (data.status === "ok") {
-                console.log(sessionStorage.userId, data.user.userId);
+            if (data.status === "success") {
+                console.log("dades rebudes:", data)
+                // console.log(sessionStorage.userId, data.user.userId);
                 if (
-                    sessionStorage.userId == data.user.userId &&
-                    sessionStorage.userName == data.user.nomUsuari
+                    sessionStorage.userId == data.currentUser.idUsuari &&
+                    sessionStorage.userName == data.currentUser.nomUsuari
                 ) {
                     document.getElementById("showError").innerHTML = "Ja tens sessió iniciada.";
                 } else {
                     sessionStorage.clear();
-                    sessionStorage.userId = data.user.userId;
-                    sessionStorage.userName = data.user.userName;
+                    sessionStorage.userId = data.currentUser.idUsuari;
+                    sessionStorage.userName = data.currentUser.nomUsuari;
                     sessionStorage.token = data.token;
                     document.getElementById("showError").innerHTML = "";
 
