@@ -17,11 +17,13 @@ const authentication = async(req, res, next) => {
 
     // Valida si l'USUARI està enregistrat
     const userFind = await Usuari.find({nomUsuari: user.userName});
-    const passwordUsuari = userFind[0].nomUsuari
-    console.log('userFind', userFind, 'passwordUsuari', passwordUsuari)
+    console.log(userFind)
     if (userFind.length == 0) {
         return res.status(400).json({ status: "fail", message: `No existeix aquest Usuari!`});
-    }
+    };
+    
+    const passwordUsuari = userFind[0].passwordUsuari
+    console.log('userFind', userFind, 'passwordUsuari', passwordUsuari)
     
     // Valida si la CONTRASENYA és correcta!!!
     console.log('<<<< user.password >>>>', user.password, '<<<< userFind.passwordUsuari >>>>', userFind[0].passwordUsuari)

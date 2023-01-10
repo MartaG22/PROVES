@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
-const registerUserController = require("../controllers/user/loginUserController.js");
-const loginUserController = require("../controllers/user/registerUserController.js");
-const createRoomController = require("../controllers/room/createRoomController.js");
+// const jwt = require("jsonwebtoken");
+// const registerUserController = require("../controllers/user/loginUserController.js");
+// const loginUserController = require("../controllers/user/registerUserController.js");
+const createRoomController = require("../controllers/room/newRoomController.js");
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
