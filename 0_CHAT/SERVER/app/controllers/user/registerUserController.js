@@ -34,10 +34,13 @@ const userRegister = async (req, res) => {
                   return res.status(400).send({ status: "fail", message: "Aquest USUARI ja està enregistrat!"});
 
             } else {
+                  const quantitatUsuaris = await Usuari.count({});
+                  console.log('quantitatUsuaris:', quantitatUsuaris);
 
                   //Encriptació del PASSWORD i el guardem encriptat a la Base de Dades
                   const hashedPassword = await bcrypt.hash(user.password, 10);
                   await Usuari.create({
+                        idUsuari: quantitatUsuaris +1,
                         nomUsuari: user.userName,
                         passwordUsuari: hashedPassword,
                   });

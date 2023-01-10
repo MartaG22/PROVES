@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 
 
 const userLogin = async (req, res) => {
-    console.log('HOLAAA en loginUserController')
+    // console.log('HOLAAA en loginUserController')
     try {
         const user = await req.body;
         const userFind = await Usuari.findOne({ nomUsuari: user.userName});
@@ -29,7 +29,7 @@ const userLogin = async (req, res) => {
 
         res.status(201).send({
             status: "success", 
-            user,
+            currentUser,
             accessToken
         });
 
