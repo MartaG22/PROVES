@@ -3,12 +3,12 @@
 
 console.log('chat XXXXXXXXXXcodigo');
 
-const socket = io();
+// const socket = io();
 
 
 // DOM elements
 let message = document.getElementById('message');
-console.log(message)
+// console.log(message)
 let username = document.getElementById('username');
 let sendMessage = document.getElementById('send');
 let output = document.getElementById('output');

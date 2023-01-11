@@ -3,7 +3,7 @@
 // const loginUserController = require("../controllers/user/registerUserController.js");
 const createRoomController = require("../controllers/room/newRoomController.js");
 
-// const SocketIO = require("socket.io");
+const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
 
 const sockets = async (io) => {
