@@ -73,6 +73,16 @@ body {
       padding-top:0.5rem;
   }
   
+.newRoomButton {
+      background-color: #a86687;
+      text-align: center;
+color: rgb(32, 32, 32);
+
+      /* display: flex; */
+      padding: 0.75rem 0.5rem;
+      padding-top:0.5rem;
+}
+
 #usuarisRoom {
       float: right;
       width: 250px;
