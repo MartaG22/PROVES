@@ -67,6 +67,12 @@ body {
 
 } */
 
+.room-form {
+      display: flex;
+      padding: 0.75rem 0.5rem;
+      padding-top:0.5rem;
+  }
+  
 #usuarisRoom {
       float: right;
       width: 250px;
