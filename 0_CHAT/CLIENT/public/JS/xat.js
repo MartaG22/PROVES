@@ -28,7 +28,7 @@ message.addEventListener('keypress', () => {
       socket.emit('chatTyping', username.value)
 })
 
-socket.on('chatMessage', (data) => {
-      output.innerHTML += `<p> <strong>${data.username}</strong>: ${data.message}</p>`
-});
+// socket.on('chatMessage', (data) => {
+//       output.innerHTML += `<p> <strong>${data.username}</strong>: ${data.message}</p>`
+// });
 
