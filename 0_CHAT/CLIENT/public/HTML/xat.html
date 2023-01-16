@@ -23,19 +23,27 @@
 
         <div id="rooms">
             <h1 id="titleRooms">Rooms</h1>
-            <ul id="roomList" class="room-ul"></ul>
+            <!-- <ul id="roomList" class="room-ul"></ul> -->
+            <!-- <form id="roomForm" class="room-form" onsubmit="newRoom()"> -->
+            <!-- <h1 id="userName" class="header-username"></h1> -->
+            <!-- <form id="roomForm" class="room-form" onsubmit="createRoom()"> -->
             <form id="roomForm" class="room-form" onsubmit="createRoom()">
-                <!-- <h1 id="userName" class="header-username"></h1> -->
-                <input class="input" type="text" id="newRoomName" name="newRoom" placeholder="New room... " maxlength="16" spellcheck="false" autocomplete="off" required>
+
+                <input class="input" type="text" id="newRoomName" name="newRoom" placeholder="New room... " maxlength="16"
+                    spellcheck="false" autocomplete="off" required>
                 <input class="newRoomButton" type="submit" value="New">
+
+                <!-- <input class="input" type="text" id="newRoomName" name="newRoom" placeholder="New room... " maxlength="16" spellcheck="false" autocomplete="off" required>
+                <input class="newRoomButton" type="submit" value="New"> -->
             </form>
-    </div>
+        </div>
 
 
         <!-- <div id="messagesZone"> -->
         <div id="xatZone">
             <div id="xat" class="xat">
-                <!-- <ul id="previousMessages" class="xat_Ul"></ul> -->  <!-- Cambiar maquetación, se me baja la parte de Usuaris Room-->
+                <!-- <ul id="previousMessages" class="xat_Ul"></ul> -->
+                <!-- Cambiar maquetación, se me baja la parte de Usuaris Room-->
             </div>
         </div>
 
@@ -43,7 +51,7 @@
 
         <div id="usuarisRoom">
             <h1 id="usersRoomList">Usuaris a la Sala</h1>
-            <h1 id="userName" class="header-username"></h1>   <!-- NOM DE L'USUARI EN US (mirar donde ponerlo luego )-->
+            <h1 id="userName" class="header-username"></h1> <!-- NOM DE L'USUARI EN US (mirar donde ponerlo luego )-->
 
         </div>
 
@@ -72,9 +80,11 @@
       <button id = "send">Send</button> -->
 
     <!-- <script src = "./socket.io/socket.io.js" charset="utf-8"></script> -->
-    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
-    <script src = "../JS/main.js" ></script>
-    <script src = "../JS/rooms/newRoom.js" ></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    <!-- <script src = "../JS/main.js" ></script> -->
+    <script src="../JS/rooms/newRoom.js"></script>
     <!-- <script src = "../JS/xat.js" charset="utf-8" ></script> -->
 </body>
 

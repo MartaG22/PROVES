@@ -4,3 +4,9 @@ const socket = io('http://localhost:3000', {
         'token': sessionStorage.token
     }
 });
+
+// socket.on('connection', () => {
+//     socket.on('newRoom', (room) => {
+//         console.log("newRoom", room)
+//     })
+// } )
