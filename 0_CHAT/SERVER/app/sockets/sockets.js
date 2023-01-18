@@ -1,11 +1,53 @@
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 // const registerUserController = require("../controllers/user/loginUserController.js");
 // const loginUserController = require("../controllers/user/registerUserController.js");
 const createRoomController = require("../controllers/room/newRoomController.js");
 
-const SocketIO = require("socket.io");
+// const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
 
+const sockets = async (io) => {
+    io.use(function (socket, next) {
+        if (socket.handshake.query && socket.handshake.query.token) {
+            jwt.verify(
+                socket.handshake.query.token,
+                process.env.ACCESS_TOKEN_KEY,
+                function (error, decoded) {
+                    if (error) return next (new Error ("Authentication error"));
+                    socket.decoded = decoded;
+                    next();
+                }
+            );
+        } else {
+            next (new Error ('Authenticatoin error'));
+        }
+    });
+
+    io.on ("connection", (socket) => {
+        const usuari = {
+            userId: socket.decoded.idUsuari,
+            userName: socket.decoded.nomUsuari,
+        };
+
+        console.log (`USUARI ${usuari.userName} connected`);
+
+        socket.on ('newRoom', async (roomName) => {
+            let createNewRoom = await createRoomController(roomName);
+
+            if (createNewRoom.status === "success") {
+                console.log("SALA CREADA OK")
+            }
+        })
+
+
+
+    })
+
+
+
+};
+
+/*
 const sockets = async (io) => {
     io.on("new-message", (data) => {
         // messages.push(data);
@@ -22,5 +64,6 @@ const sockets = async (io) => {
         // io.sockets.emit("messages", messages);
     });
 };
+*/
 
 module.exports = sockets;
