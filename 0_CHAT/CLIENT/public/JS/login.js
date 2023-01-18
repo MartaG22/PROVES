@@ -18,7 +18,7 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
         .then((data) => {
             if (data.status === "success") {
                 console.log("dades rebudes:", data)
-                // console.log(sessionStorage.userId, data.user.userId);
+
                 if (
                     sessionStorage.userId == data.currentUser.idUsuari &&
                     sessionStorage.userName == data.currentUser.nomUsuari
