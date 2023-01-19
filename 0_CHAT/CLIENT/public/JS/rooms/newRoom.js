@@ -4,6 +4,11 @@ const joinRoom = (newRoomName) => {
       socket.emit('joinRoom', newRoomName);
 }
 
+const displayRoom = (room) => {
+      console.log(room);
+      joinRoom(room)
+}
+
 const createRoom = () => {
       // const newRoomUser = document.getElementById("roomForm").newRoomName.value;
       // console.log(newRoomUser);

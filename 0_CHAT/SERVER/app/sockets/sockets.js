@@ -29,7 +29,7 @@ const sockets = async (io) => {
             userName: socket.decoded.nomUsuari,
         };
 
-        console.log (`USUARI ${usuari.userName} connected`);
+        console.log (`USUARI ${usuari} connected`);
 
         socket.on ('newRoom', async (roomName) => {
             let createNewRoom = await createRoomController(roomName);

@@ -7,13 +7,13 @@ const {authJWT, authentication} = require('../middlewares/authentication.js')
 
 const registerUser = require('../controllers/user/registerUserController.js');
 const loginUser = require('../controllers/user/loginUserController.js');
-const createRoom = require('../controllers/room/newRoomController.js');
+// const createRoom = require('../controllers/room/newRoomController.js');
 
 routes.post('/register', registerUser);
 routes.post('/login', authentication, loginUser);
 // routes.post('/login',  loginUser);
 
 // routes.post('/newUser', registerUser)
-routes.post('/newRoom', createRoom);
+// routes.post('/newRoom', createRoom);
 
 module.exports = routes;

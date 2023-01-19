@@ -1,9 +1,9 @@
 const Room = require('../../models/dbRoom.js');
 
-console.log('esto es el CreateRoomController')
 
 // const newRoom = async (req, res) => {
-const newRoom = async (newRoomName) => {
+      const newRoom = async (newRoomName) => {
+      console.log('esto es el CreateRoomController')
       let result;
       try {
             // const room = await req.body;
