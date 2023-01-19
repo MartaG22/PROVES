@@ -1,13 +1,13 @@
 const joinRoom = (newRoomName) => {
-      if (sessionStorage.roomId === newRoomName.roomId) return;  //! ESTO LO TENGO ATASCADO. NO SÉ DE DONDE SALE EL ROOMID
+      if (sessionStorage.roomId === newRoomName.roomId) return;
 
       socket.emit('joinRoom', newRoomName);
 }
 
-const displayRoom = (room) => {
-      console.log(room);
-      joinRoom(room)
-}
+// const showRoom = (room) => {
+//       console.log(room);
+//       joinRoom(room)
+// }
 
 const createRoom = () => {
       // const newRoomUser = document.getElementById("roomForm").newRoomName.value;

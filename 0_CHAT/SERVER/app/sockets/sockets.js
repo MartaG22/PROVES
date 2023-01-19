@@ -1,14 +1,17 @@
 const jwt = require("jsonwebtoken");
 // const registerUserController = require("../controllers/user/loginUserController.js");
 // const loginUserController = require("../controllers/user/registerUserController.js");
-const createRoomController = require("../controllers/room/newRoomController.js");
+const createRoom = require("../controllers/room/newRoomController.js");
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
 
 const sockets = async (io) => {
+    
     io.use(function (socket, next) {
+        console.log("MIDDLEWARE SOCKETS")
         if (socket.handshake.query && socket.handshake.query.token) {
+            console.log(socket.handshake.query.token)
             jwt.verify(
                 socket.handshake.query.token,
                 process.env.ACCESS_TOKEN_KEY,
@@ -19,25 +22,35 @@ const sockets = async (io) => {
                 }
             );
         } else {
-            next (new Error ('Authenticatoin error'));
+            throw (new Error ('Authenticatoin error'));
         }
     });
 
-    io.on ("connection", (socket) => {
-        const usuari = {
-            userId: socket.decoded.idUsuari,
-            userName: socket.decoded.nomUsuari,
-        };
+    io.on ("connection", async (socket) => {
 
-        console.log (`USUARI ${usuari} connected`);
+        console.log("Nou usuari connectat");
+        console.log("SOCKET:", socket);
 
-        socket.on ('newRoom', async (roomName) => {
-            let createNewRoom = await createRoomController(roomName);
 
-            if (createNewRoom.status === "success") {
-                console.log("SALA CREADA OK")
-            }
-        })
+
+        // const usuari = {
+
+        //     userId: socket.decoded.userId,
+        //     userName: socket.decoded.userName,
+
+        //     // userId: socket.decoded.idUsuari,
+        //     // userName: socket.decoded.nomUsuari,
+        // };
+
+        // console.log (`USUARI ${usuari} connected`);
+
+        // socket.on ('newRoom', async (roomName) => {
+        //     let createNewRoom = await createRoom(roomName);
+
+        //     if (createNewRoom.status === "success") {
+        //         console.log("SALA CREADA OK")
+        //     }
+        // })
 
 
 

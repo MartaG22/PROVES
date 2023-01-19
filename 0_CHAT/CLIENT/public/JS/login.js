@@ -28,7 +28,7 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
                     sessionStorage.clear();
                     sessionStorage.userId = data.currentUser.idUsuari;
                     sessionStorage.userName = data.currentUser.nomUsuari;
-                    sessionStorage.token = data.token;
+                    sessionStorage.token = data.accessToken;
                     document.getElementById("showError").innerHTML = "";
 
                     window.location.assign("../HTML/xat.html");
