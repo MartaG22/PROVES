@@ -1,30 +1,57 @@
 const Room = require("../../models/dbRoom.js");
 
 // const newRoom = async (req, res) => {
-const newRoom = async (newRoomName) => {
+const createRoom = async (newRoomName) => {
     console.log("esto es el CreateRoomController");
-    let result;
+
+
+    
     try {
-        // const room = await req.body;
-        console.log("ROOM", newRoomName);
 
-        // if (!room.roomName) {
-        //       console.log("NO S'HA INTRODUIT CAP NOM DE SALA!");
-        //       return res.status(400).send({ status: "fail", message: "Dades introduides no vàlides!!!"})
-        // };
+        console.log('newRoomName en NEWROOMCONTROLLER', newRoomName);
+        
+        const findRoom = await Room.findOne({ newRoomName });
+        console.log(findRoom);
 
-        const findRoom = await Room.findOne({ roomName: roomNewName });
-        console.log("findRoom", findRoom);
         if (findRoom) {
-            // result = {}
-            console.log("Aquesta sala ja existeix");
-        } else {
-            const room = await Room.create(roomName);
-            result = { status: "success", room };
-        }
-    } catch {
-        return { status: "error", message: error.message };
-    }
-};
+            console.log("HOOOKAAAA");
+            return { status: "error", message: "Ja existeix una sala amb aquest nom" };
 
-module.exports = newRoom;
+        } else {
+            console.log("lksjdflskfjs");
+            console.log("newRoomName.newRoomName", newRoomName.newRoomName)
+            // const newRoom = await Room
+//!  FALTA AÑADIR BIEN EL NOMBRE DE LA ROOM (roomName)
+            const newRoom = await Room.create({roomName: newRoomName.newRoomName});
+            console.log('newRoomName:', newRoomName)
+            console.log('newRoom', newRoom)
+            return {
+                status:"success",
+                room: newRoomName
+                // room: {}
+                // room: {roomName: newRoom},
+                // roomName: newRoom
+            };
+        }
+
+
+
+        // console.log('newRoomName en NEWROOMCONTROLLER', newRoomName)
+        // const roomExist = await Room.findOne({ rooName: newRoomName });
+        // console.log('roomExist', roomExist)
+        // if (roomExist) {
+        //     return { status: "error", message: "Ya existe una sala con ese nombre" };
+        // } else {
+        //     const room = await Room.create({ roomName: newRoomName });
+        //     return { status: "success", room }
+        // }
+
+
+
+    
+    } catch (error) {
+        return { status: "error", message: error };   //! SE QUEDA PILLADO EN ESTE ERROR
+};
+}
+
+module.exports = createRoom;

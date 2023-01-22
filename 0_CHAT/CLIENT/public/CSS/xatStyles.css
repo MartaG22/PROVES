@@ -122,3 +122,22 @@ button {
       width: 85%;
       border-radius: 0 0 2px 2px;
 }
+
+
+
+
+
+
+.fa-power-off{
+      color:var(--color) !important;
+      background-color: var(--background-color);
+      margin-top:1.2rem;
+      margin-left:0.8rem;
+  }
+      
+  
+  .fa-power-off:hover{
+      color:var(--blue) !important;
+      background-color: var(--background-color);
+      
+  }

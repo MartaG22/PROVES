@@ -1,12 +1,18 @@
 const mongoose = require('mongoose');
 
-const sala = new mongoose.Schema(
+// const roomsSchema = new mongoose.Schema(
+const roomsSchema = new mongoose.Schema(
       {
             _$oid: {},
-            roomName: {type: String},
+            roomName:  {type: String},
+            idUsuarisInThisRoom: [
+                  { 
+                        idUsuari: {type: Number}
+                  }
+            ],
             message: [
                   {
-                        sala: { type: String},
+                        // sala: {type: String},
                         idUsuari: {type: Number},
                         missatge: {type: String},
                         time: { type: Date, default: Date.now },
@@ -16,6 +22,6 @@ const sala = new mongoose.Schema(
       { timestamps: true }
 );
 
-const Room = mongoose.model('Room', sala);
+const Room = mongoose.model('Room', roomsSchema);
 
 module.exports = Room;
