@@ -10,18 +10,18 @@ const createRoom = async (newRoomName) => {
 
         console.log('newRoomName en NEWROOMCONTROLLER', newRoomName);
         
-        const findRoom = await Room.findOne({ newRoomName });
+        const findRoom = await Room.findOne({ roomName: newRoomName.newRoomName });
         console.log(findRoom);
 
         if (findRoom) {
-            console.log("HOOOKAAAA");
+            // console.log("HOOOKAAAA");
             return { status: "error", message: "Ja existeix una sala amb aquest nom" };
 
         } else {
-            console.log("lksjdflskfjs");
-            console.log("newRoomName.newRoomName", newRoomName.newRoomName)
-            // const newRoom = await Room
-//!  FALTA AÑADIR BIEN EL NOMBRE DE LA ROOM (roomName)
+            // console.log("lksjdflskfjs");
+            // console.log("newRoomName.newRoomName", newRoomName.newRoomName)
+
+            
             const newRoom = await Room.create({roomName: newRoomName.newRoomName});
             console.log('newRoomName:', newRoomName)
             console.log('newRoom', newRoom)
@@ -33,20 +33,6 @@ const createRoom = async (newRoomName) => {
                 // roomName: newRoom
             };
         }
-
-
-
-        // console.log('newRoomName en NEWROOMCONTROLLER', newRoomName)
-        // const roomExist = await Room.findOne({ rooName: newRoomName });
-        // console.log('roomExist', roomExist)
-        // if (roomExist) {
-        //     return { status: "error", message: "Ya existe una sala con ese nombre" };
-        // } else {
-        //     const room = await Room.create({ roomName: newRoomName });
-        //     return { status: "success", room }
-        // }
-
-
 
     
     } catch (error) {

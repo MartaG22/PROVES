@@ -3,6 +3,7 @@ const disconnectUser = require('../controllers/user/logoutUserController.js')
 // const registerUserController = require("../controllers/user/loginUserController.js");
 // const loginUserController = require("../controllers/user/registerUserController.js");
 const createRoom = require("../controllers/room/newRoomController.js");
+const getRooms = require("../controllers/room/getRoomsController.js")
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
@@ -45,11 +46,22 @@ const sockets = async (io) => {
             console.log('roomName', newRoomName)
             let createNewRoom =  await createRoom({newRoomName});
             console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
+            
             if (createNewRoom.status === "success") {
                 console.log("SALA CREADA OK");
-                console.log(createNewRoom)
+                console.log(createNewRoom);
+                io.emit("newRoom", createNewRoom );   //! FALTARIA AFEGIR ELS USUARIS i acabar el controller!!!
+
             }
-        })
+        });
+
+        socket.on('getRooms', async () => {
+            let currentCreatedRooms = await getRooms();
+            console.log('currentCreatedRooms', currentCreatedRooms.currentRooms);
+            if (currentCreatedRooms.status === "success") {
+                io.to(socket.id).emit(currentCreatedRooms.currentRooms);
+            }
+        });
 
 
         // //! creo que no funciona porque no tengo botón de desconexión!!!

@@ -11,6 +11,8 @@ let socketConnected = false;
 console.log(sessionStorage.token)
 console.log("estic a CLIENT/PUBLIC/JS/SOCKET.JS")
 
+
+
 socket.on('connect', () => {
     console.log("SOCKET.ID en CLIENT/SOCKETS", socket.id)
 
@@ -20,6 +22,13 @@ socket.on('connect', () => {
 
     })
 
+
+    // socket.emit("getRooms");
+    socket.emit("getRooms");
+
+
+
+    
     // socket.on('disconnect', async () => {
     //     l
     // })
