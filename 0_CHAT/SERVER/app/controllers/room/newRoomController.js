@@ -2,32 +2,28 @@ const Room = require("../../models/dbRoom.js");
 
 // const newRoom = async (req, res) => {
 const createRoom = async (newRoomName) => {
-    console.log("esto es el CreateRoomController");
-
-
-    
+    // console.log("esto es el CreateRoomController");
+    // console.log("newRoomName en CreateRoomController", newRoomName)
+    // console.log("USUARI en CreateRoomController")  //! NO arriba el nom de l'USUARI
     try {
 
-        console.log('newRoomName en NEWROOMCONTROLLER', newRoomName);
+        // console.log('newRoomName en NEWROOMCONTROLLER', newRoomName);
         
         const findRoom = await Room.findOne({ roomName: newRoomName.newRoomName });
         console.log(findRoom);
 
         if (findRoom) {
-            // console.log("HOOOKAAAA");
             return { status: "error", message: "Ja existeix una sala amb aquest nom" };
 
         } else {
-            // console.log("lksjdflskfjs");
             // console.log("newRoomName.newRoomName", newRoomName.newRoomName)
 
-            
             const newRoom = await Room.create({roomName: newRoomName.newRoomName});
-            console.log('newRoomName:', newRoomName)
-            console.log('newRoom', newRoom)
+            // console.log('newRoomName:', newRoomName)
+            // console.log('newRoom', newRoom)
             return {
                 status:"success",
-                room: newRoomName
+                newRoom: roomName
                 // room: {}
                 // room: {roomName: newRoom},
                 // roomName: newRoom
@@ -36,7 +32,7 @@ const createRoom = async (newRoomName) => {
 
     
     } catch (error) {
-        return { status: "error", message: error };   //! SE QUEDA PILLADO EN ESTE ERROR
+        return { status: "error", message: error };
 };
 }
 
