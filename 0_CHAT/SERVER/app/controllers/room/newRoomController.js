@@ -24,9 +24,6 @@ const createRoom = async (newRoomName) => {
             return {
                 status:"success",
                 newRoom: roomName
-                // room: {}
-                // room: {roomName: newRoom},
-                // roomName: newRoom
             };
         }
 

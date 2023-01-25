@@ -1,7 +1,7 @@
 const Room = require('../../models/dbRoom.js');
 
 // Inicialitzem una ROOM per començar!
-const initRoom = async () => {
+const initFirstRoom = async () => {
       let firstRoom = "Pangea"
       const findRoom = await Room.findOne({ roomName: firstRoom });
       console.log(findRoom);
@@ -11,4 +11,4 @@ const initRoom = async () => {
       };
 };
 
-module.exports = initRoom;
+module.exports = initFirstRoom;

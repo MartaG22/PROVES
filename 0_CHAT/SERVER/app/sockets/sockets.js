@@ -3,9 +3,11 @@ const disconnectUser = require("../controllers/user/logoutUserController.js");
 // const registerUserController = require("../controllers/user/loginUserController.js");
 // const loginUserController = require("../controllers/user/registerUserController.js");
 const getUsers = require("../models/dbUsuari.js");
-const initRoom = require("../controllers/room/initRoom.js");
+const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
+const joinRoom = require("../controllers/room/joinRoomController.js");
+
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
@@ -41,11 +43,22 @@ const sockets = async (io) => {
         console.log(`USUARI ${usuari.userName} connected`);
         console.log("USUARI ABANS DE NEWROOM", usuari);
 
-        initRoom();
+        initFirstRoom();
+        // initRoom();
 
-        /* 
+    
+        socket.on('joinRoom', async (room) => {
+            let enterRoom = await joinRoom(room, usuari);
+            console.log({msg: 'enterRoom en SOCKETS', room, usuari})
+            // if(enterRoom.status === 'success') {
+
+            // }
+        })
+
+
+
         socket.on ('newRoom',  async (newRoomName) => {
-            console.log('roomName DESPRÉS del NEWROOM', newRoomName)
+            // console.log('roomName DESPRÉS del NEWROOM', newRoomName)
             // let currentUser = usuari;
             let createNewRoom =  await createRoom({newRoomName});
             // console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
@@ -61,7 +74,7 @@ const sockets = async (io) => {
                 io.emit("getRooms", createNewRoom);   //! FALTARIA AFEGIR ELS USUARIS i acabar el controller!!!
 
             }
-        }); */
+        }); 
 
         socket.on("getRooms", async () => {
             // initRoom();
@@ -79,7 +92,7 @@ const sockets = async (io) => {
                         arrayCurrentRooms.push(roomName);
                     };
                     
-                    console.log('countRooms', arrayCurrentRooms)
+                    console.log('Rooms:', arrayCurrentRooms)
                     io.to(socket.id).emit("newRoom", arrayCurrentRooms);
 
                 } else {
@@ -92,27 +105,8 @@ const sockets = async (io) => {
                 return { status: "error", message: error };
             }
 
-            // try {
-            //     let currentCreatedRooms = await getRooms();
-            //     console.log("currentCreatedRooms", currentCreatedRooms.currentRooms);
-            //     let countRooms = currentCreatedRooms.currentRooms.length;
-            //     let arrayCurrentRooms = [];
-            //     // console.log('countRooms', countRooms)
-
-            //     for (let i = 0; i < countRooms; i++) {
-            //         let roomName = currentCreatedRooms.currentRooms[i].roomName;
-            //         arrayCurrentRooms.push(roomName);
-            //     };
-
-            //     console.log(arrayCurrentRooms);
-
-            //     if (currentCreatedRooms.status === "success") {
-            //         io.to(socket.id).emit(arrayCurrentRooms);
-            //     }
-            // } catch (error) {
-            //     return { status: "error", message: error };
-            // }
         });
+
 
         // //! creo que no funciona porque no tengo botón de desconexión!!!
         // socket.on("disconnect", async () => {
@@ -129,23 +123,6 @@ const sockets = async (io) => {
     });
 };
 
-/*
-const sockets = async (io) => {
-    io.on("new-message", (data) => {
-        // messages.push(data);
-        console.log("DATA", data);
 
-        const user = {
-            //! V
-            userId: socket.decoded.userId,
-            userName: socket.decoded.userName,
-        };
-
-        console.log(`user ${user.userName} connected`);
-
-        // io.sockets.emit("messages", messages);
-    });
-};
-*/
 
 module.exports = sockets;
