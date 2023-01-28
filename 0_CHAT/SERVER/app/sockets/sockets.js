@@ -49,11 +49,15 @@ const sockets = async (io) => {
     
         socket.on('joinRoom', async (room) => {
             let enterRoom = await joinRoom(room, usuari);
-            console.log({msg: 'enterRoom en SOCKETS', room, usuari})
-            // if(enterRoom.status === 'success') {
+            console.log('enterRoom', enterRoom)
+            if(enterRoom.status === 'success') {
+                // console.log({msg: 'enXterRoom en SOCKETS', room, usuari});  //! comentario de OMAR
+                
 
-            // }
-        })
+            } else {
+
+            };
+        });
 
 
 
@@ -70,9 +74,7 @@ const sockets = async (io) => {
                 let usersInThisRoom = await getUsers(createNewRoom);
                 console.log('usersInThisRoom', usersInThisRoom)
 
-
                 io.emit("getRooms", createNewRoom);   //! FALTARIA AFEGIR ELS USUARIS i acabar el controller!!!
-
             }
         }); 
 

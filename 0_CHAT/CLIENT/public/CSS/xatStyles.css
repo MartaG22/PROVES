@@ -1,6 +1,7 @@
 body {
       background: rgb(32, 32, 32);
       color: #fff;
+      /* color: rgb(99, 42, 119) */
       font-family: 'Nunito Sans', sans-serif;
       text-align: center;
 }
@@ -45,6 +46,8 @@ body {
 }
 
 #rooms {
+      /* display: center; */
+      /* font-display: center; */
       float: left;
       width: 250px;
       height: 550px;
@@ -77,11 +80,12 @@ body {
 .newRoomButton {
       background-color: #a86687;
       text-align: center;
-color: rgb(32, 32, 32);
+      color: rgb(32, 32, 32);
 
       /* display: flex; */
       padding: 0.75rem 0.5rem;
-      padding-top:0.5rem;
+      /* padding-top:0.5rem; */
+      padding-bottom: 0.10 rem;
 }
 #xatZone {
       display: flex;
@@ -114,6 +118,7 @@ input {
 }
 
 button {
+      display: center;
       background: #822252;
       color: #fff;
       font-size: 18px;
@@ -124,10 +129,28 @@ button {
 }
 
 
+/* #roomList {
+      display: center;
+} */
+
+
+/* .currentRooms {
+      display: center;
+
+} */
 
 
 
+.room-btn-active {
+      color: #fff;
+}
 
+.room-btn-active:hover {
+      color: rgb(205, 111, 186);
+}
+
+
+/* 
 .fa-power-off{
       color:var(--color) !important;
       background-color: var(--background-color);
@@ -139,5 +162,4 @@ button {
   .fa-power-off:hover{
       color:var(--blue) !important;
       background-color: var(--background-color);
-      
-  }
+  } */

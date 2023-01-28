@@ -8,7 +8,7 @@ const socket = io('http://localhost:3000', {
 });
 
 let socketConnected = false;
-console.log(sessionStorage.token)
+console.log('sessionStorage.token:', sessionStorage.token)
 // console.log("estic a CLIENT/PUBLIC/JS/SOCKET.JS")
 
 

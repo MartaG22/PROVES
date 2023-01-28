@@ -5,9 +5,11 @@ const roomsSchema = new mongoose.Schema(
       {
             _$oid: {},
             roomName:  {type: String},
-            idUsuarisInThisRoom: [
+            usersInThisRoom: [
                   { 
-                        idUsuari: {type: Number}
+                        idUsuari: {type: Number},
+                        nomUsuari: {type: String}
+
                   }
             ],
             message: [
