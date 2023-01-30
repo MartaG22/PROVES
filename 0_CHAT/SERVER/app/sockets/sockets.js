@@ -49,10 +49,22 @@ const sockets = async (io) => {
     
         socket.on('joinRoom', async (room) => {
             let enterRoom = await joinRoom(room, usuari);
-            console.log('enterRoom', enterRoom)
+            // console.log('enterRoom', enterRoom)
             if(enterRoom.status === 'success') {
-                // console.log({msg: 'enXterRoom en SOCKETS', room, usuari});  //! comentario de OMAR
-                
+
+
+
+                // JOIN NEW ROOM:
+                // console.log({msg: 'enterRoom en SOCKETS', room, usuari});  //! comentario de OMAR
+                // console.log ({msg: "enterRoom.room:", enterRoom.usersInThisRoom})
+                console.log('enterRoom.currentRoom', enterRoom.currentRoom,'\n \n', 'enterRoom.usersInThisRoom', enterRoom.currentRoom.usersInThisRoom);
+                const arrayUsersInRoom = [];
+                enterRoom.currentRoom.usersInThisRoom.forEach(user => {
+                    arrayUsersInRoom.push(user.nomUsuari);
+                });
+                console.log(arrayUsersInRoom)
+                io.emit('joinNewRoom', room, arrayUsersInRoom);
+
 
             } else {
 

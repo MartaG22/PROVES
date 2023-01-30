@@ -9,7 +9,7 @@ const socket = io('http://localhost:3000', {
 
 let socketConnected = false;
 console.log('sessionStorage.token:', sessionStorage.token)
-// console.log("estic a CLIENT/PUBLIC/JS/SOCKET.JS")
+console.log('sessionStorage.token:', sessionStorage)
 
 
 
@@ -27,7 +27,13 @@ socket.on('connect', () => {
     socket.emit("getRooms");
     // console.log(arrayCurrentRooms)
 
-
+    socket.on('joinNewRoom', (room, usersInRoom) => {
+        console.log("Han arribat aquestes dades:", room, usersInRoom)
+        showUsers(usersInRoom, room);
+        
+        // if (sessionStorage.roomId === room.roomId) {
+        // }
+    })
     
     // socket.on('disconnect', async () => {
     //     l
