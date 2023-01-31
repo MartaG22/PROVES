@@ -9,11 +9,11 @@ const joinRoom = (room) => {
       };
 };
 
-const showRoom = (rooms) => {
+const showRoom =  (rooms) => {
       try {
-            console.log("ROOOOOMMMSSSS:", rooms);
+            // console.log("ROOOOOMMMSSSS:", rooms);
 
-            const roomList = document.getElementById("roomList");
+            const roomList =  document.getElementById("roomList");
             roomList.innerHTML = "";
 
 

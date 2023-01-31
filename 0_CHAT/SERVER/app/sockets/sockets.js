@@ -7,6 +7,7 @@ const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
 const joinRoom = require("../controllers/room/joinRoomController.js");
+const newMessage = require("../controllers/message/messageController.js")
 
 
 // const SocketIO = require("socket.io");
@@ -40,20 +41,16 @@ const sockets = async (io) => {
             userName: socket.decoded.nomUsuari,
         };
 
-        console.log(`USUARI ${usuari.userName} connected`);
-        console.log("USUARI ABANS DE NEWROOM", usuari);
+        // console.log(`USUARI ${usuari.userName} connected`);
+        // console.log("USUARI ABANS DE NEWROOM", usuari);
 
         initFirstRoom();
-        // initRoom();
 
     
         socket.on('joinRoom', async (room) => {
             let enterRoom = await joinRoom(room, usuari);
             // console.log('enterRoom', enterRoom)
             if(enterRoom.status === 'success') {
-
-
-
                 // JOIN NEW ROOM:
                 // console.log({msg: 'enterRoom en SOCKETS', room, usuari});  //! comentario de OMAR
                 // console.log ({msg: "enterRoom.room:", enterRoom.usersInThisRoom})
@@ -63,10 +60,11 @@ const sockets = async (io) => {
                     arrayUsersInRoom.push(user.nomUsuari);
                 });
                 console.log(arrayUsersInRoom)
-                io.emit('joinNewRoom', room, arrayUsersInRoom);
-
+                const currentUser = usuari.userName;
+                io.emit('joinNewRoom', room, arrayUsersInRoom, currentUser);
 
             } else {
+                //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!
 
             };
         });
@@ -121,6 +119,10 @@ const sockets = async (io) => {
 
         });
 
+
+        socket.on('newMessage', (room, arrayUsers, currentUser, missatge) => {
+
+        })
 
         // //! creo que no funciona porque no tengo botón de desconexión!!!
         // socket.on("disconnect", async () => {

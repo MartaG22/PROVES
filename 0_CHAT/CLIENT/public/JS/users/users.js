@@ -1,35 +1,23 @@
-const showUsers = (room, arrayUsers) => {
+const showUsers = (room, arrayUsers, currentUser) => {
       try {
-            console.log("room en SHOWUSERS:", room);
-            console.log("arrayUsers en SHOWUSERs", arrayUsers);
+            // console.log("room en SHOWUSERS:", room);
+            // console.log("arrayUsers en SHOWUSERs", arrayUsers);
             const usersInRoom = document.getElementById("usersList");
-
+            // console.log(arrayUsers[0], arrayUsers[1], arrayUsers[2])
             // usersInRoom.innerHTML = arrayUsers;
-
-
-            const usersCount = arrayUsers.lenght;
-console.log(usersCount)
-            
-            for ( let i = 0; i < usersCount; i++) {
-
-                  console.log('USER:', arrayUsers[i]);
-                  usersInRoom.innerHTML = "user"
-
-            }
             
 
-            // for (const user of arrayUsers) {
-            //       console.log('USER:', user);
-            //       usersInRoom.innerHTML = "user"
-                  
-            // }
+            for (const user of arrayUsers) {
+                  console.log('USER:', user);
+                  if (user === currentUser){
+                        usersInRoom.innerHTML += `${user} <br>`   //* PONER EL ESTILO DEL CURRENT USER AQUÍ !!!
 
-            //! NO ENSEÑA TODOS LOS USERS!!!
-            // arrayUsers.forEach(user => {
-            //       console.log('USER:', user);
-            //       // usersList.innerHTML += user
+                  } else {
+                        usersInRoom.innerHTML += `${user} <br>`
+                  }
+            };
+            document.getElementById("showCurrentRoom").innerHTML += `${room} <br>`
 
-            // });
 
 
       } catch (error) {
