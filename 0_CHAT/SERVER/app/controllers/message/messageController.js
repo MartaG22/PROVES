@@ -1,8 +1,10 @@
-const newMessage = () => {
+const Room = require("../../models/dbRoom.js");
+
+const newMessage = async (newMessage) => {
       // SERVER
-      // const newMessageUser = document.getElementById('newMessage').value;
-      // console.log(newMessageUser);
-      
+      console.log('newMessageUser', newMessage)
+      // const updateMissage = await Room.updateOne({newMessage})
+
 };
 
 module.exports = newMessage

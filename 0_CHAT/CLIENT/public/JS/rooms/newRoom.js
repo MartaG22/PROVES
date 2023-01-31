@@ -51,7 +51,7 @@ const createRoom = async () => {
       // console.log(newRoomUser);
       try {
             const newRoomName = await document.getElementById("roomForm").newRoomName.value;
-            console.log(newRoomName);
+            // console.log(newRoomName);
 
             if (newRoomName) {
                   socket.emit("newRoom", newRoomName);

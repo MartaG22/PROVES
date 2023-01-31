@@ -20,7 +20,6 @@ socket.on('connect', () => {
     socket.on('newRoom', (newRoomName) => {
         console.log("newRoom", newRoomName);
         showRoom(newRoomName);
-        
     })
 
 
@@ -28,18 +27,27 @@ socket.on('connect', () => {
     // console.log(arrayCurrentRooms)
 
 
-    socket.on('joinNewRoom', (room, arrayUsers, currentUser) => {
+    socket.on('joinNewRoom', async(room, arrayUsers, currentUser) => {
         console.log("Han arribat aquestes dades:", room, arrayUsers, currentUser)
         showUsers(room, arrayUsers, currentUser);
         
         // if (sessionStorage.roomId === room.roomId) {
         // }
 
+
+
+        const newMessage = await sendMessage();
+        console.log("NOU MISSATGE", newMessage);
+        if (newMessage) {
+
+            // socket.emit('newMessage', newMessage)
+
+        };
         
-        socket.emit('messageController', (room, arrayUsers, currentUser) => {
-
-
-        });
+        // socket.emit('messageController', (room, arrayUsers, currentUser) => {
+        //     // sendMessage(newMessageUser);
+        //     console.log(newMessageUser)
+        // });
 
     });
 
