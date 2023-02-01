@@ -31,7 +31,7 @@ socket.on('connect', () => {
         console.log("Han arribat aquestes dades:", room, arrayUsers, currentUser)
         
         // sessionStorage.roomId == data.currentUser.idUsuari;
-        sessionStorage.roomName == room;
+        // sessionStorage.roomName == room.id;
         
         showUsers(room, arrayUsers, currentUser);
         

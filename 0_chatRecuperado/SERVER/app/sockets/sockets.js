@@ -129,13 +129,13 @@ const sockets = async (io) => {
         });
 
 
-        socket.on('newMessage', async (newMessage) => {
+        socket.on('newMessage', async (newMessage, room) => {
             
             try {
 
                 const currentUser = usuari.userName;
                 //! FALTA CAPTURAR EL ROOM PER PASSAR AL CONTROLLER!
-                const sendNewMessage = await sendMessage(newMessage, currentUser);
+                const sendNewMessage = await sendMessage(newMessage, currentUser, room);
                 console.log('sendNewMessage', sendNewMessage)
 
             } catch (error) {

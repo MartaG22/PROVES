@@ -1,12 +1,15 @@
 const joinRoom = (room) => {
       try {
             // if (sessionStorage.roomId === newRoomName.roomId) return;
-            console.log("ROOM en newROOM", room.id);
-            socket.emit("joinRoom", room.id);
+            // console.log(room)
+            sessionStorage.roomName = room.id;
+            // sessionStorage.roomId = room.roomId;
+            console.log('sessionStorage PRUEVA NUEVA:', sessionStorage.roomName)
+            // console.log("ROOM en newROOM", room.id);
+            
+            socket.emit("joinRoom", sessionStorage.roomName);
 
 
-            sessionStorage.roomName = room.roomName;
-            sessionStorage.roomId = room.roomId;
 
             
       } catch (error) {

@@ -7,14 +7,14 @@ const sendMessage = async () => {
             document.querySelector('.xatForm input[name="newMessage"]').value = ""
             console.log('newMessage', newMessageUser);
             
-            // const currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
-            const room = {roomId: sessionStorage.roomId, roomName: sessionStorage.roomName};
+            // constr currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
+            const room = {roomName: sessionStorage.roomName};
             
-            console.log(room);
+            console.log('room', room);
             
 
             if (newMessageUser) {
-                  socket.emit("newMessage", newMessageUser);
+                  socket.emit("newMessage", newMessageUser, room);
                   
             }
 
