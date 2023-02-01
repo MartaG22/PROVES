@@ -7,7 +7,8 @@ const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
 const joinRoom = require("../controllers/room/joinRoomController.js");
-const newMessage = require("../controllers/message/messageController.js");
+const getMessages = require("../controllers/message/getMessagesController.js")
+const sendMessage = require("../controllers/message/sendMessageController.js");
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
@@ -128,7 +129,7 @@ const sockets = async (io) => {
 
         // socket.on('newMessage', (room, arrayUsers, currentUser, newMissage) => {
         socket.on("newMessage", async (newMessage) => {
-            console.log(newMessage);
+            console.log('newMessage', newMessage);
 
 
 
