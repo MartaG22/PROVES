@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../CSS/xatStyles.css" />
+
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    <script src = "../JS/sockets.js" ></script>
+    <script src ="../JS/rooms/newRoom.js" ></script>
+    <script src = "../JS/users/users.js"></script>
+    <script src = "../JS/messages/messages.js" ></script>
+</head>
+
+<body>
+    <header>
+        <h1>XAT</h1>
+        <!-- <a class="button-logout" onclick="logout()"><i class="fa-solid fa-power-off fa-2x" ></i></a>   -->
+            <!-- BOTON DE DESCONECTAR -->
+
+    </header>
+
+    <div id="chat-container">
+        <!-- <--(GENERAL) -->
+
+
+
+        <div id="rooms">
+            <h1 id="titleRooms">Rooms</h1>
+            <ul id="roomList" class="currentRooms"></ul>
+            <h1 id="currentRoom" class="header-currentRoom"></h1> <!-- NOM DE L'USUARI EN US (mirar donde ponerlo luego ) CLIENT/HTML/MAIN.JS-->
+
+            <!-- <form id="roomForm" class="room-form" onsubmit="newRoom()"> -->
+            <!-- <h1 id="userName" class="header-username"></h1> -->
+            <!-- <form id="roomForm" class="room-form" onsubmit="createRoom()"> -->
+            <form id="roomForm" class="room-form" onsubmit="createRoom()">
+
+                <input class="input" type="text" id="newRoomName" name="newRoom" placeholder="New room... " maxlength="16"
+                    spellcheck="false" autocomplete="off" required>
+                <input class="newRoomButton" type="submit" value="New">
+
+                <!-- <input class="input" type="text" id="newRoomName" name="newRoom" placeholder="New room... " maxlength="16" spellcheck="false" autocomplete="off" required> -->
+                <!-- <input class="newRoomButton" type="submit" value="New"> -->
+            </form>
+        </div>
+
+
+        <!-- <div id="messagesZone"> -->
+        <div id="xatZone">
+            <div id="xat" class="xat">
+                <!-- <h1 id="showCurrentRoom"></h1> -->
+                <!-- <ul id="previousMessages" class="xat_Ul"></ul> -->
+                <!-- Cambiar maquetación, se me baja la parte de Usuaris Room-->
+            </div>
+            <div id = "chat-window">
+                <!-- <h1 id="showCurrentRoom"></h1> -->
+        
+            </div>
+            <div id="usuarisRoom">
+                <h1 id="usersRoomList">Usuaris a la Sala</h1>
+                <h1 id="showCurrentRoom"></h1>   <!-- NO MOSTRA LA CURRENT ROOM
+ -->
+                <h1 id="userName" class="header-username"></h1><!--  NOM DE L'USUARI EN US (mirar donde ponerlo luego ) CLIENT/HTML/MAIN.JS -->
+                <ul id="usersList" class="room"></ul>
+    
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+
+
+
+    <!-- newMessage input#newMessage -->
+
+    <form id="newMessages" class="xatForm">
+        <input type="text" id="newMessage" name="newMessage" placeholder="Message"/>
+        <button id="send" type="button" onclick="sendMessage()">Send</button>
+    </form>
+
+    <!-- <input type="text"  id="message" placeholder="Message" />
+    <button id = "send"  onsubmit = "newMessage" >Send</button> -->
+
+
+
+
+
+
+    <!-- <div>
+            <div id="rooms"></div>
+            <h1 id="titleRooms">Rooms</h1>
+
+            lista ROOMS
+      </div>
+      <div>
+            <div id="currentRoom"> NOM DE LA SALA </div>
+      </div>
+      <div id = "chat-window">
+            <div id = "output"></div>
+            <div id = "actions"></div>
+      </div>
+      <input type = "text" id = "username" placeholder = "Username"/>
+
+      <input type = "text" id = "message" placeholder = "Message"/>
+      <button id = "send">Send</button> -->
+
+      <script src = "../JS/main.js" ></script>
+    <!-- <script src = "../JS/xat.js" charset="utf-8" ></script> -->
+</body>
+
+</html>
