@@ -103,7 +103,7 @@ Per inicialitzar el servidor a la part del CLIENT:
 
 
 ```
-npm start  -->  Per executar el projecte
+npm start  -->  Per executar el projecte com a usuari
 npm run dev -->  Per executar com a desenvolupador
 ```
 <br>
