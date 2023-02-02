@@ -33,7 +33,7 @@ socket.on('connect', () => {
         // sessionStorage.roomId == data.currentUser.idUsuari;
         // sessionStorage.roomName == room.id;
         
-        showUsers(room, usersInThisRoom, currentUser);
+        showUsers(room, usersInThisRoom, currentUser, previousMessages);
         
 
         //! sessionStorage.roomId === room.roomId;
@@ -58,7 +58,12 @@ socket.on('connect', () => {
 
     });
 
-    socket.on(`newMessage`, () => {})
+    // socket.on('displayMessage', (newMessage, usuari, room) => {
+    //     console.log("DADES REBUDES EN CLIENTS/SOCKETS", newMessage, usuari, room);
+    //     displayNewMessage(newMessage, usuari, room);
+    // })
+
+    // socket.on(`newMessage`, () => {})
 
 
 

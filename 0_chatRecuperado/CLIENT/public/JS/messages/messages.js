@@ -10,7 +10,7 @@ const sendMessage = async () => {
             // constr currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
             const room = {roomName: sessionStorage.roomName};
             
-            console.log('room', room);
+            console.log('room en PUBLIC/SENDMESSAGE', room);
             
 
             if (newMessageUser) {
@@ -22,4 +22,13 @@ const sendMessage = async () => {
             return { status: "error", message: error };
       }
       
+};
+
+
+
+
+const displayNewMessage = async (newMessage, usuari, room) => {
+
+      
+
 }

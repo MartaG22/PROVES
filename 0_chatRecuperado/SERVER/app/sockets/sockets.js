@@ -134,10 +134,16 @@ const sockets = async (io) => {
             console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room})
             try {
 
-                const currentUser = usuari.userName;
+                // const currentUser = usuari.userName;
+                // const currentUser = usuari;
                 //! FALTA CAPTURAR EL ROOM PER PASSAR AL CONTROLLER!
-                const sendNewMessage = await sendMessage(newMessage, currentUser, room.roomName);
-                console.log('sendNewMessage', sendNewMessage)
+                const sendNewMessage = await sendMessage(newMessage, usuari, room.roomName);
+                console.log('sendNewMessage en SOCKET/NEWMESSAGE', sendNewMessage);
+
+                if (sendNewMessage) {
+                    io.emit("displayMessage", newMessage, usuari, room.roomName);
+
+                }
 
             } catch (error) {
                 return { status: "error", message: error };

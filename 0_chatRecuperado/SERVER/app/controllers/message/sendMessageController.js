@@ -1,25 +1,39 @@
 const Room = require("../../models/dbRoom.js");
 
-const sendMessage = async (newMessage, currentUser, currentRoom) => {
+const sendMessage = async (newMessage, currentUser, room) => {
       // SERVER
       console.log('newMessageUser', newMessage);
-      console.log({msg: "ARRIBEN LES SEGÜENTS DADES A MESSAGECONTOLLER/SENdMESSAGe:", newMessage, currentUser, currentRoom})
+      console.log('currentUser para coger el ID pàra guardar en la DBdel mensaje', currentUser)
+      console.log({msg: "ARRIBEN LES SEGÜENTS DADES A MESSAGECONTOLLER/SENdMESSAGe:", newMessage, currentUser, room})
 
       // const currentRoom = await Room.findOne({ roomName: room})
       // console.log('CURRENT TOOM EN sendMESSAGECONTROLLER', currentRoom);
-
-
+      const currentRoom = await Room.findOne({ roomName: room });
+      
       if (currentRoom) {
             console.log("currentRoom encontrada*****")
-            const getMessage = currentRoom.message;
+            const previousMessages = currentRoom.message;
+            // console.log('****  MISSATGES PREVIS EN SOCKETS/SENDMESSAGE CONTROLLER ****', previousMessages);
 
-            console.log("getMessage en SENDMESSGECONTROLLER:", getMessage)
+            const newMessageData = {idUsuari: currentUser.userId,  missatge: newMessage};
+            // const newMessage = {idUsuari: currentUser.userId,  missatge: newMessage};
+            // console.log('newMessage grabado en la variable newMessage en SendMessage Contoller', newMessageData)
+
+            
+            previousMessages.push(newMessageData)
+            
+            
+            await currentRoom.updateOne({message: previousMessages});
+            // const messagesList = await currentRoom.updateOne({message: newMessageData});
+            // console.log('currentRoom DESPUÉS DE GRABAR EL MENSAJE NUEVO', currentRoom)
+
+            return currentRoom.message;
+      //       console.log("getMessage en SENDMESSGECONTROLLER:", getMessage)
 
 
 
 
-            // await currentRoom.message.updateOne({idUsuari: currentUser.userId,  missatge: newMessage})
-      }
+      };
 
 
 };
