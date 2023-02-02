@@ -11,9 +11,9 @@ const joinRoom = async (room, usuari) => {
 
             if (currentRoom) {
                   const usersInCurrentRoom = currentRoom.usersInThisRoom;
-                   console.log("USERS PROVA:", usersInCurrentRoom);
-                  
-                  
+                  console.log("USERS PROVA:", usersInCurrentRoom);
+
+
                   // const currentUser = await Usuari.findOne({idUsuari: usuari.userId});
                   // console.log('currentUser en joinROOM Controller', currentUser);
 
@@ -22,7 +22,7 @@ const joinRoom = async (room, usuari) => {
                         idUsuari: usuari.userId,
                         nomUsuari: usuari.userName,
                   };
-            
+
                   console.log('currentUser', currentUser)
                   // const found = array1.find(element => element > 10);
                   // this.array.find(x => x.idCustomer == 998);
@@ -41,15 +41,14 @@ const joinRoom = async (room, usuari) => {
                         console.log("USERS PROVA II:", usersInCurrentRoom);
                         //! SI l'usuari ja existeix a la sala ha de mostrar un missatge de que ja està connectat a la ROOM
                         //! I NO S'HA DE PUJAR A LA ROOM!!!
-                  };
 
-                  if (currentUser) {
+                        // if (currentUser) {
 
 
-                  //* PONER AQUÍ UN IF PARA LA CONDICIÓN DE QUE NO SE PUDA AÑADIR A LA SALA
-                  
+                        //* PONER AQUÍ UN IF PARA LA CONDICIÓN DE QUE NO SE PUDA AÑADIR A LA SALA
+
                         await currentRoom.updateOne({
-                        // const updateUsersToRoom = await currentRoom.updateOne({
+                              // const updateUsersToRoom = await currentRoom.updateOne({
                               usersInThisRoom: usersInCurrentRoom,
                         });
                         console.log("currentRoom", currentRoom);
@@ -59,7 +58,7 @@ const joinRoom = async (room, usuari) => {
                         );
 
                         // console.log('updateUsersToRoom', updateUsersToRoom)
-                   
+
 
                         // const updateUser = await Room.findOneAndUpdate(
                         //       {roomName: room},
@@ -79,11 +78,12 @@ const joinRoom = async (room, usuari) => {
 
                         return { status: "success", currentRoom };
 
+                  };
                   // } else {
                   //       return { status: "error", message: "No s'ha pogut entrar a la Sala"};
-                  };
+                  // };
             } else {
-                  return {status: "error", message: "No s'ha trobat la Sala"};
+                  return { status: "error", message: "No s'ha trobat la Sala" };
             };
 
       } catch (error) {

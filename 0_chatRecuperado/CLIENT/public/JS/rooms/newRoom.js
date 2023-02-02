@@ -1,10 +1,10 @@
 const joinRoom = (room) => {
       try {
-            // if (sessionStorage.roomId === newRoomName.roomId) return;
+            if (sessionStorage.roomName === room.id) return;
             // console.log(room)
             sessionStorage.roomName = room.id;
             // sessionStorage.roomId = room.roomId;
-            console.log('sessionStorage PRUEVA NUEVA:', sessionStorage.roomName)
+            console.log('sessionStorage ROOM NUEVA:', sessionStorage.roomName)
             // console.log("ROOM en newROOM", room.id);
             
             socket.emit("joinRoom", sessionStorage.roomName);
@@ -23,20 +23,6 @@ const showRoom =  (rooms) => {
 
             const roomList =  document.getElementById("roomList");
             roomList.innerHTML = "";
-
-
-            // const btn = document.createElement("button");
-            // buttonRooms.innerHTML = room;
-            // btn
-            // btn.classList.add("room-btn-active");
-            // btn.textContent = room;
-            // btn.setAttribute("id", room);
-            // btn.onclick = () => {
-            //       //! FALTAN COSAS
-            //       console.log(` Li has donat a ${room}`)
-            //       joinRoom(room);
-            // }
-            // roomList = document.getElementById("roomList");
 
 
             for (const room of rooms) {

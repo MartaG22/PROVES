@@ -1,9 +1,9 @@
 const Room = require("../../models/dbRoom.js");
 
-const sendMessage = async (newMessage, currentUser, room) => {
+const sendMessage = async (newMessage, currentUser) => {
       // SERVER
       console.log('newMessageUser', newMessage);
-      console.log({msg: "ARRIBEN LES SEGÜENTS DADES A MESSAGECONTOLLER/SENMESSAGA:", newMessage, currentUser, room})
+      console.log({msg: "ARRIBEN LES SEGÜENTS DADES A MESSAGECONTOLLER/SENdMESSAGe:", newMessage, currentUser, room})
 
       const currentRoom = await Room.findOne({ roomName: room})
       console.log('CURRENT TOOM EN sendMESSAGECONTROLLER', currentRoom);
@@ -13,7 +13,7 @@ const sendMessage = async (newMessage, currentUser, room) => {
             console.log("currentRoom encontrada*****")
             const getMessage = currentRoom.message;
 
-            console.log("getMessage:", getMessage)
+            console.log("getMessage en SENDMESSGECONTROLLER:", getMessage)
 
 
 

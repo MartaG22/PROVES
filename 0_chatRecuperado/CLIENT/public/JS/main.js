@@ -10,7 +10,7 @@ sessionStorage.roomName = "";
 
 
 //* https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
-//* Per preveure que el button del Fromulari del XATFORM recarregui la pàgina i cridi a la funció SENDMESSAGE
+//* Per preveure que el button del Fromulari del XATFORM recarregui la pàgina per defecte i cridi a la funció SENDMESSAGE
 document.querySelector('.xatForm').addEventListener("keypress", function(event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
