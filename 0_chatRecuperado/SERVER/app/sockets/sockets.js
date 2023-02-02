@@ -65,7 +65,7 @@ const sockets = async (io) => {
                     // console.log('arrayUsersInRoom en SOCKETS/JOINROOM', arrayUsersInRoom);
                     const currentUser = usuari.userName;
                     const previousMessages = enterRoom.currentRoom.message;
-                    console.log("previousMessages:", previousMessages)
+                    console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
                     io.emit("joinNewRoom", room, arrayUsersInRoom, currentUser, previousMessages);
                 } else {
                     //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!
@@ -116,7 +116,7 @@ const sockets = async (io) => {
                     for (let i = 0; i < countRooms; i++) {
                         let roomName =
                             currentCreatedRooms.currentRooms[i].roomName;
-                        arrayCurrentRooms.push(roomName);
+                            arrayCurrentRooms.push(roomName);
                     }
 
                     console.log("Rooms:", arrayCurrentRooms);
@@ -130,13 +130,13 @@ const sockets = async (io) => {
         });
 
 
-        socket.on('newMessage', async (newMessage) => {
-            
+        socket.on('newMessage', async (newMessage, room) => {
+            console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room})
             try {
 
                 const currentUser = usuari.userName;
                 //! FALTA CAPTURAR EL ROOM PER PASSAR AL CONTROLLER!
-                const sendNewMessage = await sendMessage(newMessage, currentUser);
+                const sendNewMessage = await sendMessage(newMessage, currentUser, room.roomName);
                 console.log('sendNewMessage', sendNewMessage)
 
             } catch (error) {
