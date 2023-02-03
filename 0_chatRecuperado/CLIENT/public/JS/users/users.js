@@ -1,5 +1,5 @@
 const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
-      console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
+      // console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
 
       try {
             // console.log("room en SHOWUSERS:", room);
@@ -22,7 +22,8 @@ const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
                         usersInRoom.innerHTML += `${user} <br>`
                   }
             };
-            document.getElementById("showCurrentRoom").innerHTML += `${room} <br>`
+            // document.getElementById("showCurrentRoom").innerHTML += `${room} <br>`
+            document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
 
             // for (const message of updateMissages) {
             //       console.log("GET MESSAGE:", message);

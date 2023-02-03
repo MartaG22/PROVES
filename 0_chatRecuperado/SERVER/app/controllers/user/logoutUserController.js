@@ -2,7 +2,7 @@ const Usuari = require('../../models/dbUsuari.js');
 const Room = require('../../models/dbRoom.js');
 
 const disconnectUser = async (usuari) => {
-      console.log("USUARI A DESCONNECTAR - en PUBLIC/DISCTONNECTUSER:", usuari);
+      // console.log("USUARI A DESCONNECTAR - en PUBLIC/DISCTONNECTUSER:", usuari);
       //! FINS AQUÍ ARRIBA   BÉ    EL USUARI A DESCONNECTAR 
       try {
             // const currentRoom = await Room.findOne({ roomName: room });
@@ -10,28 +10,25 @@ const disconnectUser = async (usuari) => {
 
             // const usersInCurrentRoom = await Room.findOneAndRemove({usersInThisRoom:{nomUsuari: usuari.userName}})
             const findUserInRoom = await Usuari.findOne({ idUsuari: usuari.userId });
-            console.log('findUserInRoom ANTEW', findUserInRoom);
+            // console.log('findUserInRoom ANTEW', findUserInRoom);
             const currentRoom = findUserInRoom.room;
-            console.log('currentRoom en DISCONNECT USER, para quitar el user de la room', currentRoom)
-            let noRoom = "";
+            // console.log('currentRoom en DISCONNECT USER, para quitar el user de la room', currentRoom)
+            let noRoom = null;
             if (findUserInRoom) {
-                  console.log("ENTRO EN EL IF")
+                  // console.log("ENTRO EN EL IF")
                   await findUserInRoom.updateOne({ room: noRoom });
                   const findCurrentRoom = await Room.findOne({ roomName: currentRoom });
-                  console.log('*** arrayUsersInRoom:', findCurrentRoom)
+                  // console.log('*** arrayUsersInRoom:', findCurrentRoom)
                   //! no muestra el array de user
                   const arrayUsersInRoom = findCurrentRoom.usersInThisRoom;
                   // console.log('*** arrayUsersInRoom:', arrayUsersInRoom)
-                  const newUsersInRoom = arrayUsersInRoom.filter((user) => {
+                  const newArrayUsersInRoom = arrayUsersInRoom.filter((user) => {
                         return user.idUsuari != findUserInRoom.idUsuari
                         // && user.nomUsuari != findUserInRoom.nomUsuari
                   });
 
-                  console.log('valor', newUsersInRoom)
-                  await findCurrentRoom.updateOne({
-                        // const updateUsersToRoom = await currentRoom.updateOne({
-                        usersInThisRoom: newUsersInRoom,
-                  });
+                  // console.log('valor', newUsersInRoom)
+                  await findCurrentRoom.updateOne({usersInThisRoom: newArrayUsersInRoom});
                   console.log(
                         "CURRENT ROOM - USUARIS IN THIS ROOM",
                         findCurrentRoom.usersInThisRoom
@@ -43,8 +40,7 @@ const disconnectUser = async (usuari) => {
             // const usersInCurrentRoom = await Room.find({usersInThisRoom});
 
             //! <<<<<me  he  quedado  aquí  <<<<<<<<<<>>>>>>>>>>>> <<<<<<<<<<<<<>>>>>>>>>>>>>>
-            //  NO ME BORRA EL NOMBRE DE LA ROOM DENTRO DEL USUARIO
-            //* TENGO QUE BORRAR EL USUARIO DEL ARRAY DE USERS DE LA CURRENTROOM
+            //* TENDRÍA QUE REFACTORIZARLO PARA QUE NO SE TENGA QUE HACER TANTAS BUSQUEDAS EN LA DB
             //! <<<<<me  he  quedado  aquí  <<<<<<<<<<>>>>>>>>>>>> <<<<<<<<<<<<<>>>>>>>>>>>>>>
 
             // const findUserInRoom2 = await Usuari.findOne({idUsuari: usuari.userId});
@@ -60,7 +56,7 @@ const disconnectUser = async (usuari) => {
             // console.log(userToDisconnect);
 
             // if (userToDisconnect) {
-            //       result = {status: "success", userToDisconnect}
+                  result = {status: "success", userToDisconnect}
             // }
 
       } catch (error) {

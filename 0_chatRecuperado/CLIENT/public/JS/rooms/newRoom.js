@@ -1,5 +1,8 @@
 const joinRoom = (room) => {
       try {
+            // const usersInRoom = document.getElementById("usersList");
+            // const updateMissages = document.getElementById("previousMessages");
+
             if (sessionStorage.roomName === room.id) return;
             // console.log(room)
             sessionStorage.roomName = room.id;
@@ -7,8 +10,12 @@ const joinRoom = (room) => {
             console.log('sessionStorage ROOM NUEVA:', sessionStorage.roomName)
             // console.log("ROOM en newROOM", room.id);
             
-            socket.emit("joinRoom", sessionStorage.roomName);
+            // usersInRoom.innerHTML = "";
+            document.getElementById("usersList").innerHTML = "";
+            // document.getElementById("showCurrentRoom").innerHTML = "";
 
+            //!  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
+            socket.emit("joinRoom", sessionStorage.roomName);
 
 
             
@@ -25,6 +32,7 @@ const showRoom =  (rooms) => {
             roomList.innerHTML = "";
 
 
+            // `<span style='color:#ff0000;'>${user}</span> <br>`
             for (const room of rooms) {
                   let btn = `<button class="room-btn-active" id="${room}" onClick="(() => {
                         console.log(' Li has donat a ${room}');
