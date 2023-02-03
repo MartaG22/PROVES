@@ -33,17 +33,17 @@ const joinRoom = async (room, usuari) => {
                         //! AQUEST USUARI JA ESTÀ CONNECTAT A AQUESSTA SALA
                         //? FER EL RETURN
                         console.log("Aquest USUARI ja està connectat a aquesta ROOM");
-
-                  } else {
-
-                        console.log("currentUser en joinROOM Controller", currentUser);
-                        usersInCurrentRoom.push(currentUser);
-                        console.log("USERS PROVA II:", usersInCurrentRoom);
+                        return { status: "error", message: "Aquest USUARI ja està connectat a aquesta ROOM" };
                         //! SI l'usuari ja existeix a la sala ha de mostrar un missatge de que ja està connectat a la ROOM
                         //! I NO S'HA DE PUJAR A LA ROOM!!!
 
+                  } else {
+                        console.log("currentUser en joinROOM Controller", currentUser);
+                        usersInCurrentRoom.push(currentUser);
+                        console.log("USERS PROVA II:", usersInCurrentRoom);
+                        
                         // if (currentUser) {
-
+                              
 
                         //* PONER AQUÍ UN IF PARA LA CONDICIÓN DE QUE NO SE PUDA AÑADIR A LA SALA
 
@@ -56,7 +56,11 @@ const joinRoom = async (room, usuari) => {
                               "CURRENT ROOM - USUARIS IN THIS ROOM",
                               currentRoom.usersInThisRoom
                         );
-
+                              console.log(currentRoom.roomName)
+                              console.log(currentUser)
+                              await Usuari.findOneAndUpdate({idUsuari: currentUser.idUsuari}, {room: currentRoom.roomName});
+                              // const aaa =await Usuari.findOne({idUsuari: currentUser.idUsuari});
+                              // {room: currentRoom.roomName});
                         // console.log('updateUsersToRoom', updateUsersToRoom)
 
 

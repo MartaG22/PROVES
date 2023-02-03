@@ -157,17 +157,18 @@ const sockets = async (io) => {
 
 
         // //! creo que no funciona porque no tengo botón de desconexión!!!
-        // socket.on("disconnect", async () => {
-        //     try {
-        //         let userToDisconnect = await disconnectUser(usuari);
-        //         console.log('userToDisconnect', userToDisconnect)
+        socket.on("disconnect", async () => {
+            try {
+                // console.log("ROOM en DISCONNECT USER", room)
+                let userToDisconnect = await disconnectUser(usuari);
+                console.log('userToDisconnect EN SERVER/SOCKETS', userToDisconnect)
         //         if ( userToDisconnect.status === "success") {
         //             console.log(userToDisconnect)
         //         }
-        //     } catch (error){
-        //         console.log(error)
-        //     }
-        // })
+            } catch (error){
+                console.log(error)
+            }
+        });
     });
 };
 
