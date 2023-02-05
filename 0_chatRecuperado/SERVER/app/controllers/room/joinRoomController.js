@@ -1,5 +1,7 @@
 const Room = require("../../models/dbRoom.js");
 const Usuari = require("../../models/dbUsuari.js");
+// const getUsers = require("../models/dbUsuari.js");
+
 
 const joinRoom = async (room, usuari) => {
       // console.log("ROOM en joinROOM Controller", room);
@@ -26,6 +28,9 @@ const joinRoom = async (room, usuari) => {
                   console.log('currentUser', currentUser)
                   // const found = array1.find(element => element > 10);
                   // this.array.find(x => x.idCustomer == 998);
+
+
+                  
                   const findUserInRoom = usersInCurrentRoom.find(user => (user.idUsuari === currentUser.idUsuari && user.nomUsuari === currentUser.nomUsuari));
                   console.log('findUserInRoom', findUserInRoom)
 

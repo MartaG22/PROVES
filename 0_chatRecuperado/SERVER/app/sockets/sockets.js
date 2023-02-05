@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const disconnectUser = require("../controllers/user/logoutUserController.js");
 // const registerUserController = require("../controllers/user/loginUserController.js");
 // const loginUserController = require("../controllers/user/registerUserController.js");
-const getUsers = require("../models/dbUsuari.js");
+// const getUsers = require("../models/dbUsuari.js");
 const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
@@ -160,13 +160,28 @@ const sockets = async (io) => {
         socket.on("disconnect", async () => {
             try {
                 // console.log("ROOM en DISCONNECT USER", room)
-                let userToDisconnect = await disconnectUser(usuari);
-                console.log('userToDisconnect EN SERVER/SOCKETS', userToDisconnect)
-        //         if ( userToDisconnect.status === "success") {
-        //             console.log(userToDisconnect)
-        //         }
+                console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
+                let getUsersRoom = await disconnectUser(usuari);
+
+                if (getUsersRoom) {
+
+                        // console.log(getUsersRoom, getUsersRoom)
+                        // console.log('newArrayUsers EN SERVER/SOCKETS', getUsersRoom.currentRoom);
+                        // console.log ('newUserInRoom', getUsersRoom.newUsersInRoom)
+                        // const currentRoom = getUsersRoom.currentRoom;
+                        // const newArrayUsers = getUsersRoom.newUsersInRoom;
+                        // const currentUser = usuari.userName;
+                        
+
+                        console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", currentRoom, newArrayUsers, "currentUser:", currentUser);
+                        io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers,  usuari.userName);
+
+                    } else {
+                        return {status: "error", message: "No s'ha detectat la desconnexió del client"}
+                    }
+                        
             } catch (error){
-                console.log(error)
+                result = { status: "error", message: error.message }
             }
         });
     });

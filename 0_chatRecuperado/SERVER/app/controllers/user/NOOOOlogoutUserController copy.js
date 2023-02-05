@@ -1,5 +1,7 @@
 const Usuari = require('../../models/dbUsuari.js');
 const Room = require('../../models/dbRoom.js');
+// const getUsers = require("../user/getUsersController.js");
+
 
 const disconnectUser = async (usuari) => {
       console.log("USUARI A DESCONNECTAR - en PUBLIC/DISCTONNECTUSER:", usuari);
@@ -14,23 +16,32 @@ const disconnectUser = async (usuari) => {
             const currentRoom = findUserInRoom.room;
             console.log('currentRoom en DISCONNECT USER, para quitar el user de la room', currentRoom)
             let noRoom = null;
-
             if (findUserInRoom) {
-                  // console.log("ENTRO EN EL IF")
+                  console.log("ENTRO EN EL IF")
                   await findUserInRoom.updateOne({ room: noRoom });
+                  // console.log("LOG 1:", findUserInRoom.room)
+                  const getUsers = getUsers(currentRoom);
+                  console.log("LOG 2:",getUsers)
+
+/* 
                   const findCurrentRoom = await Room.findOne({ roomName: currentRoom });
-                  // console.log('*** arrayUsersInRoom:', findCurrentRoom)
+                  console.log('*** arrayUsersInRoom:', findCurrentRoom)
                   //! no muestra el array de user
                   const arrayUsersInRoom = findCurrentRoom.usersInThisRoom;
                   // console.log('*** arrayUsersInRoom:', arrayUsersInRoom)
-                  const newUsersInRoom = arrayUsersInRoom.filter((user) => {
+ */
+
+
+                  const newUsersInRoom = getUsers.arrayUsersInRoom.filter((user) => {
                         return user.idUsuari != findUserInRoom.idUsuari
                         // && user.nomUsuari != findUserInRoom.nomUsuari
                   });
 
-                  // console.log('valor', newUsersInRoom)
-                  await findCurrentRoom.updateOne({usersInThisRoom: newUsersInRoom});
-                  return  ({status: "success", currentRoom, newUsersInRoom});
+                  console.log('valor', newUsersInRoom)
+                  if (newUsersInRoom) {
+                        await getUsers.findCurrentRoom.updateOne({ usersInThisRoom: newUsersInRoom });
+                        result = { status: "success", newUsersInRoom }
+                  }
 
             };
 
@@ -46,7 +57,18 @@ const disconnectUser = async (usuari) => {
 
 
 
-            } catch (error) {
+            // const userToDisconnect = await Room.findByIdAndUpdate(
+            //       { }
+            //       { _id: user.idUsuari }, 
+            //       { 'room.roomId': null, 'room.roomName': null}
+            // );
+            // console.log(userToDisconnect);
+
+            // if (userToDisconnect) {
+            // result = {status: "success", userToDisconnect}
+            // }
+
+      } catch (error) {
             result = { status: "error", message: error.message }
       }
 
