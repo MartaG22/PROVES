@@ -1,23 +1,25 @@
-const showMessages = async (previousMessages, user) => {
-      console.log(previousMessages, "USER:", user, "USERS IN THIS ROOM:")
-      const updateMissages = document.getElementById("previousMessages");
+/* const showMessages = async (previousMessages) => {
+// const showMessages = async (previousMessages, user) => {
+      // console.log(previousMessages, "USER:", user, "USERS IN THIS ROOM:")
+      // console.log("previousMessages:", previousMessages)
+      const updateMissages = document.getElementById("oldMessages");
       updateMissages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS"
 
 
       
-      for (const message of previousMessages) {
-            updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
-            // updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
+      // for (const message of previousMessages) {
+      //       updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
+      //       // updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
 
 
-            // if (user === currentUser) {
-            //       updateMissages.innerHTML += `<span style='color:#ff0000;'>${message}</span> <br>`
+      //       // if (user === currentUser) {
+      //       //       updateMissages.innerHTML += `<span style='color:#ff0000;'>${message}</span> <br>`
 
-            // } else {
-            //       usersInRoom.innerHTML += `${message} <br>`
-            // };
+      //       // } else {
+      //       //       usersInRoom.innerHTML += `${message} <br>`
+      //       // };
 
-      };
+      // };
 
 
 
@@ -33,7 +35,29 @@ const showMessages = async (previousMessages, user) => {
       // };
 
 
-}
+} */
+
+
+const showMessages = async(previousMessages) => {
+      console.log("previousMessages:", previousMessages)
+
+      const updateMissages = document.getElementById("oldMessages");
+      updateMissages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS <br>"
+
+      for (message of previousMessages) {
+            console.log("MESSAGE:", message);
+            // if () //!Poner la condición de si es el usuario actual, se pone en otro color
+            updateMissages.innerHTML += `${message.missatge} <br>`;
+      
+      
+      
+      
+      };
+
+};
+
+
+
 
 const sendMessage = async () => {
       // console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser)
@@ -54,7 +78,7 @@ const sendMessage = async () => {
                   socket.emit("newMessage", newMessageUser, room);
                   
             }
-
+            //! tiene que recibir el ok del BACK y mostralo por pnatalla
       } catch (error) {
             return { status: "error", message: error };
       }

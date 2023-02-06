@@ -40,8 +40,9 @@ socket.on('connect', () => {
         //! la part comentada abaix és la part  que havia avançant i no funciona:
 /*         console.log('<<<<<< >>>>>>>>>>>>>>>>> currentUser en SOCKETS/joinNEWROOM', currentUser)
         showUsers(room, usersInThisRoom, currentUser);
-        showMessages(previousMessages, currentUser)
- */
+        */
+        // showMessages(previousMessages, currentUser)
+        showMessages(previousMessages)
 
 
 

@@ -5,6 +5,7 @@ const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
 // const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
       // console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
       //! QUITAR ""PREVIOUSMESSAGES""" en este controller
+
       try {
             // console.log("room en SHOWUSERS:", room);
             // console.log("arrayUsers en SHOWUSERs", arrayUsers);
