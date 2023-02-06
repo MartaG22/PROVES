@@ -13,7 +13,8 @@ const roomsSchema = new mongoose.Schema(
             ],
             message: [
                   {
-                        idUsuari: {type: Number},
+                        // idUsuari: {type: Number},
+                        nomUsuari: {type: String},
                         missatge: {type: String},
                         time: { type: Date, default: Date.now },
                   },

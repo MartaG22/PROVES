@@ -66,7 +66,9 @@ const sockets = async (io) => {
                     const currentUser = usuari.userName;
                     const previousMessages = enterRoom.currentRoom.message;
                     console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
-                    io.emit("joinNewRoom", room, arrayUsersInRoom, currentUser, previousMessages);
+                    // io.emit("joinNewRoom", room, arrayUsersInRoom, currentUser, previousMessages);
+                    io.emit("joinNewRoom", room, arrayUsersInRoom, usuari, previousMessages);
+                    //? *** ABANS ESTAVA CURRENTUSER I NOMÉS ES PASSAVA EL NOM DE L'USUARI AL FRONT
                 } else {
                     //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!
                 };

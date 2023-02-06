@@ -38,22 +38,29 @@
 } */
 
 
-const showMessages = async(previousMessages) => {
-      console.log("previousMessages:", previousMessages)
+const showMessages = async(previousMessages, currentUser, usersInThisRoom) => {
+      console.log("previousMessages:", previousMessages, "currentUser:", currentUser, "usersInThisRoom:", usersInThisRoom)
 
       const updateMissages = document.getElementById("oldMessages");
       updateMissages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS <br>"
 
       for (message of previousMessages) {
             console.log("MESSAGE:", message);
-            // if () //!Poner la condición de si es el usuario actual, se pone en otro color
-            updateMissages.innerHTML += `${message.missatge} <br>`;
-      
-      
-      
-      
-      };
 
+
+            if (currentUser.userName === message.nomUsuari) {
+                  updateMissages.innerHTML += `<strong>${currentUser.userName}: </strong>`;
+                  updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}: </span><br>`;
+
+                  
+            } else {
+
+                  updateMissages.innerHTML += `<strong>${message.nomUsuari}: </strong>`
+                  updateMissages.innerHTML += `${message.missatge} <br>`;
+                  
+            }
+
+      };
 };
 
 
