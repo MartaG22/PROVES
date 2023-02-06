@@ -53,6 +53,8 @@ socket.on('connect', () => {
 
 
         // const newMessage = sendMessage(room, arrayUsers, currentUser);
+
+        //* sendMessage(room, usersInThisRoom, currentUser);
         // const newMessage = sendMessage();
         // console.log("NOU MISSATGE", newMessage);
 
@@ -73,11 +75,7 @@ socket.on('connect', () => {
     socket.on("updateUsersInRoom", (room, arrayUsers, usuari) => {
 
         console.log (room, arrayUsers, usuari);
-        //! HASTA AQUÍ LLEGAN BIEN LOS DATOS. HAY QUE IMPRIMIRLOS EN PANTALLA
         showUsers(room, arrayUsers, usuari); //PONERLO BIEN
-        //! ver si funciona. He quitado el previousMessages. aqui no hace falta enseñar mensajes.
-        //! tendría que hacer otra llamada desde donde haga falta a SHOWMESSAGES. Ponerlo separada
-        // if (sessionStorage.)
     })
 
 
