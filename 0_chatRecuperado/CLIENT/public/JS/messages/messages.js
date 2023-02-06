@@ -61,35 +61,60 @@ const showMessages = async(previousMessages, currentUser, usersInThisRoom) => {
 };
 
 
-
-
-const sendMessage = async (room, arrayUsers, currentUser) => {
-// const sendMessage = async (newMessage, usuari, curentRoom) => {
+const sendMessage = async () => {
       // console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser)
-      console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser);
       // const text = document.querySelector('.chat-form input[name="newMessage"]').value;
-      // try {
+      try {
             
-      //       const newMessageUser = document.querySelector('.xatForm input[name="newMessage"]').value;
-      //       document.querySelector('.xatForm input[name="newMessage"]').value = ""
-      //       console.log('newMessage', newMessageUser);
+            const newMessageUser = document.querySelector('.xatForm input[name="newMessage"]').value;
+            document.querySelector('.xatForm input[name="newMessage"]').value = ""
+            console.log('newMessage', newMessageUser);
             
-      //       // constr currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
-      //       const room = {roomName: sessionStorage.roomName};
+            // constr currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
+            const room = {roomName: sessionStorage.roomName};
             
-      //       console.log('room en PUBLIC/SENDMESSAGE', room);
+            console.log('room en PUBLIC/SENDMESSAGE', room);
             
 
-      //       if (newMessageUser) {
-      //             socket.emit("newMessage", newMessageUser, room);
+            if (newMessageUser) {
+                  socket.emit("newMessage", newMessageUser, room);
                   
-      //       }
-      //       //! tiene que recibir el ok del BACK y mostralo por pnatalla
-      // } catch (error) {
-      //       return { status: "error", message: error };
-      // }
+            }
+
+      } catch (error) {
+            return { status: "error", message: error };
+      }
       
 };
+
+
+// const sendMessage = async (room, arrayUsers, currentUser) => {
+// // const sendMessage = async (newMessage, usuari, curentRoom) => {
+//       // console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser)
+//       console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser);
+//       // const text = document.querySelector('.chat-form input[name="newMessage"]').value;
+//       // try {
+            
+//       //       const newMessageUser = document.querySelector('.xatForm input[name="newMessage"]').value;
+//       //       document.querySelector('.xatForm input[name="newMessage"]').value = ""
+//       //       console.log('newMessage', newMessageUser);
+            
+//       //       // constr currentUser = {userId: sessionStorage.userId, userName: sessionStorage.userName};
+//       //       const room = {roomName: sessionStorage.roomName};
+            
+//       //       console.log('room en PUBLIC/SENDMESSAGE', room);
+            
+
+//       //       if (newMessageUser) {
+//       //             socket.emit("newMessage", newMessageUser, room);
+                  
+//       //       }
+//       //       //! tiene que recibir el ok del BACK y mostralo por pnatalla
+//       // } catch (error) {
+//       //       return { status: "error", message: error };
+//       // }
+      
+// };
 
 
 

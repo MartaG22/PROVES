@@ -164,7 +164,6 @@ const sockets = async (io) => {
 
 
 
-        // //! creo que no funciona porque no tengo botón de desconexión!!!
         socket.on("disconnect", async () => {
             try {
                 // console.log("ROOM en DISCONNECT USER", room)
