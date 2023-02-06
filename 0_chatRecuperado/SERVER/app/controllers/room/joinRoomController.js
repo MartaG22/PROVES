@@ -13,13 +13,13 @@ const joinRoom = async (room, usuari) => {
 
             if (currentRoom) {
                   const usersInCurrentRoom = currentRoom.usersInThisRoom;
-                  console.log("USERS PROVA:", usersInCurrentRoom);
+                  // console.log("USERS PROVA:", usersInCurrentRoom);
 
 
                   // const currentUser = await Usuari.findOne({idUsuari: usuari.userId});
                   // console.log('currentUser en joinROOM Controller', currentUser);
 
-                  console.log("USUARI IN KJOIN-ROOM", usuari)
+                  // console.log("USUARI IN KJOIN-ROOM", usuari)
                   const currentUser = {
                         idUsuari: usuari.userId,
                         nomUsuari: usuari.userName,
@@ -41,11 +41,11 @@ const joinRoom = async (room, usuari) => {
                         return { status: "error", message: "Aquest USUARI ja està connectat a aquesta ROOM" };
                         //! SI l'usuari ja existeix a la sala ha de mostrar un missatge de que ja està connectat a la ROOM
                         //! I NO S'HA DE PUJAR A LA ROOM!!!
-
-                  } else {
+                  }
+                  // } else {
                         console.log("currentUser en joinROOM Controller", currentUser);
                         usersInCurrentRoom.push(currentUser);
-                        console.log("USERS PROVA II:", usersInCurrentRoom);
+                        // console.log("USERS PROVA II:", usersInCurrentRoom);
                         
                         // if (currentUser) {
                               
@@ -56,13 +56,10 @@ const joinRoom = async (room, usuari) => {
                               // const updateUsersToRoom = await currentRoom.updateOne({
                               usersInThisRoom: usersInCurrentRoom,
                         });
-                        console.log("currentRoom", currentRoom);
-                        console.log(
-                              "CURRENT ROOM - USUARIS IN THIS ROOM",
-                              currentRoom.usersInThisRoom
-                        );
-                              console.log(currentRoom.roomName)
-                              console.log(currentUser)
+                        // console.log("currentRoom", currentRoom);
+                        // console.log("CURRENT ROOM - USUARIS IN THIS ROOM", currentRoom.usersInThisRoom);
+                              // console.log(currentRoom.roomName)
+                              // console.log(currentUser)
                               await Usuari.findOneAndUpdate({idUsuari: currentUser.idUsuari}, {room: currentRoom.roomName});
                               // const aaa =await Usuari.findOne({idUsuari: currentUser.idUsuari});
                               // {room: currentRoom.roomName});
@@ -87,7 +84,7 @@ const joinRoom = async (room, usuari) => {
 
                         return { status: "success", currentRoom };
 
-                  };
+                  // };
                   // } else {
                   //       return { status: "error", message: "No s'ha pogut entrar a la Sala"};
                   // };

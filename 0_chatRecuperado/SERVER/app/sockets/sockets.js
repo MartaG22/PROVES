@@ -63,14 +63,18 @@ const sockets = async (io) => {
                         arrayUsersInRoom.push(user.nomUsuari);
                     });
                     // console.log('arrayUsersInRoom en SOCKETS/JOINROOM', arrayUsersInRoom);
-                    const currentUser = usuari.userName;
+                    // const currentUser = usuari.userName;
                     const previousMessages = enterRoom.currentRoom.message;
                     console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
                     // io.emit("joinNewRoom", room, arrayUsersInRoom, currentUser, previousMessages);
                     io.emit("joinNewRoom", room, arrayUsersInRoom, usuari, previousMessages);
                     //? *** ABANS ESTAVA CURRENTUSER I NOMÉS ES PASSAVA EL NOM DE L'USUARI AL FRONT
                 } else {
-                    //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!
+                    //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!   no funciona
+                    // console.log("Aquest USUARI ja està connectat a aquesta ROOM")
+                    // return { status: "error", message: "Aquest USUARI ja està connectat a aquesta ROOM" };
+
+
                 };
             } catch (error) {
                 return { status: "error", message: error };
@@ -143,7 +147,9 @@ const sockets = async (io) => {
                 console.log('sendNewMessage en SOCKET/NEWMESSAGE', sendNewMessage);
 
                 if (sendNewMessage) {
-                    io.emit("displayMessage", newMessage, usuari, room.roomName);
+                    // io.emit("displayMessage", newMessage, usuari, room.roomName);
+                    console.log("sendMessage", newMessage, usuari, room.roomName);
+                    io.emit("sendMessage", newMessage, usuari, room.roomName);
 
                 }
 
