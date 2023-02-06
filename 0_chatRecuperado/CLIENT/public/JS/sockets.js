@@ -32,9 +32,19 @@ socket.on('connect', () => {
         
         // sessionStorage.roomId == data.currentUser.idUsuari;
         // sessionStorage.roomName == room.id;
+
+
+
         
         showUsers(room, usersInThisRoom, currentUser, previousMessages);
-        
+        //! la part comentada abaix és la part  que havia avançant i no funciona:
+/*         console.log('<<<<<< >>>>>>>>>>>>>>>>> currentUser en SOCKETS/joinNEWROOM', currentUser)
+        showUsers(room, usersInThisRoom, currentUser);
+        showMessages(previousMessages, currentUser)
+ */
+
+
+
 
         //! sessionStorage.roomId === room.roomId;
         // if (sessionStorage.roomId === room.roomId) {
@@ -57,6 +67,18 @@ socket.on('connect', () => {
         // });
 
     });
+
+    // socket.on("updateUsersInRoom", (usuari, room, arrayUsers) => {
+    socket.on("updateUsersInRoom", (room, arrayUsers, usuari) => {
+
+        console.log (room, arrayUsers, usuari);
+        //! HASTA AQUÍ LLEGAN BIEN LOS DATOS. HAY QUE IMPRIMIRLOS EN PANTALLA
+        showUsers(room, arrayUsers, usuari); //PONERLO BIEN
+        //! ver si funciona. He quitado el previousMessages. aqui no hace falta enseñar mensajes.
+        //! tendría que hacer otra llamada desde donde haga falta a SHOWMESSAGES. Ponerlo separada
+        // if (sessionStorage.)
+    })
+
 
     // socket.on('displayMessage', (newMessage, usuari, room) => {
     //     console.log("DADES REBUDES EN CLIENTS/SOCKETS", newMessage, usuari, room);

@@ -1,14 +1,20 @@
+// const showUsers = (room, usersInThisRoom, currentUser) => {
+      //! s'hauria de treure el previosMessages i cridar-lo des de SHOWMESSAGES
 const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
-      // console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
 
+// const showUsers = (room, usersInThisRoom, currentUser, previousMessages) => {
+      // console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
+      //! QUITAR ""PREVIOUSMESSAGES""" en este controller
       try {
             // console.log("room en SHOWUSERS:", room);
             // console.log("arrayUsers en SHOWUSERs", arrayUsers);
             const usersInRoom = document.getElementById("usersList");
-            const updateMissages = document.getElementById("previousMessages");
+            //? const updateMissages = document.getElementById("previousMessages");
             // console.log(arrayUsers[0], arrayUsers[1], arrayUsers[2])
             // usersInRoom.innerHTML = arrayUsers;
+            // console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser);
             console.log( "LLEGA A PUBLIC/SHOWUSERS:", room, usersInThisRoom, currentUser, previousMessages);
+
 
 
             for (const user of usersInThisRoom) {
