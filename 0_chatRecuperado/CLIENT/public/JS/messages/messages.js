@@ -115,31 +115,31 @@ const sendMessage = async () => {
       
 // };
 
-const showNewMessage = async (newMessage, currentUser, room, arrayUsersInRoom) => {
+const showNewMessage = async (newMessage, currentUser, room) => {
       try {
-            console.log("DADES REBUDES EN CLIENTS/MESSAGES", newMessage, currentUser, room, arrayUsersInRoom);
+            console.log("DADES REBUDES EN CLIENTS/MESSAGES", newMessage, currentUser, room);
             // console.log("USUARI: ", usuari)
             const updateMessages = document.getElementById("oldMessages");
 
             // updateMessages.innerHTML += `<strong>${currentUser}: </strong>`;
 
             // updateMessages.innerHTML += newMessage.missatge;
-            console.log("SESSIONSTORAGE EN CLIENT/MESSAGES:", sessionStorage)
+            // console.log("SESSIONSTORAGE EN CLIENT/MESSAGES:", sessionStorage)
 
-            //! YA VA!!! TENGO QUE PONERLO COMO EL OTRO PARA QUE MUESTRE BIEN LOS MENSAJES NUEVOS
-            console.log('sessionStorage.userId EN CLIENT/MESSAGES:', sessionStorage.userId)
-            console.log('newMessage.idUsuari EN CLIENT/MESSAGES:', newMessage.idUsuari)
-            console.log('newMessage.nomUsuari EN CLIENT/MESSAGES:', newMessage.nomUsuari)
-            console.log('newMessage.missatge EN CLIENT/MESSAGES:', newMessage.missatge)
+            // //! YA VA!!! TENGO QUE PONERLO COMO EL OTRO PARA QUE MUESTRE BIEN LOS MENSAJES NUEVOS
+            // console.log('sessionStorage.userId EN CLIENT/MESSAGES:', sessionStorage.userId)
+            // console.log('newMessage.idUsuari EN CLIENT/MESSAGES:', newMessage.idUsuari)
+            // console.log('newMessage.nomUsuari EN CLIENT/MESSAGES:', newMessage.nomUsuari)
+            // console.log('newMessage.missatge EN CLIENT/MESSAGES:', newMessage.missatge)
 
             if (sessionStorage.userId == newMessage.idUsuari) {
                   //! PONER LA CONDICIÓN CONN EL STORAGE
-                  console.log("SSSSIIIIIII - coinciden los IDs")
+                  // console.log("SSSSIIIIIII - coinciden los IDs")
                   updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`;
                   updateMessages.innerHTML += `<span style='color:#ff0000;'>${newMessage.missatge}: </span><br>`;
                   
             } else {
-                  console.log("NOOOOOOOO  - coinciden los IDs")
+                  // console.log("NOOOOOOOO  - coinciden los IDs")
                   updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`
                   updateMessages.innerHTML += `${newMessage.missatge} <br>`;
                   

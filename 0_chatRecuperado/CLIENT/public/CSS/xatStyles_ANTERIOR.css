@@ -1,33 +1,10 @@
 body {
-      /* width: 85%; */
-
-      height: 75vh;
-
       background: rgb(32, 32, 32);
       color: #fff;
-       /* color: rgb(99, 42, 119) ; */
+      /* color: rgb(99, 42, 119) */
       font-family: 'Nunito Sans', sans-serif;
       text-align: center;
-
-
-      display: flex;
-      flex-direction: column;
-      /* justify-content: center; */
-      align-items: center;
 }
-
-/* body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  } */
-
-
-  /* #header {
-      display: block;
-      width: 100%;
-  } */
-
 
 #chat-container {
       /* margin: auto;
@@ -42,7 +19,7 @@ body {
 
       margin-top: 10px;
       margin-bottom: 10px;
-      width: 70%;
+      width: 85%;
 
       height: 75vh;
       display: flex;
@@ -53,7 +30,7 @@ body {
       
       background-color: rgb(201, 199, 199);
       /* position: relative; */
-      border: 1px solid #ddd;
+      border:1px solid #ddd;
 
       /* max-width: 600px;
       margin: 30px auto;
@@ -75,16 +52,14 @@ body {
       height: 550px;
       background-color: #22195f;
       border-left:1px solid #ddd;  */
+      
 }
 
 #rooms {
       /* display: center; */
       /* font-display: center; */
       float: left;
-      /* width: 250px; */
-      /* width: 75%; */
-
-      width: 35%;
+      width: 250px;
       height: 550px;
       /* background-color: rgb(8, 64, 110); */
       background-color: #822252;
@@ -100,13 +75,14 @@ body {
 
 #usuarisRoom {
       float: right;
-      width: 35%;
+      width: 250px;
       height: 550px;
       /* background-color: rgb(8, 64, 110); */
       background-color: #5f193c;
       border-left:1px solid #ddd;
       
 }
+
 
 
 #chat-window {
@@ -116,17 +92,6 @@ body {
       margin: 0 20 px;
       border-bottom: 1px solid #e9e9e9;
       color: #555;
-}
-
-
-#xatForm {
-      width: 100%;
-      /* width: 95%; */
-      /* position: relative; */
-position: fixed bottom;
-      justify-content: flex-end;
-
-
 }
 
 #output p {
@@ -192,7 +157,7 @@ input {
 }
 
 button {
-      /* display: center; */
+      display: center;
       background: #822252;
       color: #fff;
       font-size: 18px;

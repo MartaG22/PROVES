@@ -84,7 +84,9 @@ socket.on('connect', () => {
         // console.log( "uauri", usuari)
         // console.log("room", room);
         // console.log("arrayUsersInRoom", arrayUsersInRoom);
-        showNewMessage(newMessage, usuari, room, arrayUsersInRoom);
+        //! HE TRET EL ARRAYUSERSINROOM I NO EL PASSO DEL SOCKET DE FRONT al MESSAGE. CREC QUE NO CAL AQUÍ
+        //! si finalment no cal, he d'esborrar ARRAYUSERSINROOM d'aquí enrera
+        showNewMessage(newMessage, usuari, room);
     })
 
     // socket.on(`newMessage`, () => {})
