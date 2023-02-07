@@ -79,10 +79,13 @@ socket.on('connect', () => {
     })
 
 
-    // socket.on('displayMessage', (newMessage, usuari, room) => {
-    //     console.log("DADES REBUDES EN CLIENTS/SOCKETS", newMessage, usuari, room);
-    //     displayNewMessage(newMessage, usuari, room);
-    // })
+    socket.on('sendMessage', (newMessage, usuari, room, arrayUsersInRoom) => {
+        // console.log("DADES REBUDES EN CLIENTS/SOCKETS:", newMessage)
+        // console.log( "uauri", usuari)
+        // console.log("room", room);
+        // console.log("arrayUsersInRoom", arrayUsersInRoom);
+        showNewMessage(newMessage, usuari, room, arrayUsersInRoom);
+    })
 
     // socket.on(`newMessage`, () => {})
 

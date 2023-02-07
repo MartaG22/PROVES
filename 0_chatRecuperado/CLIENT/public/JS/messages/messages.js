@@ -41,26 +41,26 @@
 const showMessages = async(previousMessages, currentUser, usersInThisRoom) => {
       console.log("previousMessages:", previousMessages, "currentUser:", currentUser, "usersInThisRoom:", usersInThisRoom)
 
-      const updateMissages = document.getElementById("oldMessages");
-      updateMissages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS <br>"
+      const updateMessages = document.getElementById("oldMessages");
+      updateMessages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS <br>"
 
       for (message of previousMessages) {
             console.log("MESSAGE:", message);
 
 
             if (currentUser.userName === message.nomUsuari) {
-                  updateMissages.innerHTML += `<strong>${currentUser.userName}: </strong>`;
-                  updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}: </span><br>`;
+                  updateMessages.innerHTML += `<strong>${currentUser.userName}: </strong>`;
+                  updateMessages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}: </span><br>`;
                   
             } else {
-                  updateMissages.innerHTML += `<strong>${message.nomUsuari}: </strong>`
-                  updateMissages.innerHTML += `${message.missatge} <br>`;
+                  updateMessages.innerHTML += `<strong>${message.nomUsuari}: </strong>`
+                  updateMessages.innerHTML += `${message.missatge} <br>`;
                   
             };
       };
 };
 
-
+//! AQUÍ ME HE QUEDADO PARA MOSTRAR EN MENSAJE NUEVO!
 const sendMessage = async () => {
       // console.log("DADES REBUDES EN MESSAGES.JS/SENDMESSAGE", room, arrayUsers, currentUser)
       // const text = document.querySelector('.chat-form input[name="newMessage"]').value;
@@ -86,7 +86,6 @@ const sendMessage = async () => {
       }
       
 };
-
 
 // const sendMessage = async (room, arrayUsers, currentUser) => {
 // // const sendMessage = async (newMessage, usuari, curentRoom) => {
@@ -116,11 +115,40 @@ const sendMessage = async () => {
       
 // };
 
+const showNewMessage = async (newMessage, currentUser, room, arrayUsersInRoom) => {
+      try {
+            console.log("DADES REBUDES EN CLIENTS/MESSAGES", newMessage, currentUser, room, arrayUsersInRoom);
+            // console.log("USUARI: ", usuari)
+            const updateMessages = document.getElementById("oldMessages");
 
+            // updateMessages.innerHTML += `<strong>${currentUser}: </strong>`;
 
+            // updateMessages.innerHTML += newMessage.missatge;
+            console.log("SESSIONSTORAGE EN CLIENT/MESSAGES:", sessionStorage)
 
-const displayNewMessage = async (newMessage, usuari, room) => {
+            //! YA VA!!! TENGO QUE PONERLO COMO EL OTRO PARA QUE MUESTRE BIEN LOS MENSAJES NUEVOS
+            console.log('sessionStorage.userId EN CLIENT/MESSAGES:', sessionStorage.userId)
+            console.log('newMessage.idUsuari EN CLIENT/MESSAGES:', newMessage.idUsuari)
+            console.log('newMessage.nomUsuari EN CLIENT/MESSAGES:', newMessage.nomUsuari)
+            console.log('newMessage.missatge EN CLIENT/MESSAGES:', newMessage.missatge)
 
-      
+            if (sessionStorage.userId == newMessage.idUsuari) {
+                  //! PONER LA CONDICIÓN CONN EL STORAGE
+                  console.log("SSSSIIIIIII - coinciden los IDs")
+                  updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`;
+                  updateMessages.innerHTML += `<span style='color:#ff0000;'>${newMessage.missatge}: </span><br>`;
+                  
+            } else {
+                  console.log("NOOOOOOOO  - coinciden los IDs")
+                  updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`
+                  updateMessages.innerHTML += `${newMessage.missatge} <br>`;
+                  
+            };
 
+            // updateMessages.innerHTML += newMessage;
+            // "NUEVOS MENSAJES!!! <br>"
+            
+      } catch (error) {
+            return { status: "error", message: error };
+      }
 }

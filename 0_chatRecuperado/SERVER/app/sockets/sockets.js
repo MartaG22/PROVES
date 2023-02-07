@@ -7,7 +7,11 @@ const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
 const joinRoom = require("../controllers/room/joinRoomController.js");
+const getUsersRoom = require("../controllers/user/getUsersController.js")
 const sendMessage = require("../controllers/message/sendMessageController.js")
+
+
+// const Room = require("../models/dbRoom.js");
 
 // const SocketIO = require("socket.io");
 // const io = SocketIO.listen(server);
@@ -110,10 +114,7 @@ const sockets = async (io) => {
             // initRoom();
             try {
                 let currentCreatedRooms = await getRooms();
-                console.log(
-                    "currentCreatedRooms",
-                    currentCreatedRooms.currentRooms
-                );
+                // console.log("currentCreatedRooms", currentCreatedRooms.currentRooms);
                 let countRooms = currentCreatedRooms.currentRooms.length;
                 let arrayCurrentRooms = [];
                 console.log("countRooms", countRooms);
@@ -125,7 +126,7 @@ const sockets = async (io) => {
                             arrayCurrentRooms.push(roomName);
                     }
 
-                    console.log("Rooms:", arrayCurrentRooms);
+                    // console.log("Rooms:", arrayCurrentRooms);
                     io.to(socket.id).emit("newRoom", arrayCurrentRooms);
                 } else {
                     io.to(socket.id).emit("error", currentCreatedRooms.error);
@@ -137,21 +138,42 @@ const sockets = async (io) => {
 
 
         socket.on('newMessage', async (newMessage, room) => {
-            console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room})
+            console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room});
+            // console.log("ROOOOOOOOOOOOOOOOOOOOOOOOOOMMMM: ", room)
             try {
 
                 // const currentUser = usuari.userName;
                 // const currentUser = usuari;
-                //! FALTA CAPTURAR EL ROOM PER PASSAR AL CONTROLLER!
+
                 const sendNewMessage = await sendMessage(newMessage, usuari, room.roomName);
                 console.log('sendNewMessage en SOCKET/NEWMESSAGE', sendNewMessage);
 
                 if (sendNewMessage) {
                     // io.emit("displayMessage", newMessage, usuari, room.roomName);
-                    console.log("sendMessage", newMessage, usuari, room.roomName);
-                    io.emit("sendMessage", newMessage, usuari, room.roomName);
+                    console.log("sendMessage antes de hacer el EMIT de ShowMESSAGE:", newMessage, usuari, room.roomName);
+
+
+                    const arrayUsersInRoom = await getUsersRoom(room.roomName);
+                    console.log('arrayUsersInRoom en SOCKETS/GETUSERROOM', arrayUsersInRoom)
+
+                    io.emit("sendMessage", sendNewMessage, usuari, room.roomName, arrayUsersInRoom);
+
+
+                    //! PASAR A UN CONTROLLER DE FINDROOM  //\\ NECESITO TENER LOS USUARIOS DE LA SALA
+                    // const currentRoom = await Room.findOne({ roomName: room });
+                    // console.log('<<<<<<<<<<<<----->>>>>>>>>>>>>currentRoom en SOCKETS/newMessage<<', currentRoom)
+
+                    // if (currentRoom) {
+                        // const usersInCurrentRoom = currentRoom.usersInThisRoom;
+                    // }
+
+                    // const usersInCurrentRoom = getUsersRoom(room);
+                    // console.log('>>>>······<<<<<>>>>>   usersInCurrentRoom', usersInCurrentRoom)
+
 
                 }
+
+                
 
             } catch (error) {
                 return { status: "error", message: error };

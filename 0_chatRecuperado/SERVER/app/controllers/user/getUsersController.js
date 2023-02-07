@@ -22,8 +22,15 @@ module.exports = getUsers;
 
 
 
-const getUsers = async (room) => {
+const getUsersRoom = async (room) => {
       try {
+            const currentRoom = await Room.findOne({ roomName: room });
+            console.log('<<<<<<<<<<<<----->>>>>>>>>>>>>currentRoom en getusers contorller<<', currentRoom)
+            if (currentRoom) {
+                  const usersInCurrentRoom = currentRoom.usersInThisRoom;
+                  return { status: "success", usersInCurrentRoom };
+            };
+//! PASAR  A ESTE CONTROLLER PARA BUSCAR EL ARRAU  DE USUARIOS DESDE OTROS CONTROLLERS PARA REFACTORIZAR!!!
             // const findUserInRoom = usersInCurrentRoom.find(user => (user.idUsuari === currentUser.idUsuari && user.nomUsuari === currentUser.nomUsuari));
             // console.log('findUserInRoom', findUserInRoom)
 
@@ -34,4 +41,4 @@ const getUsers = async (room) => {
 }
 
 
-module.exports = getUsers;
+module.exports = getUsersRoom;

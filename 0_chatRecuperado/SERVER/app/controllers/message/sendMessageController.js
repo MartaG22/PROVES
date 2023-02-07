@@ -1,3 +1,4 @@
+const { isObjectIdOrHexString } = require("mongoose");
 const Room = require("../../models/dbRoom.js");
 
 const sendMessage = async (newMessage, currentUser, room) => {
@@ -15,7 +16,7 @@ const sendMessage = async (newMessage, currentUser, room) => {
             const previousMessages = currentRoom.message;
             // console.log('****  MISSATGES PREVIS EN SOCKETS/SENDMESSAGE CONTROLLER ****', previousMessages);
 
-            const newMessageData = {nomUsuari: currentUser.userName,  missatge: newMessage};
+            const newMessageData = {idUsuari: currentUser.userId, nomUsuari: currentUser.userName,  missatge: newMessage};
             // const newMessage = {idUsuari: currentUser.userId,  missatge: newMessage};
             // console.log('newMessage grabado en la variable newMessage en SendMessage Contoller', newMessageData)
 
@@ -24,11 +25,13 @@ const sendMessage = async (newMessage, currentUser, room) => {
             
             
             await currentRoom.updateOne({message: previousMessages});
-
-            return currentRoom.message;
+            
+            // return currentRoom.message;
+            return newMessageData;
 
       };
 
+      
 
 };
 
