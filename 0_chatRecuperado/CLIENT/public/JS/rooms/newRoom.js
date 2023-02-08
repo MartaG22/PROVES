@@ -12,7 +12,8 @@ const joinRoom = (room) => {
             
             // usersInRoom.innerHTML = "";
             document.getElementById("usersList").innerHTML = "";
-            // document.getElementById("showCurrentRoom").innerHTML = "";
+            document.getElementById("showCurrentRoom").innerHTML = "";
+            document.getElementById("oldMessages").innerHTML = "";
 
             //!  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
             socket.emit("joinRoom", sessionStorage.roomName);

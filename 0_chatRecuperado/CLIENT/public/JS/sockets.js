@@ -17,9 +17,9 @@ socket.on('connect', () => {
     console.log("SOCKET.ID en CLIENT/SOCKETS", socket.id)
     console.log("SOCKET.ID en CLIENT/SOCKETS", socket)
 
-    socket.on('newRoom', (newRoomName) => {
+    socket.on('newRoom', async (newRoomName) => {
         console.log("newRoom", newRoomName);
-                showRoom(newRoomName);
+                await showRoom(newRoomName);
     })
     
     

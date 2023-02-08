@@ -52,6 +52,7 @@ body {
 
       
       background-color: rgb(201, 199, 199);
+      /* background-color: rgb(49, 49, 49); */
       /* position: relative; */
       border: 1px solid #ddd;
 
@@ -98,20 +99,30 @@ body {
       border-radius: 0 0 2px 2px; */
 }
 
+#showCurrentRoom {
+      color: rgb(205, 111, 186);
+
+}
+
 #usuarisRoom {
       float: right;
       width: 35%;
       height: 550px;
       /* background-color: rgb(8, 64, 110); */
-      background-color: #5f193c;
-      border-left:1px solid #ddd;
-      
-}
+      /* background-color: #5f193c; */
+      background-color: #822252;
 
+      border-left:1px solid #ddd;
+      text-align: center;
+
+}
+/* 
+.currentRoom {
+
+} */
 
 #chat-window {
       position: relative;
-
       padding: 14px 0;
       margin: 0 20 px;
       border-bottom: 1px solid #e9e9e9;
@@ -123,10 +134,8 @@ body {
       width: 100%;
       /* width: 95%; */
       /* position: relative; */
-position: fixed bottom;
+      position: fixed bottom;
       justify-content: flex-end;
-
-
 }
 
 #output p {
@@ -167,6 +176,9 @@ position: fixed bottom;
       padding: 0.75rem 0.5rem;
       /* padding-top:0.5rem; */
       padding-bottom: 0.10 rem;
+      /* color:#d48cc0; */
+      /* color: rgb(205, 111, 186); */
+
 }
 
 
@@ -174,12 +186,18 @@ position: fixed bottom;
 
 
 
-#usersList{
-      /* color: rgb(115, 24, 143); */
-      /* color: rgb(32, 32, 32); */
+/* #usersList{
+      color: rgb(205, 111, 186);
+} */
+
+
+/* .oldMessages {
+      font-family: 'Neucha', cursive;
+      display:flex ;
+      text-align: left;
       color: rgb(205, 111, 186);
 
-}
+} */
 
 
 input {

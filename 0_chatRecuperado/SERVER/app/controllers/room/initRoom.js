@@ -7,7 +7,7 @@ const initFirstRoom = async () => {
       console.log(findRoom);
 
       if (!findRoom) {
-            room = await Room.create({ roomName: firstRoom });
+            await Room.create({ roomName: firstRoom });
       };
 };
 
