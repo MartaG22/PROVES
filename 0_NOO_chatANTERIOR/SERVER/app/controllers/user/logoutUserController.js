@@ -29,8 +29,8 @@ const disconnectUser = async (usuari) => {
                   });
 
                   // console.log('valor', newUsersInRoom)
-                  await findCurrentRoom.updateOne({ usersInThisRoom: newUsersInRoom });
-                  return ({ status: "success", currentRoom, newUsersInRoom });
+                  await findCurrentRoom.updateOne({usersInThisRoom: newUsersInRoom});
+                  return  ({status: "success", currentRoom, newUsersInRoom});
 
             };
 
@@ -46,7 +46,7 @@ const disconnectUser = async (usuari) => {
 
 
 
-      } catch (error) {
+            } catch (error) {
             result = { status: "error", message: error.message }
       }
 

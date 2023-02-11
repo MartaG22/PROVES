@@ -23,12 +23,15 @@ const sendMessage = async (newMessage, currentUser, room) => {
             
             previousMessages.push(newMessageData)
             
+            
             await currentRoom.updateOne({message: previousMessages});
             
             // return currentRoom.message;
             return newMessageData;
 
       };
+
+      
 
 };
 

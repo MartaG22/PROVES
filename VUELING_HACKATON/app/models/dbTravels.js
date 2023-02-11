@@ -44,3 +44,20 @@ sequelize.authenticate()
         console.log("EL ERROR DE CONEXIÓ ES: " + error);
     });
   
+
+    //  Definim model  'TRAVELS':
+const landTrip = sequelize.define("LandTrip", {
+    idTravel: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
+    hotel1: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        
+    },
+    tiradesJugador: { type: Sequelize.INTEGER, defaultValue: 0 },
+    tiradesGuanyades: { type: Sequelize.INTEGER, defaultValue: 0 },
+    percentatgeExit: { type: Sequelize.INTEGER, defaultValue: 0 },
+});
