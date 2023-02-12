@@ -9,7 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../CSS/xatStyles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../CSS/xatStyles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
         integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
@@ -69,12 +72,17 @@
             </form> -->
         </div>
         <div id="usuarisRoom">
-            <h1 id = "usersRoomList"> Sala:</h1>
-            <h1 id = "showCurrentRoom"></h1> <!-- NO MOSTRA LA CURRENT ROOM -->
-            <h1 id = "usersRoomList"> Usuaris:</h1>
-            <!-- <h1 id="userName" class="header-username"></h1> -->
+<!--             <h1 id="usersRoomList">Usuaris a la Sala</h1>
+            <h1 id="showCurrentRoom"></h1>
+            <h1 id="userName" class="header-username"></h1>
+            <ul id="usersList" class="room"></ul> -->
 
-            <!--  NOM DE L'USUARI EN US (mirar donde ponerlo luego ) CLIENT/HTML/MAIN.JS -->
+
+            <h1> Sala: </h1> <h1 id="showCurrentRoom"></h1>
+            <hr style="color: black; background-color: black; width:75%;" />
+
+            <h1> Usuaris: </h1><h1 id="userName" class="header-username"></h1>
+            <!-- <h1> Usuaris: </h1> -->
             <ul id="usersList" class="room"></ul>
 
         </div>

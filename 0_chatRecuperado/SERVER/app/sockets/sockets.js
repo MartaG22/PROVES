@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 const disconnectUser = require("../controllers/user/logoutUserController.js");
-// const registerUserController = require("../controllers/user/loginUserController.js");
-// const loginUserController = require("../controllers/user/registerUserController.js");
-// const getUsers = require("../models/dbUsuari.js");
+
 const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
@@ -11,16 +9,11 @@ const getUsersRoom = require("../controllers/user/getUsersController.js")
 const sendMessage = require("../controllers/message/sendMessageController.js")
 
 
-// const Room = require("../models/dbRoom.js");
-
-// const SocketIO = require("socket.io");
-// const io = SocketIO.listen(server);
-
 const sockets = async (io) => {
     io.use(function (socket, next) {
-        // console.log("MIDDLEWARE SOCKETS")
+
         if (socket.handshake.query && socket.handshake.query.token) {
-            // console.log(socket.handshake.query.token)
+
             jwt.verify(
                 socket.handshake.query.token,
                 process.env.ACCESS_TOKEN_KEY,
@@ -46,8 +39,6 @@ const sockets = async (io) => {
             userName: socket.decoded.nomUsuari,
         };
 
-        // console.log(`USUARI ${usuari.userName} connected`);
-        // console.log("USUARI ABANS DE NEWROOM", usuari);
 
         // Inicialitzem la Primera Sala (PANGEA)
         initFirstRoom();
@@ -56,23 +47,18 @@ const sockets = async (io) => {
             try {
 
                 let enterRoom = await joinRoom(room, usuari);
-                // console.log('enterRoom', enterRoom)
+
                 if (enterRoom.status === "success") {
-                    // JOIN NEW ROOM:
-                    // console.log({msg: 'enterRoom en SOCKETS', room, usuari});  //! comentario de OMAR
-                    // console.log ({msg: "enterRoom.room:", enterRoom.usersInThisRoom})
-                    // console.log("enterRoom.currentRoom", enterRoom.currentRoom, "\n \n", "enterRoom.usersInThisRoom", enterRoom.currentRoom.usersInThisRoom);
                     const arrayUsersInRoom = [];
                     enterRoom.currentRoom.usersInThisRoom.forEach((user) => {
                         arrayUsersInRoom.push(user.nomUsuari);
                     });
-                    // console.log('arrayUsersInRoom en SOCKETS/JOINROOM', arrayUsersInRoom);
-                    // const currentUser = usuari.userName;
+
                     const previousMessages = enterRoom.currentRoom.message;
                     console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
-                    // io.emit("joinNewRoom", room, arrayUsersInRoom, currentUser, previousMessages);
+
                     io.emit("joinNewRoom", room, arrayUsersInRoom, usuari, previousMessages);
-                    //? *** ABANS ESTAVA CURRENTUSER I NOMÉS ES PASSAVA EL NOM DE L'USUARI AL FRONT
+
                 } else {
                     //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!   no funciona
                     // console.log("Aquest USUARI ja està connectat a aquesta ROOM")
@@ -88,8 +74,6 @@ const sockets = async (io) => {
 
 
         socket.on("newRoom", async (newRoomName) => {
-            // console.log('roomName DESPRÉS del NEWROOM', newRoomName)
-            // let currentUser = usuari;
             try {
                 let createNewRoom = await createRoom({ newRoomName });
                 // console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
@@ -139,7 +123,7 @@ const sockets = async (io) => {
 
         socket.on('newMessage', async (newMessage, room) => {
             console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room});
-            // console.log("ROOOOOOOOOOOOOOOOOOOOOOOOOOMMMM: ", room)
+
             try {
 
                 // const currentUser = usuari.userName;
@@ -159,21 +143,7 @@ const sockets = async (io) => {
                     io.emit("sendMessage", sendNewMessage, usuari, room.roomName, arrayUsersInRoom);
 
 
-                    //! PASAR A UN CONTROLLER DE FINDROOM  //\\ NECESITO TENER LOS USUARIOS DE LA SALA
-                    // const currentRoom = await Room.findOne({ roomName: room });
-                    // console.log('<<<<<<<<<<<<----->>>>>>>>>>>>>currentRoom en SOCKETS/newMessage<<', currentRoom)
-
-                    // if (currentRoom) {
-                        // const usersInCurrentRoom = currentRoom.usersInThisRoom;
-                    // }
-
-                    // const usersInCurrentRoom = getUsersRoom(room);
-                    // console.log('>>>>······<<<<<>>>>>   usersInCurrentRoom', usersInCurrentRoom)
-
-
-                }
-
-                
+                };                
 
             } catch (error) {
                 return { status: "error", message: error };

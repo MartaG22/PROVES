@@ -1,17 +1,11 @@
-// const Jugador = require('../../models/dbJugador.js');
 const Usuari = require('../../models/dbUsuari.js');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-// console.log("User",Usuari);
 
-
-// const userLogin = async (req, res) => {
-//     console.log('HOLAAA en loginUserController')
-// }
 
 
 const userLogin = async (req, res) => {
-    // console.log('HOLAAA en loginUserController')
+
     try {
         const user = await req.body;
         const userFind = await Usuari.findOne({ nomUsuari: user.userName});
@@ -36,10 +30,6 @@ const userLogin = async (req, res) => {
         
     } catch {
         res.status(500).json({error: message});
-        // res.status(500).send({
-        //     status: 'error',
-        //     message: error.message
-        // })
 
     }
 }

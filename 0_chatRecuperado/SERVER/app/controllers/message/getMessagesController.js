@@ -3,8 +3,6 @@ const Room = require("../../models/dbRoom.js");
 const getPreviousMessages = async ( currentUser, room) => {
       try {
 
-            // SERVER
-            // console.log('newMessageUser', newMessage);
             console.log({msg: "ARRIBEN LES SEGÜENTS DADES A MESSAGECONTOLLER / getPreviousMESSAGES:", currentUser, room})
             
             const currentRoom = await Room.findOne({ roomName: room})
