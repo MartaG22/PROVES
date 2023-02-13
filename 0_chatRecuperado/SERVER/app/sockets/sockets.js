@@ -125,7 +125,6 @@ const sockets = async (io) => {
             console.log({msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room});
 
             try {
-
                 // const currentUser = usuari.userName;
                 // const currentUser = usuari;
 
@@ -136,12 +135,10 @@ const sockets = async (io) => {
                     // io.emit("displayMessage", newMessage, usuari, room.roomName);
                     console.log("sendMessage antes de hacer el EMIT de ShowMESSAGE:", newMessage, usuari, room.roomName);
 
-
                     const arrayUsersInRoom = await getUsersRoom(room.roomName);
                     console.log('arrayUsersInRoom en SOCKETS/GETUSERROOM', arrayUsersInRoom)
 
                     io.emit("sendMessage", sendNewMessage, usuari, room.roomName, arrayUsersInRoom);
-
 
                 };                
 
@@ -162,7 +159,7 @@ const sockets = async (io) => {
                 console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
                 let getUsersRoom = await disconnectUser(usuari);
 
-                if (getUsersRoom) {
+                if (getUsersRoom.status === "success") {
 
                         // console.log(getUsersRoom, getUsersRoom)
                         // console.log('newArrayUsers EN SERVER/SOCKETS', getUsersRoom.currentRoom);
@@ -172,7 +169,7 @@ const sockets = async (io) => {
                         // const currentUser = usuari.userName;
                         
 
-                        console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", currentRoom, newArrayUsers, "currentUser:", currentUser);
+                        console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
                         io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers,  usuari.userName);
 
                     } else {

@@ -115,7 +115,7 @@ body {
       /* color: rgb(205, 111, 186); */
       color: #fff;
       font-family: 'Marcellus', serif;
-      font-size: 30px;
+      font-size: 25px;
 
 }
 
@@ -135,7 +135,7 @@ body {
       position: relative;
 
       padding: 14px 0;
-      margin: 0 20 px;
+      /* margin: 0 20 px; */
       border-bottom: 1px solid #e9e9e9;
       color: #555;
 }
@@ -147,7 +147,6 @@ body {
       /* position: relative; */
 position: fixed bottom;
       justify-content: flex-end;
-
 
 }
 
@@ -164,7 +163,7 @@ position: fixed bottom;
             /* background: rgb(32, 32, 32); */
 
       color: rgb(59, 59, 59);
-
+      /* font-family: 'Crafty Girls', cursive; */
       font-family: 'Marcellus', serif;
       font-size: 20px;
 
@@ -237,9 +236,11 @@ button {
 }
 
 
-/* #roomList {
+#roomList {
       display: center;
-} */
+      /* font-family: 'Marcellus', serif; */
+
+} 
 
 
 /* .currentRooms {
@@ -251,10 +252,14 @@ button {
 
 .room-btn-active {
       color: #fff;
+      font-family: 'Marcellus', serif;
+
 }
 
 .room-btn-active:hover {
       color: rgb(205, 111, 186);
+      font-family: 'Marcellus', serif;
+
 }
 
 
