@@ -28,6 +28,7 @@ document.querySelector(".entry-form").addEventListener("submit", (e) => {
                     sessionStorage.clear();
                     sessionStorage.userId = data.currentUser.idUsuari;
                     sessionStorage.userName = data.currentUser.nomUsuari;
+                    // sessionStorage.roomName = 
                     sessionStorage.token = data.accessToken;
                     document.getElementById("showError").innerHTML = "";
 

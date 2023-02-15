@@ -4,7 +4,7 @@ const Usuari = require("../../models/dbUsuari.js");
 
 
 const joinRoom = async (room, usuari) => {
-
+      console.log("ROO I USUARI EN JOINROOM controller", room, usuari)
       //! ARRAY D'USUARIS A LA SALA:
       try {
             const currentRoom = await Room.findOne({ roomName: room });

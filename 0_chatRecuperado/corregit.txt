@@ -1,0 +1,8 @@
+TODO [] - Quan entra un usuari, ha d'entrar directament a la sala MAIN. RECUPERAR VERSIÓN ANTERIOR
+TODO [x] - Posar els missatges nous bé. Fa coses rares.
+TODO [] - Quan es crea una sala nova, l'usuari que la crea, HA D'ENTRAR DIRECTAMENT.
+            EnTRA EN LA SALA PERO LO TENGO QUE MOSTRAR!!!
+TODO [] - Quan un usuari canvia de SALA s'ha d'esborrar de l'anterior. I actualitzar als altres usuaris.
+TODO [] - Posar que els misstges nous es vegin com a nous un temps determinat, després es posin com els atres. (CSS)
+TODO [x] - NO SE ACTUALITZA EL STORAGGE.ROOM . ver que pasa en el  PUBLIC/NEWROOM.JS 
+            (Al JOINROOM lo tengo que llamar desde otro sitio, no desde el botón donde se selecciona la sala)

@@ -1,5 +1,5 @@
 const showUsers = (room, usersInThisRoom, currentUser) => {
-
+      console.log("DADES REBUDES EN CLIENTS/SHOWUSERS", room, usersInThisRoom, currentUser);
       try {
             const usersInRoom = document.getElementById("usersList");
             usersInRoom.innerHTML = "";

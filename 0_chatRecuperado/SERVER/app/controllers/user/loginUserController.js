@@ -14,7 +14,8 @@ const userLogin = async (req, res) => {
         const currentUser = {
             idUsuari: userFind.idUsuari,
             nomUsuari: userFind.nomUsuari,
-            passwordUsuari: userFind.passwordUsuari
+            passwordUsuari: userFind.passwordUsuari,
+            room: "Main"
         };
         
         console.log('currentUser is: ' + currentUser)

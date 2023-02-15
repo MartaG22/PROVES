@@ -14,7 +14,7 @@ const createRoom = async (newRoomName) => {
             const newRoom = await Room.create({roomName: newRoomName.newRoomName});
             return {
                 status:"success",
-                newRoom: roomName
+                newRoom
             };
         }
     
