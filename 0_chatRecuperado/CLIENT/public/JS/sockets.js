@@ -39,15 +39,15 @@ socket.on('connect', async () => {
 
 
     // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
-    socket.on('joinNewRoom',  async (room, arrayUsersInRoom, usuari, messages) => {
+    socket.on('joinNewRoom',  async (room, usersInThisRoom, currentUser) => {
 
-        console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
-        console.log(room, arrayUsersInRoom)
+        console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA");
+        // console.log(room, usersInThisRoom, currentUser)
         
-        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, arrayUsersInRoom, usuari, messages)
+        console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
 
-         
-        await showUsers(room,  arrayUsersInRoom, usuari.userName);
+        // await showUsers(room, usersInThisRoom, currentUser.userName);
+        // await showUsers(room,  usersInThisRoom, currentUser.userName);
         // await showMessages(previousMessages, currentUser, usersInThisRoom);
 
         

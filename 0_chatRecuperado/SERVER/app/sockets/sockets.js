@@ -146,12 +146,13 @@ const sockets = async (io) => {
                 let createNewRoom = await createRoom({ newRoomName });
                 const arrayUsersInThisRoom = [];
                 const previousMessages = [];
-                console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
+                let newRoom, currentUser;
+                // console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
                 // console.log( "HOOOOOOOOOOOOOOllllllllllllllllllAAAAAAAAAAAAA", newRoomName, currentUser)
 
                 if (createNewRoom.status === "success") {
-                    console.log("SALA CREADA OK");
-                    console.log("CREATEN NEW ROOOM EN SOCKET/NEWOROOM", createNewRoom);
+                    // console.log("SALA CREADA OK");
+                    // console.log("CREATEN NEW ROOOM EN SOCKET/NEWOROOM", createNewRoom);
                     //    let usersInThisRoom = await getUsers(createNewRoom);
                     const room = createNewRoom.newRoom.roomName;
                     // console.log('arrayUsersInThisRoom para pasar a joinenwroom del FRONT***', arrayUsersInThisRoom)
@@ -166,7 +167,7 @@ const sockets = async (io) => {
                     //     'previousMessages', previousMessages
                     // )
                     const joinNewRoom = await joinRoom(room, usuari);
-                    console.log('joinNewRoom a ver si funciona', joinNewRoom)
+                    // console.log('joinNewRoom a ver si funciona', joinNewRoom)
                     if (joinNewRoom.status === "success") {
                         console.log("-+-+HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
                         // con
@@ -175,7 +176,11 @@ const sockets = async (io) => {
                         arrayUsersInThisRoom.push(usuari.userName);
                         // previousMessages = createNewRoom.newRoom.message;
                         console.log("msg:", "ROOOM:", createNewRoom.newRoom.roomName, "array:", arrayUsersInThisRoom, usuari.userName, 'MENSAJES PREVIOS:', previousMessages)
-                        io.emit("joinNewRoom", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari.userName, previousMessages);
+                        newRoom = createNewRoom.newRoom.roomName;
+                        // currentUser = usuari;
+                        console.log("msg:", "ROOOM:", newRoom, "array:", arrayUsersInThisRoom, usuari, 'MENSAJES PREVIOS:', previousMessages)
+                        io.emit("joinNewRoom", newRoom, arrayUsersInThisRoom, usuari)
+                        // usuari.userName, previousMessages);
 
                         // console.log("**************    joinNewRoom antes de hacer el EMIT JOINNEWROOM", createNewRoom.roo, arrayUsersInThisRoom, usuari, previousMessages);
 
