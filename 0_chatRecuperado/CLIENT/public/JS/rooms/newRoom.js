@@ -1,18 +1,20 @@
-const clickRoom = (room) => {
+const clickRoom = async (room) => {
       try {
 
             //! HE DE PONERLO PARA QUE LA MAIN SE PONGA TAMBIÉN EN EL STORAGE
-            console.log("ROOOOOOOOOOM EN PUBLIC/CLICKROOM:", room.id)
-            console.log("SESSIONSTORAGE EN PUBLIC/CLICKROOM:", sessionStorage)
+            // console.log("1º- ROOOOOOOOOOM EN PUBLIC/CLICKROOM:", room.id)
+            // console.log("1º- SESSIONSTORAGE EN PUBLIC/CLICKROOM:", sessionStorage)
       
             if (sessionStorage.roomName === room.id) return;
-            sessionStorage.roomName = room.id;
-            console.log('sessionStorage ROOM NUEVA:', sessionStorage.roomName)
-            
+            sessionStorage.roomName = await room.id;
+            console.log('2º- sessionStorage ROOM NUEVA:', sessionStorage.roomName)
+            console.log("2º- SESSIONSTORAGE EN PUBLIC/CLICKROOM:", sessionStorage)
+
             document.getElementById("usersList").innerHTML = "";
 
             //!  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
-            socket.emit("joinRoom", sessionStorage.roomName);
+            // socket.emit("joinRoom", sessionStorage.roomName);
+            socket.emit("changeRoom", sessionStorage.roomName);
             
       } catch (error) {
             return { status: "error", message: error };

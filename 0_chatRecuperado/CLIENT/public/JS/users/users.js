@@ -1,5 +1,9 @@
 const showUsers = (room, usersInThisRoom, currentUser) => {
-      console.log("DADES REBUDES EN CLIENTS/SHOWUSERS", room, usersInThisRoom, currentUser);
+      console.log(" SSSSSSSSIIIIIIIIIIIGGGGGGGGGGUUUUUUUUUUEEEEEEEEEEE HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
+
+      // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, "ARRAY:",usersInThisRoom, currentUser)
+
+      // console.log("DADES REBUDES EN CLIENTS/SHOWUSERS", room, usersInThisRoom, currentUser);
       try {
             const usersInRoom = document.getElementById("usersList");
             usersInRoom.innerHTML = "";

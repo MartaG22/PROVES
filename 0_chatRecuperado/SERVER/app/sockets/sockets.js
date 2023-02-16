@@ -8,6 +8,7 @@ const joinRoom = require("../controllers/room/joinRoomController.js");
 const getUsersRoom = require("../controllers/user/getUsersController.js")
 const sendMessage = require("../controllers/message/sendMessageController.js");
 const getDataRoom = require("../controllers/room/getDataRoom.js");
+const changeRoom = require("../controllers/room/changeRoomController.js");
 
 
 const sockets = async (io) => {
@@ -82,12 +83,15 @@ const sockets = async (io) => {
 
 
 
-        socket.on("joinRoom", async (room) => {
+/*         socket.on("joinNewRoom", async (room) => {
             try {
+                console.log("ESOTY en joinRoom CONTROLLER ---------- ROOM: ", room, usuari)
 
                 let enterRoom = await joinRoom(room, usuari);
                 // console.log('><><><><> ---- enterRoom en JOINROOM para registrar usuario nuevo:', enterRoom)
                 if (enterRoom.status === "success") {
+                    console.log("ADDDDDDIIIIIIIIIIIIIIIOOOOOOOOOOOSSSSSS")
+
                     const arrayUsersInRoom = [];
                     enterRoom.currentRoom.usersInThisRoom.forEach((user) => {
                         arrayUsersInRoom.push(user.nomUsuari);
@@ -96,25 +100,52 @@ const sockets = async (io) => {
                     const previousMessages = enterRoom.currentRoom.message;
                     console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
 
-                    io.emit("joinNewRoom", room, arrayUsersInRoom, usuari, previousMessages);
-
-                } else {
-                    //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!   no funciona
-                    // console.log("Aquest USUARI ja està connectat a aquesta ROOM")
-                    // return { status: "error", message: "Aquest USUARI ja està connectat a aquesta ROOM" };
-
-
-                };
+                    console.log("joinNewRoom", room, arrayUsersInRoom, usuari.userName);
+                    // io.emit("joinNewRoom", room, arrayUsersInRoom, usuari.userName);
+                    io.emit("joinNewRoom", room, arrayUsersInRoom, usuari);
+                }
+                // } else {
+                //     //! <<<***>>>   FALTA ACABAR AQUEST CONTROLOADOR  !!!!   no funciona
+                //     // console.log("Aquest USUARI ja està connectat a aquesta ROOM")
+                //     // return { status: "error", message: "Aquest USUARI ja està connectat a aquesta ROOM" };
+                // };
             } catch (error) {
                 return { status: "error", message: error };
             };
         });
+ */
+        socket.on("changeRoom", async (room) => {
+            try {
+                // console.log("ESOTY en changeROOM CONTROLLER ---------- ROOM: ", room)
+                let changeUserRoom = await changeRoom(room, usuari);
+                // console.log('changeUserRoom en CHANGE ROO;', changeUserRoom)
+                if (changeUserRoom.status === "success") {
+                    console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
+
+                    const arrayUsersInRoom = [];
+                    changeUserRoom.findNewRoom.usersInThisRoom.forEach((user) => {
+                        arrayUsersInRoom.push(user.nomUsuari);
+                    });
+                    // console.log('arrayUsersInRoom RROOOMMMM per passar a CLIENT/SOCKETS', arrayUsersInRoom)
+                    const previousMessages = changeUserRoom.findNewRoom.message;
+                    // console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
+
+                    // console.log("msg:", "DADES ABANS DE L'EMIT  JOINROOOM:", room, arrayUsersInRoom, usuari, previousMessages);
+                    io.emit("joinRoom", room, arrayUsersInRoom, usuari.userName, previousMessages);
+
+                }
 
 
+            } catch (error) {
+                return { status: "error", message: error };
+            };
+        })
 
         socket.on("newRoom", async (newRoomName) => {
             try {
                 let createNewRoom = await createRoom({ newRoomName });
+                const arrayUsersInThisRoom = [];
+                const previousMessages = [];
                 console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
                 // console.log( "HOOOOOOOOOOOOOOllllllllllllllllllAAAAAAAAAAAAA", newRoomName, currentUser)
 
@@ -122,26 +153,51 @@ const sockets = async (io) => {
                     console.log("SALA CREADA OK");
                     console.log("CREATEN NEW ROOOM EN SOCKET/NEWOROOM", createNewRoom);
                     //    let usersInThisRoom = await getUsers(createNewRoom);
-                    let arrayUsersInThisRoom = createNewRoom.newRoom.usersInThisRoom
-                    let previousMessages = createNewRoom.newRoom.message;
+                    const room = createNewRoom.newRoom.roomName;
+                    // console.log('arrayUsersInThisRoom para pasar a joinenwroom del FRONT***', arrayUsersInThisRoom)
+                    // const previousMessages = createNewRoom.newRoom.message;
                     // console.log("usersInThisRoom", usersInThisRoom);
                     // console.log("<><<>><<>><<>>ROOM I CURRENTUSER EN PUBLIC/JOINUSERNewRoom", room, currentUser)
-                    console.log(
-                        "DADES PER PASSAR A PUBLIC, DESDE SOCKET/NEWROOM:",
-                        "NOM SALA:", createNewRoom.newRoom.roomName,
-                        "USERS IN ROOM:", arrayUsersInThisRoom,
-                        "USUARI:", usuari,
-                        'previousMessages', previousMessages
-                    )
-                    await joinRoom(createNewRoom.newRoom.roomName, usuari);
-                    console.log('createNewRoom antes de hacer el EMIT', createNewRoom)
-                    console.log("joinNewRoom antes de hacer el EMIT JOINNEWROOM", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari, previousMessages);
+                    // console.log(
+                    //     "DADES PER PASSAR A PUBLIC, DESDE SOCKET/NEWROOM:",
+                    //     "NOM SALA:", createNewRoom.newRoom.roomName,
+                    //     "USERS IN ROOM:", arrayUsersInThisRoom,
+                    //     "USUARI:", usuari,
+                    //     'previousMessages', previousMessages
+                    // )
+                    const joinNewRoom = await joinRoom(room, usuari);
+                    console.log('joinNewRoom a ver si funciona', joinNewRoom)
+                    if (joinNewRoom.status === "success") {
+                        console.log("-+-+HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
+                        // con
+                        console.log('-------------****createNewRoom antes de hacer el EMIT', createNewRoom);
 
+                        arrayUsersInThisRoom.push(usuari.userName);
+                        // previousMessages = createNewRoom.newRoom.message;
+                        console.log("msg:", "ROOOM:", createNewRoom.newRoom.roomName, "array:", arrayUsersInThisRoom, usuari.userName, 'MENSAJES PREVIOS:', previousMessages)
+                        io.emit("joinNewRoom", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari.userName, previousMessages);
+
+                        // console.log("**************    joinNewRoom antes de hacer el EMIT JOINNEWROOM", createNewRoom.roo, arrayUsersInThisRoom, usuari, previousMessages);
+
+                    // const data = {
+                    //     room: createNewRoom.newRoom.roomName,
+                    //     arrayUsersInThisRoom: createNewRoom.newRoom.usersInThisRoom,
+                    //     usuari,
+                    //     previousMessages: createNewRoom.newRoom.message,
+                    // };
+
+                    // console.log('data', data)
                     // io.emit("getRooms", createNewRoom); // FALTARIA AFEGIR ELS USUARIS i acabar el controller!!!
                     // socket.on('joinNewRoom', async (room, usersInThisRoom, currentUser, previousMessages) => {
-                    // io.emit("aaa", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari, previousMessages);
-                    io.emit("joinNewRoom", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari, previousMessages);
-                    // io.emit("aaa", createNewRoom);
+                        // io.emit("aaa", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari, previousMessages);
+                        // io.emit("aaa", createNewRoom.newRoom)
+                        // io.emit("joinNewRoom", createNewRoom.newRoom.roomName, arrayUsersInThisRoom, usuari, previousMessages);
+                        // io.emit("joinNewRoom", room, arrayUsersInThisRoom, usuari.userName, previousMessages)
+                        // arrayUsersInThisRoom, usuari, previousMessages);
+                        
+                        // io.emit("joinNewRoom", data);
+                        // io.emit("aaa", createNewRoom);
+                    }
                 };
             } catch (error) {
                 return { status: "error", message: error };
