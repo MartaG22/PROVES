@@ -37,28 +37,36 @@ socket.on('connect', async () => {
         showMessages(previousMessages, currentUser, usersInThisRoom);
     }); */
 
+    socket.on('showRooms', (arrayCurrentRooms) => {
+            console.log('DATOS RECIBIDOS EN  arrayCurrentRooms EN SHOWROOMS', arrayCurrentRooms)
+            showRoom(arrayCurrentRooms);
+    });
+
 
     // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
-    socket.on('joinNewRoom',  async (room, usersInThisRoom, currentUser) => {
+    socket.on('joinNewRoom',   (room, usersInThisRoom, currentUser) => {
 
         console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA");
-        // console.log(room, usersInThisRoom, currentUser)
+        console.log(room, usersInThisRoom, currentUser)
         
-        console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
-
-        // await showUsers(room, usersInThisRoom, currentUser.userName);
+        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser.userName);
+        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
+        showUsers(room, usersInThisRoom, currentUser);
+        //  showUsersChangeRoom(room, usersInThisRoom, currentUser);
+        // await showUsers(room, usersInThisRoom, currentUser);
         // await showUsers(room,  usersInThisRoom, currentUser.userName);
         // await showMessages(previousMessages, currentUser, usersInThisRoom);
 
-        
+        // msg: ROOOM: dia array: [ 'Gery' ] { userId: 4, userName: 'Gery' } MENSAJES PREVIOS: []
         
     });
     
     socket.on("joinRoom",  async (room, usersInThisRoom, currentUser, previousMessages) => {
-        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
-        // showRoom(arrayRooms);
+        console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
+        // await showRoom(arrayRooms);
         
-        await showUsers(room, usersInThisRoom, currentUser.userName);
+        // await showUsersChangeRoom(room, usersInThisRoom, currentUser.userName);
+        showUsers(room, usersInThisRoom, currentUser);
         await showMessages(previousMessages, currentUser, usersInThisRoom);
         // socket.emit("joinUserNewRoom", room, currentUser);
     })

@@ -1,12 +1,12 @@
 TODO [] - Quan entra un usuari, ha d'entrar directament a la sala MAIN. RECUPERAR VERSIÓN ANTERIOR
+TODO [] - Posar que els misstges nous es vegin com a nous un temps determinat, després es posin com els atres. (CSS)
+TODO [] - Hacer los eventos de notificación de que un usuario se ha conectado o se ha descomectado al resto de usurarios
 TODO [x] - Posar els missatges nous bé. Fa coses rares.
 TODO [x] - Quan es crea una sala nova, l'usuari que la crea, HA D'ENTRAR DIRECTAMENT.
             EnTRA EN LA SALA PERO LO TENGO QUE MOSTRAR!!!
-TODO [] - Quan un usuari canvia de SALA s'ha d'esborrar de l'anterior. I actualitzar als altres usuaris.
-TODO [] - Posar que els misstges nous es vegin com a nous un temps determinat, després es posin com els atres. (CSS)
+TODO [x] - Quan un usuari canvia de SALA s'ha d'esborrar de l'anterior. I actualitzar als altres usuaris.
 TODO [x] - NO SE ACTUALITZA EL STORAGGE.ROOM . ver que pasa en el  PUBLIC/NEWROOM.JS 
             (Al JOINROOM lo tengo que llamar desde otro sitio, no desde el botón donde se selecciona la sala)
-TODO [] - Hacer los eventos de notificación de que un usuario se ha conectado o se ha descomectado al resto de usurarios
 
 
 
@@ -16,3 +16,21 @@ TODO [] - Hacer los eventos de notificación de que un usuario se ha conectado o
 - Buscar en el ARRAY de la ROOM ANTIGUA el USUARIO, y borrarlo
 - ANTES DE ENVIAR A GRABAR EN LA ROOM NUEVA.
 - Actualizar datos en el front
+
+
+-->> SI NO CONSIGO ETRAR DIRECTAMENTE EN LA "MAIN" :
+FORM MENSAJES
+DISPLAY.NONE
+DISPLAY.BLOCK
+
+
+CORRECCIÓN 16-2-23:
+
+TODO [x] - quan un usuari canvia de sala, li canvia el nom de la sala als altres i la llista de usuaris connectats
+TODO [] - actualització sales al crear-les un altre usuari
+TODO [] - missatges de "usuari connectat/desconnectat"
+TODO [] - que entri a la main al iniciar o que desaparegui el form per parlar fins que estiguis dins d'una sala
+TODO [x] - missatges propis se'n van a l'esquerra quan canvies de sala
+
+TODO [] - aL entrar en una sala nueva, me salen dos veces el nombre del USUARIO
+TODO [] - al enviar un mensaje se ve 4 veces, como nuevo mensaje

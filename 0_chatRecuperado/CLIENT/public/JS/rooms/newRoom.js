@@ -11,6 +11,7 @@ const clickRoom = async (room) => {
             console.log("2º- SESSIONSTORAGE EN PUBLIC/CLICKROOM:", sessionStorage)
 
             document.getElementById("usersList").innerHTML = "";
+            // document.getElementById("usersList").innerHTML = "p";
 
             //!  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
             // socket.emit("joinRoom", sessionStorage.roomName);
@@ -26,7 +27,7 @@ const clickRoom = async (room) => {
 const joinRoom = (room) => {
       try {
 
-            //! HE DE PONERLO PARA QUE LA MAIN SE PONGA TAMBIÉN EN EL STORAGE
+            // HE DE PONERLO PARA QUE LA MAIN SE PONGA TAMBIÉN EN EL STORAGE
             console.log("ROOOOOOOOOOM EN PUBLIC/JOINROOM:", room)
             console.log("SESSIONSTORAGE EN PUBLIC/JOINROOM:", sessionStorage)
       
@@ -36,8 +37,9 @@ const joinRoom = (room) => {
             
             document.getElementById("usersList").innerHTML = "";
 
-            //!  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
-            socket.emit("joinRoom", sessionStorage.roomName);
+            //  AQUÍ HE DE TREURE ELS USUARIS I LA ROOM ANTIGUES I ACTUALITZAR LES DADES D LA NOVA ROOM
+            socket.emit("joinNewRoom", sessionStorage.roomName);
+            // socket.emit("prueba", sessionStorage.roomName);
             
       } catch (error) {
             return { status: "error", message: error };
