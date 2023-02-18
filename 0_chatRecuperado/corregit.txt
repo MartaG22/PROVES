@@ -29,7 +29,7 @@ CORRECCIÓN 16-2-23:
 TODO [x] - quan un usuari canvia de sala, li canvia el nom de la sala als altres i la llista de usuaris connectats
 TODO [] - actualització sales al crear-les un altre usuari
 TODO [] - missatges de "usuari connectat/desconnectat"
-TODO [] - que entri a la main al iniciar o que desaparegui el form per parlar fins que estiguis dins d'una sala
+TODO [x] - que entri a la main al iniciar o que desaparegui el form per parlar fins que estiguis dins d'una sala
 TODO [x] - missatges propis se'n van a l'esquerra quan canvies de sala
 
 TODO [] - aL entrar en una sala nueva, me salen dos veces el nombre del USUARIO

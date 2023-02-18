@@ -16,6 +16,12 @@ body {
       align-items: center;
 }
 
+
+#newMessages {
+      display: none;
+}
+
+
 /* body {
       display: flex;
       flex-direction: column;

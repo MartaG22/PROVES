@@ -1,5 +1,7 @@
 const clickRoom = async (room) => {
       try {
+            const newMessages = document.getElementById("newMessages");
+            newMessages.style.display = "block";
 
             //! HE DE PONERLO PARA QUE LA MAIN SE PONGA TAMBIÉN EN EL STORAGE
             // console.log("1º- ROOOOOOOOOOM EN PUBLIC/CLICKROOM:", room.id)
@@ -72,8 +74,16 @@ const showRoom =  (rooms) => {
       try {
 
             const roomList =  document.getElementById("roomList");
+            // const newMessages = document.getElementById("newMessages");
             roomList.innerHTML = "";
+            // newMessages.innerHTML = `style.display: block;'`;
 
+
+            // const newMessages = document.getElementById("newMessages");
+            // newMessages.style.display = "block";
+            // newMessages.style.display = "block";
+            // `style='display: block;'`
+            // usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${user}</span> <br>`
 
             for (const room of rooms) {
                   let btn = `<button class="room-btn-active" id="${room}" onClick="(() => {
