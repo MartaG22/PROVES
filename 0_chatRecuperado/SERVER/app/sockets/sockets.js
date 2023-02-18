@@ -117,6 +117,7 @@ const sockets = async (io) => {
         socket.on("changeRoom", async (room) => {
             try {
                 // console.log("ESOTY en changeROOM CONTROLLER ---------- ROOM: ", room)
+                console.log('usuari en CHANGErooom:', usuari)
                 let changeUserRoom = await changeRoom(room, usuari);
                 // console.log('changeUserRoom en CHANGE ROO;', changeUserRoom)
                 if (changeUserRoom.status === "success") {
@@ -132,20 +133,65 @@ const sockets = async (io) => {
 
                     // console.log("msg:", "DADES ABANS DE L'EMIT  JOINROOOM:", room, arrayUsersInRoom, usuari, previousMessages);
                     io.emit("joinRoom", room, arrayUsersInRoom, usuari.userName, previousMessages);
-
+                    //!------
+                    // io.to(usuari.userName).emit("success", room, arrayUsersInRoom, usuari.userName, previousMessages);
                 }
-
 
             } catch (error) {
                 return { status: "error", message: error };
             };
         })
 
+
+        //!-------
+        // socket.on("joinNewRoom", async (newRoomName) => {
+        //     try {
+        //         let currentCreatedRooms = await getRooms();
+        //         let roomName = "";
+        //         let countRooms = currentCreatedRooms.currentRooms.length;
+        //         console.log("countRooms antes de hacer el FOR para el PUSH",countRooms)
+        //         let arrayCurrentRooms = [];
+
+        //         console.log("??????????currentCreatedRooms en SOCKET/JOINNEWROOM", currentCreatedRooms)
+                
+        //         if (currentCreatedRooms.status === "success") {
+        //             for (let i = 0; i <= countRooms; i++) {
+
+        //                 console.log("1ª arrayCurrentRooms ", "i=",i, arrayCurrentRooms)
+        //                 // roomName =  currentCreatedRooms.currentRooms[i].roomName;
+        //                 // arrayCurrentRooms.push(roomName);
+        //                 // arrayCurrentRooms.push(currentCreatedRooms.currentRooms[i].roomName);
+        //                 arrayCurrentRooms.push(currentCreatedRooms.currentRooms[i].roomName);
+        //                 console.log("2ª arrayCurrentRooms ", arrayCurrentRooms)
+        //             };
+        //             // arrayCurrentRooms.push(newRoomName);
+                    
+        //             // arrayCurrentRooms.push(currentCreatedRooms.currentRooms[countRooms + 1].roomName);
+        //             console.log("3ª arrayCurrentRooms con el último elemento", arrayCurrentRooms);
+        //             // console.log("3ª FUERA arrayCurrentRooms ", arrayCurrentRooms)
+        //             //! ME QUEDO AQUÍ PARA PASAR LOS DATOS AL FRONT y enseñar las salsa ibem.
+        //             // console.log('arrayCururentRooms en JOINNEWROOM ---- antes de hhacer el EMIT', arrayCurrentRooms)
+        //             io.emit("showRooms", arrayCurrentRooms)
+        //             // io.emit("newRoom", arrayCurrentRooms)
+        //             // io.to(socket.id).emit("success", `${newRoomName} creada`);
+        //         }
+                    
+                 
+        //     } catch (error) {
+        //         return { status: "error", message: error };
+        //     };
+        // });
+        //!-------++++++
+
+
+
         socket.on("newRoom", async (newRoomName) => {
             try {
                 let createNewRoom = await createRoom({ newRoomName });
                 const arrayUsersInThisRoom = [];
                 const previousMessages = [];
+                const joinNewRoom = "";           //!-------
+
                 let newRoom, currentUser;
                 // console.log('createNewRoom en SOCKET/NEWROOM', createNewRoom)
                 // console.log( "HOOOOOOOOOOOOOOllllllllllllllllllAAAAAAAAAAAAA", newRoomName, currentUser)
@@ -166,20 +212,44 @@ const sockets = async (io) => {
                     //     "USUARI:", usuari,
                     //     'previousMessages', previousMessages
                     // )
-                    const joinNewRoom = await joinRoom(room, usuari);
-                    // console.log('joinNewRoom a ver si funciona', joinNewRoom)
+
+
+        /*             let currentCreatedRooms = await getRooms();
+                    if (currentCreatedRooms.status === "success") {
+                        for (let i = 0; i < countRooms; i++) {
+                            let roomName =
+                                currentCreatedRooms.currentRooms[i].roomName;
+                            arrayCurrentRooms.push(roomName);
+                        }
+    
+                        console.log("Rooms:", arrayCurrentRooms);
+                        io.to(socket.id).emit("newRoom", arrayCurrentRooms);
+                    } */
+
+                    //!-------
+
+                    //!AQQQUUUUIIII
+                    //! se tiene que hacer un evento para que envíe el array de los nombres de las salas antes del JOINNEWROOM
+                    joinNewRoom = await joinRoom(room, usuari);
+                    console.log('joinNewRoom a ver si funciona', joinNewRoom)
+
                     if (joinNewRoom.status === "success") {
                         console.log("-+-+HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
                         // con
-                        console.log('-------------****createNewRoom antes de hacer el EMIT', createNewRoom);
-
+                        console.log('-------------****createNewRoom antes de hacer el EMIT', joinNewRoom);
+                        
+                        currentUser = await usuari.userName;
+                        newRoom = joinNewRoom.currentRoom.roomName;
                         arrayUsersInThisRoom.push(usuari.userName);
-                        // previousMessages = createNewRoom.newRoom.message;
-                        console.log("msg:", "ROOOM:", createNewRoom.newRoom.roomName, "array:", arrayUsersInThisRoom, usuari.userName, 'MENSAJES PREVIOS:', previousMessages)
-                        newRoom = createNewRoom.newRoom.roomName;
-                        // currentUser = usuari;
-                        console.log("msg:", "ROOOM:", newRoom, "array:", arrayUsersInThisRoom, usuari, 'MENSAJES PREVIOS:', previousMessages)
-                        io.emit("joinNewRoom", newRoom, arrayUsersInThisRoom, usuari)
+                        previousMessages = joinNewRoom.currentRoom.message;
+                        // console.log("msg:", "ROOOM:", joinNewRoom.currentRoom.roomName, "array:", arrayUsersInThisRoom, usuari.userName, 'MENSAJES PREVIOS:', previousMessages)
+
+                        // console.log("msg:", "DADES PER PASSAR A JOINNEWROOM", "ROOOM:", newRoom, "array:", arrayUsersInThisRoom, currentUser, 'MENSAJES PREVIOS:')
+                        io.emit("joinNewRoom", (newRoom, arrayUsersInThisRoom, currentUser))
+                    
+                        //!-------+++++++++
+
+                        // io.emit("joinNewRoom", newRoom)
                         // usuari.userName, previousMessages);
 
                         // console.log("**************    joinNewRoom antes de hacer el EMIT JOINNEWROOM", createNewRoom.roo, arrayUsersInThisRoom, usuari, previousMessages);
@@ -207,7 +277,7 @@ const sockets = async (io) => {
             } catch (error) {
                 return { status: "error", message: error };
             };
-        });
+        }); 
 
 
 
