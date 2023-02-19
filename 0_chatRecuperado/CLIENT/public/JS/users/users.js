@@ -2,12 +2,11 @@ const showUsers = (room, usersInThisRoom, currentUser) => {
       console.log(" SSSSSSSSIIIIIIIIIIIGGGGGGGGGGUUUUUUUUUUEEEEEEEEEEE HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
 
       // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, "ARRAY:",usersInThisRoom, currentUser)
-
-
-
       try {
-            const usersInRoom = document.getElementById("usersList");
-            usersInRoom.innerHTML = "";
+                  const usersInRoom = document.getElementById("usersList");
+                  const newMessages = document.getElementById("newMessages");
+
+                  usersInRoom.innerHTML = "";
 
             for (const user of usersInThisRoom) {
                   console.log('USER:', user);
@@ -21,8 +20,10 @@ const showUsers = (room, usersInThisRoom, currentUser) => {
                   }
             };
 
+            if (sessionStorage.userName== user) {
+            // if (sessionStorage.userName== currentUser) {
+                  // newMessages.style.display = "block";
 
-            if (sessionStorage.userName== currentUser) {
                   console.log("DATOS A MOSTRAR DE LA ROM EN SHOWUSERS, EN EL CONDICIONAL", currentUser);
                   document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
             };
@@ -36,7 +37,23 @@ const showUsers = (room, usersInThisRoom, currentUser) => {
 }
 
 
+const showUserNewRoom = (room, usersInThisRoom, currentUser) => {
+      try {
+            const usersInRoom = document.getElementById("usersList");
+            const newMessages = document.getElementById("newMessages");
+            newMessages.style.display = "block";
+            usersInRoom.innerHTML = "";
+            // console.log('USER:', user);
+            console.log("SESSIONSTORAGE en PUBLIC/showusers:", sessionStorage)
+            console.log(" ++++++++++*****--------SSSSSSSSIIIIIIIIIIIGGGGGGGGGGUUUUUUUUUUEEEEEEEEEEE HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
 
+
+
+      } catch (error) {
+            return { status: "error", message: error };
+      }
+
+}
 
 
 

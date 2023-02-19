@@ -108,7 +108,7 @@ const createRoom = async () => {
             if (newRoomName) {
                   socket.emit("newRoom", newRoomName);
                   document.getElementById("roomForm").newRoom.value = "";
-                  joinRoom(newRoomName);
+                  // joinRoom(newRoomName);
 
             } else {
                   return false;
@@ -117,3 +117,24 @@ const createRoom = async () => {
             return { status: "error", message: error };
       }
 };
+
+
+
+
+const showNewRoom = async (room) => {
+      try {
+            const roomList =  document.getElementById("roomList");
+            let btn = `<button class="room-btn-active" id="${room}">${room}</button>`;
+            
+            roomList.innerHTML += btn
+            const button = document.getElementById(room);
+            button.addEventListener("click", () => {
+                  clickRoom(room);  
+
+            //   console.log("¡El botón fue clicado!");
+            });
+      } catch (error) {
+            return { status: "error", message: error };
+      }
+
+}

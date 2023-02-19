@@ -1,4 +1,4 @@
-TODO [] - Quan entra un usuari, ha d'entrar directament a la sala MAIN. RECUPERAR VERSIÓN ANTERIOR
+TODO [----] - Quan entra un usuari, ha d'entrar directament a la sala MAIN. RECUPERAR VERSIÓN ANTERIOR
 TODO [] - Posar que els misstges nous es vegin com a nous un temps determinat, després es posin com els atres. (CSS)
 TODO [] - Hacer los eventos de notificación de que un usuario se ha conectado o se ha descomectado al resto de usurarios
 TODO [x] - Posar els missatges nous bé. Fa coses rares.
@@ -26,11 +26,12 @@ DISPLAY.BLOCK
 
 CORRECCIÓN 16-2-23:
 
-TODO [x] - quan un usuari canvia de sala, li canvia el nom de la sala als altres i la llista de usuaris connectats
-TODO [] - actualització sales al crear-les un altre usuari
 TODO [] - missatges de "usuari connectat/desconnectat"
+TODO [x] - quan un usuari canvia de sala, li canvia el nom de la sala als altres i la llista de usuaris connectats
+TODO [x] - actualització sales al crear-les un altre usuari
 TODO [x] - que entri a la main al iniciar o que desaparegui el form per parlar fins que estiguis dins d'una sala
 TODO [x] - missatges propis se'n van a l'esquerra quan canvies de sala
 
 TODO [] - aL entrar en una sala nueva, me salen dos veces el nombre del USUARIO
 TODO [] - al enviar un mensaje se ve 4 veces, como nuevo mensaje
+TODO [] - Cuando un usuario crea una sala, ha de entrar directamente a la sala creada.

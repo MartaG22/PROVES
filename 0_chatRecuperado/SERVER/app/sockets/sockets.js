@@ -4,7 +4,7 @@ const disconnectUser = require("../controllers/user/logoutUserController.js");
 const initFirstRoom = require("../controllers/room/initRoom.js");
 const createRoom = require("../controllers/room/newRoomController.js");
 const getRooms = require("../controllers/room/getRoomsController.js");
-const joinRoom = require("../controllers/room/joinRoomController.js");
+const joinRoom2 = require("../controllers/room/joinRoomController.js");
 const getUsersRoom = require("../controllers/user/getUsersController.js")
 const sendMessage = require("../controllers/message/sendMessageController.js");
 const getDataRoom = require("../controllers/room/getDataRoom.js");
@@ -33,8 +33,8 @@ const sockets = async (io) => {
 
 
     io.on("connection", async (socket) => {
-        console.log("Nou usuari connectat");
-        console.log("SOCKET:", socket.id);
+        //? console.log("Nou usuari connectat");
+        //? console.log("SOCKET:", socket.id);
 
         const usuari = {
             userId: socket.decoded.idUsuari,
@@ -117,7 +117,7 @@ const sockets = async (io) => {
         socket.on("changeRoom", async (room) => {
             try {
                 // console.log("ESOTY en changeROOM CONTROLLER ---------- ROOM: ", room)
-                console.log('usuari en CHANGErooom:', usuari)
+                console.log('usuari en SOCJET/CHANGErooom:', usuari)
                 let changeUserRoom = await changeRoom(room, usuari);
                 // console.log('changeUserRoom en CHANGE ROO;', changeUserRoom)
                 if (changeUserRoom.status === "success") {
@@ -127,7 +127,7 @@ const sockets = async (io) => {
                     changeUserRoom.findNewRoom.usersInThisRoom.forEach((user) => {
                         arrayUsersInRoom.push(user.nomUsuari);
                     });
-                    // console.log('arrayUsersInRoom RROOOMMMM per passar a CLIENT/SOCKETS', arrayUsersInRoom)
+                    console.log('arrayUsersInRoom RROOOMMMM per passar a CLIENT/SOCKETS', arrayUsersInRoom)
                     const previousMessages = changeUserRoom.findNewRoom.message;
                     // console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
 
@@ -183,9 +183,49 @@ const sockets = async (io) => {
         // });
         //!-------++++++
 
+        socket.on("newRoom", async(newRoomName) => {
+            // const joinNewRoom = "";   
+            const arrayUsersInRoom = [];        //!-------
+
+            try {
+                // const createNewRoom = await createRoom({newRoomName, usuari});
+                const createNewRoom = await createRoom({newRoomName, usuari});
+                
 
 
-        socket.on("newRoom", async (newRoomName) => {
+                if (createNewRoom.status === "success"){
+                    console.log("SALA CREADA OK");
+                    console.log("CREATEN NEW ROOOM EN SOCKET/NEWOROOM", createNewRoom);
+                    const room =  createNewRoom.newRoom.roomName;
+                    console.log("SALA CREADA OK ROOM", room);
+                    const joinNewRoom = await joinRoom2(room, usuari);
+                    // console.log("JOINED RRROOOOMMM CREADA OK ROOM", joinNewRoom);
+
+                    console.log(joinNewRoom)
+                    console.log('joinNewRoom', joinNewRoom)
+                    if (joinNewRoom.status === "success") {
+                        console.log('joinNewRoom a ver si funciona')
+                        const arrayUsersInRoom =  [usuari.userName];
+                        console.log("JOINED RRROOOOMMM CREADA OK ROOM", arrayUsersInRoom);
+                    //     arrayUsersInRoom.push(usuari.userName);
+                    console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
+                    console.log("dades per enviar a AVER", room,  arrayUsersInRoom, usuari)
+                        io.emit('aVer', room, arrayUsersInRoom, usuari);
+                        // io.emit("joinNewRoom", newRoomName, usuari.userName);
+                        // io.emit("joinNewRoom", room, arrayUsersInRoom, usuari);
+                    }
+                    //! ME  quedo aquí para pasar los datos al front
+                }
+            } catch (error) {
+                return { status: "error", message: error };
+            };
+        });
+
+
+
+
+
+        socket.on("aaa", async (newRoomName) => {
             try {
                 let createNewRoom = await createRoom({ newRoomName });
                 const arrayUsersInThisRoom = [];
@@ -205,13 +245,6 @@ const sockets = async (io) => {
                     // const previousMessages = createNewRoom.newRoom.message;
                     // console.log("usersInThisRoom", usersInThisRoom);
                     // console.log("<><<>><<>><<>>ROOM I CURRENTUSER EN PUBLIC/JOINUSERNewRoom", room, currentUser)
-                    // console.log(
-                    //     "DADES PER PASSAR A PUBLIC, DESDE SOCKET/NEWROOM:",
-                    //     "NOM SALA:", createNewRoom.newRoom.roomName,
-                    //     "USERS IN ROOM:", arrayUsersInThisRoom,
-                    //     "USUARI:", usuari,
-                    //     'previousMessages', previousMessages
-                    // )
 
 
         /*             let currentCreatedRooms = await getRooms();
@@ -231,12 +264,12 @@ const sockets = async (io) => {
                     //!AQQQUUUUIIII
                     //! se tiene que hacer un evento para que envíe el array de los nombres de las salas antes del JOINNEWROOM
                     joinNewRoom = await joinRoom(room, usuari);
-                    console.log('joinNewRoom a ver si funciona', joinNewRoom)
-
+                    
                     if (joinNewRoom.status === "success") {
+                        console.log('joinNewRoom a ver si funciona', joinNewRoom)
                         console.log("-+-+HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
                         // con
-                        console.log('-------------****createNewRoom antes de hacer el EMIT', joinNewRoom);
+                        // console.log('-------------****createNewRoom antes de hacer el EMIT', joinNewRoom);
                         
                         currentUser = await usuari.userName;
                         newRoom = joinNewRoom.currentRoom.roomName;
@@ -343,7 +376,7 @@ const sockets = async (io) => {
         socket.on("disconnect", async () => {
             try {
                 // console.log("ROOM en DISCONNECT USER", room)
-                console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
+                //? console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
                 let getUsersRoom = await disconnectUser(usuari);
 
                 if (getUsersRoom.status === "success") {
@@ -356,8 +389,10 @@ const sockets = async (io) => {
                     // const currentUser = usuari.userName;
 
 
-                    console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
+                    //? console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
                     io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
+                    // io.broadcast.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
+                    // io.broadcast.emit("user disconnected", { userId: socket.id });
 
                 } else {
                     return { status: "error", message: "No s'ha detectat la desconnexió del client" }

@@ -6,8 +6,8 @@ const socket = io('http://localhost:3000', {
 });
 
 let socketConnected = false;
-console.log('sessionStorage.token:', sessionStorage.token)
-console.log('sessionStorage.token:', sessionStorage)
+// console.log('sessionStorage.token:', sessionStorage.token)
+// console.log('sessionStorage.token:', sessionStorage)
 
 
 // socket.on('newRoom', (newRoomName) => {
@@ -18,8 +18,8 @@ console.log('sessionStorage.token:', sessionStorage)
 // })
 
 socket.on('connect', async () => {
-    console.log("SOCKET.ID en CLIENT/SOCKETS", socket.id)
-    console.log("SOCKET.ID en CLIENT/SOCKETS", socket)
+    // console.log("SOCKET.ID en CLIENT/SOCKETS", socket.id)
+    // console.log("SOCKET.ID en CLIENT/SOCKETS", socket)
 
     socket.on('newRoom', (newRoomName) => {
         console.log("newRoom", newRoomName);
@@ -43,15 +43,29 @@ socket.on('connect', async () => {
     });
 
 
-    // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
-    socket.on('joinNewRoom',   (room, usersInThisRoom, currentUser) => {
+    socket.on('aVer', (room, arrayUsersInRoom, usuari)=> {
+        console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
+        // console.log("DADES REBUDES EN aVER", "room:", room, "usuari:", usuari);
+        // const usersInThisRoom = [usuari.userName];
+        // console.log('usersInThisRoom:', usersInThisRoom);
+        console.log("dades enr a AVER para envar a SHOWUSERS:", "RROOMM:", room, "usersInThisRoom:", arrayUsersInRoom, "USUARI:", usuari)
+        showNewRoom(room);
+        showUsers(room, arrayUsersInRoom, usuari.userName);
 
-        console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA");
-        console.log(room, usersInThisRoom, currentUser)
-        
-        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser.userName);
+    });
+//! AAAAWQQQQQUUUUUUUIIIIII
+
+    // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
+    socket.on('joinNewRoom',   (room,arrayUsersInRoom, currentUser) => {
+                    //! ME  quedo aquí para pasar los datos al front
+                    console.log(" --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos--- HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA");
+        console.log("DADES REBUDES EN JOIN NEW ROOM", "room:", room, arrayUsersInRoom,"usuari:", currentUser);
+        // const usersInThisRoom = [currentUser]
+        // usersInThisRoom.push(currentUser)
         // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
-        showUsers(room, usersInThisRoom, currentUser);
+        // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
+        showUsers(room, arrayUsersInRoom, currentUser);
+        //  showUsers(room, arrayUsersInRoom, currentUser.userName);
         //  showUsersChangeRoom(room, usersInThisRoom, currentUser);
         // await showUsers(room, usersInThisRoom, currentUser);
         // await showUsers(room,  usersInThisRoom, currentUser.userName);
@@ -105,9 +119,9 @@ socket.on('connect', async () => {
     })
 
 
-    socket.on('sendMessage', (newMessage, usuari, room, arrayUsersInRoom) => {
+    socket.on('sendMessage', async(newMessage, usuari, room, arrayUsersInRoom) => {
         console.log("dades rebudes en public/SENDMESSAGE ", "newMessage:", newMessage, "usuari:", usuari, "room", room)
-        showNewMessage(newMessage, usuari, room);
+        await showNewMessage(newMessage, usuari, room);
     })
 
 })
