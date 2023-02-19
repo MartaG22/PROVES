@@ -119,7 +119,7 @@ const sockets = async (io) => {
                 // console.log("ESOTY en changeROOM CONTROLLER ---------- ROOM: ", room)
                 console.log('usuari en SOCJET/CHANGErooom:', usuari)
                 let changeUserRoom = await changeRoom(room, usuari);
-                console.log('changeUserRoom en CHANGE ROO;', changeUserRoom)
+                // console.log('changeUserRoom en CHANGE ROO;', changeUserRoom)
                 if (changeUserRoom.status === "success") {
                     console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
 
@@ -185,7 +185,6 @@ const sockets = async (io) => {
 
         socket.on("newRoom", async(newRoomName) => {
             // const joinNewRoom = "";   
-            const arrayUsersInRoom = [];        //!-------
 
             try {
                 // const createNewRoom = await createRoom({newRoomName, usuari});
@@ -207,10 +206,12 @@ const sockets = async (io) => {
                         console.log('joinNewRoom a ver si funciona')
                         const arrayUsersInRoom =  [usuari.userName];
                         console.log("JOINED RRROOOOMMM CREADA OK ROOM", arrayUsersInRoom);
-                    //     arrayUsersInRoom.push(usuari.userName);
-                    console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
-                    console.log("dades per enviar a AVER", room,  arrayUsersInRoom, usuari)
-                        io.emit('aVer', room, arrayUsersInRoom, usuari);
+                        console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
+                        console.log("dades per enviar a AVER", room,  arrayUsersInRoom, usuari)
+                        io.emit('userNewRoom', room, arrayUsersInRoom, usuari);
+
+
+
                         // io.emit("joinNewRoom", newRoomName, usuari.userName);
                         // io.emit("joinNewRoom", room, arrayUsersInRoom, usuari);
                     }
@@ -220,6 +221,108 @@ const sockets = async (io) => {
                 return { status: "error", message: error };
             };
         });
+
+
+
+
+
+
+        socket.on("getRooms", async () => {
+            // initRoom();
+            try {
+                let currentCreatedRooms = await getRooms();
+                // console.log("currentCreatedRooms", currentCreatedRooms.currentRooms);
+                let countRooms = currentCreatedRooms.currentRooms.length;
+                let arrayCurrentRooms = [];
+                console.log("countRooms", countRooms);
+
+                if (currentCreatedRooms.status === "success") {
+                    for (let i = 0; i < countRooms; i++) {
+                        let roomName =
+                            currentCreatedRooms.currentRooms[i].roomName;
+                        arrayCurrentRooms.push(roomName);
+                    }
+
+                    // console.log("Rooms:", arrayCurrentRooms);
+                    io.to(socket.id).emit("newRoom", arrayCurrentRooms);
+                } else {
+                    io.to(socket.id).emit("error", currentCreatedRooms.error);
+                }
+            } catch (error) {
+                return { status: "error", message: error };
+            }
+        });
+
+
+        socket.on('newMessage', async (newMessage, room) => {
+            console.log({ msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room });
+
+            try {
+                // const currentUser = usuari.userName;
+                // const currentUser = usuari;
+
+                const sendNewMessage = await sendMessage(newMessage, usuari, room.roomName);
+                console.log('sendNewMessage en SOCKET/NEWMESSAGE', sendNewMessage);
+
+                if (sendNewMessage) {
+                    // io.emit("displayMessage", newMessage, usuari, room.roomName);
+                    console.log("sendMessage antes de hacer el EMIT de ShowMESSAGE:", newMessage, usuari, room.roomName);
+
+                    const arrayUsersInRoom = await getUsersRoom(room.roomName);
+                    console.log('arrayUsersInRoom en SOCKETS/GETUSERROOM', arrayUsersInRoom)
+
+                    io.emit("sendMessage", sendNewMessage, usuari, room.roomName, arrayUsersInRoom);
+
+                };
+
+            } catch (error) {
+                return { status: "error", message: error };
+            };
+        });
+
+
+
+
+
+
+
+        socket.on("disconnect", async () => {
+            try {
+                // console.log("ROOM en DISCONNECT USER", room)
+                //? console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
+                let getUsersRoom = await disconnectUser(usuari);
+
+                if (getUsersRoom.status === "success") {
+
+                    console.log('getUsersRoom para enviar mensaje a loso otros usuarios', getUsersRoom)
+                    // console.log('newArrayUsers EN SERVER/SOCKETS', getUsersRoom.currentRoom);
+                    // console.log ('newUserInRoom', getUsersRoom.newUsersInRoom)
+                    // const currentRoom = getUsersRoom.currentRoom;
+                    // const newArrayUsers = getUsersRoom.newUsersInRoom;
+                    // const currentUser = usuari.userName;
+                    console.log("getUsersRoom.currentRoom:", getUsersRoom.currentRoom)
+                    console.log("usuari.userNaem:", usuari.userName)
+                    socket.leave(getUsersRoom.currentRoom)
+                    socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', `${usuari.userName} left the room`);
+                    //? console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
+                    io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
+                    // io.broadcast.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
+                    // io.broadcast.emit("user disconnected", { userId: socket.id });
+
+                } else {
+                    return { status: "error", message: "No s'ha detectat la desconnexió del client" }
+                }
+
+            } catch (error) {
+                result = { status: "error", message: error.message }
+            }
+        });
+    });
+};
+
+module.exports = sockets;
+
+
 
 
 
@@ -313,96 +416,3 @@ const sockets = async (io) => {
         // }); 
 
 
-
-        socket.on("getRooms", async () => {
-            // initRoom();
-            try {
-                let currentCreatedRooms = await getRooms();
-                // console.log("currentCreatedRooms", currentCreatedRooms.currentRooms);
-                let countRooms = currentCreatedRooms.currentRooms.length;
-                let arrayCurrentRooms = [];
-                console.log("countRooms", countRooms);
-
-                if (currentCreatedRooms.status === "success") {
-                    for (let i = 0; i < countRooms; i++) {
-                        let roomName =
-                            currentCreatedRooms.currentRooms[i].roomName;
-                        arrayCurrentRooms.push(roomName);
-                    }
-
-                    // console.log("Rooms:", arrayCurrentRooms);
-                    io.to(socket.id).emit("newRoom", arrayCurrentRooms);
-                } else {
-                    io.to(socket.id).emit("error", currentCreatedRooms.error);
-                }
-            } catch (error) {
-                return { status: "error", message: error };
-            }
-        });
-
-
-        socket.on('newMessage', async (newMessage, room) => {
-            console.log({ msg: "dades rebudes a SOCKETS/NEWMESSAGE:", newMessage, room });
-
-            try {
-                // const currentUser = usuari.userName;
-                // const currentUser = usuari;
-
-                const sendNewMessage = await sendMessage(newMessage, usuari, room.roomName);
-                console.log('sendNewMessage en SOCKET/NEWMESSAGE', sendNewMessage);
-
-                if (sendNewMessage) {
-                    // io.emit("displayMessage", newMessage, usuari, room.roomName);
-                    console.log("sendMessage antes de hacer el EMIT de ShowMESSAGE:", newMessage, usuari, room.roomName);
-
-                    const arrayUsersInRoom = await getUsersRoom(room.roomName);
-                    console.log('arrayUsersInRoom en SOCKETS/GETUSERROOM', arrayUsersInRoom)
-
-                    io.emit("sendMessage", sendNewMessage, usuari, room.roomName, arrayUsersInRoom);
-
-                };
-
-            } catch (error) {
-                return { status: "error", message: error };
-            };
-        });
-
-
-
-
-
-
-
-        socket.on("disconnect", async () => {
-            try {
-                // console.log("ROOM en DISCONNECT USER", room)
-                //? console.log("***************** usuari en SOCKET/ DISCONNECT", usuari)
-                let getUsersRoom = await disconnectUser(usuari);
-
-                if (getUsersRoom.status === "success") {
-
-                    // console.log(getUsersRoom, getUsersRoom)
-                    // console.log('newArrayUsers EN SERVER/SOCKETS', getUsersRoom.currentRoom);
-                    // console.log ('newUserInRoom', getUsersRoom.newUsersInRoom)
-                    // const currentRoom = getUsersRoom.currentRoom;
-                    // const newArrayUsers = getUsersRoom.newUsersInRoom;
-                    // const currentUser = usuari.userName;
-
-
-                    //? console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
-                    io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
-                    // io.broadcast.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
-                    // io.broadcast.emit("user disconnected", { userId: socket.id });
-
-                } else {
-                    return { status: "error", message: "No s'ha detectat la desconnexió del client" }
-                }
-
-            } catch (error) {
-                result = { status: "error", message: error.message }
-            }
-        });
-    });
-};
-
-module.exports = sockets;

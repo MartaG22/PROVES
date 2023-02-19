@@ -30,20 +30,26 @@ socket.on('connect', async () => {
     await socket.emit("getRooms");
 
 
-/*     socket.on('joinNewRoom', async(room, usersInThisRoom, currentUser, previousMessages) => {
-        console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
-        
-        showUsers(room, usersInThisRoom, currentUser.userName);
-        showMessages(previousMessages, currentUser, usersInThisRoom);
-    }); */
+    /*     socket.on('joinNewRoom', async(room, usersInThisRoom, currentUser, previousMessages) => {
+            console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
+            
+            showUsers(room, usersInThisRoom, currentUser.userName);
+            showMessages(previousMessages, currentUser, usersInThisRoom);
+        }); */
 
     socket.on('showRooms', (arrayCurrentRooms) => {
-            console.log('DATOS RECIBIDOS EN  arrayCurrentRooms EN SHOWROOMS', arrayCurrentRooms)
-            showRoom(arrayCurrentRooms);
+        console.log('DATOS RECIBIDOS EN  arrayCurrentRooms EN SHOWROOMS', arrayCurrentRooms)
+        showRoom(arrayCurrentRooms);
     });
 
 
-    socket.on('aVer', (room, arrayUsersInRoom, usuari)=> {
+    socket.on('newDataMessage', (message) => {
+        console.log(message)
+        // showDataMessage(message);
+
+    })
+
+    socket.on('userNewRoom', (room, arrayUsersInRoom, usuari) => {
         console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
         // console.log("DADES REBUDES EN aVER", "room:", room, "usuari:", usuari);
         // const usersInThisRoom = [usuari.userName];
@@ -51,10 +57,10 @@ socket.on('connect', async () => {
         console.log("dades enr a AVER para envar a SHOWUSERS:", "RROOMM:", room, "usersInThisRoom:", arrayUsersInRoom, "USUARI:", usuari)
         showNewRoom(room);
         // showUsers(room, arrayUsersInRoom, usuari.userName);
-        showUserNewRoom(room, arrayUsersInRoom, usuari);
+        showUserNewRoom(room, usuari);
 
     });
-//! AAAAWQQQQQUUUUUUUIIIIII
+    //! AAAAWQQQQQUUUUUUUIIIIII
 
     // // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
     // socket.on('joinNewRoom',   (room,arrayUsersInRoom, currentUser) => {
@@ -73,19 +79,19 @@ socket.on('connect', async () => {
     //     // await showMessages(previousMessages, currentUser, usersInThisRoom);
 
     //     // msg: ROOOM: dia array: [ 'Gery' ] { userId: 4, userName: 'Gery' } MENSAJES PREVIOS: []
-        
+
     // });
-    
-    socket.on("joinRoom",  async (room, usersInThisRoom, currentUser, previousMessages) => {
+
+    socket.on("joinRoom", async (room, usersInThisRoom, currentUser, previousMessages) => {
         console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
         // await showRoom(arrayRooms);
-        
+
         // await showUsersChangeRoom(room, usersInThisRoom, currentUser.userName);
         showUsers(room, usersInThisRoom, currentUser);
         await showMessages(previousMessages, currentUser, usersInThisRoom);
         // socket.emit("joinUserNewRoom", room, currentUser);
     })
-        
+
     // socket.on('joinFirstRoom', async (room, usersInThisRoom, currentUser, previousMessages) => {
     //     console.log("Ha8n arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
     //     if (room == "Main") {
@@ -120,7 +126,7 @@ socket.on('connect', async () => {
     })
 
 
-    socket.on('sendMessage', async(newMessage, usuari, room, arrayUsersInRoom) => {
+    socket.on('sendMessage', async (newMessage, usuari, room, arrayUsersInRoom) => {
         console.log("dades rebudes en public/SENDMESSAGE ", "newMessage:", newMessage, "usuari:", usuari, "room", room)
         await showNewMessage(newMessage, usuari, room);
     })
