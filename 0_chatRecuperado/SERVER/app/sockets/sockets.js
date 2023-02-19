@@ -303,9 +303,10 @@ const sockets = async (io) => {
                     console.log("getUsersRoom.currentRoom:", getUsersRoom.currentRoom)
                     console.log("usuari.userNaem:", usuari.userName)
                     socket.leave(getUsersRoom.currentRoom)
-                    socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', `${usuari.userName} left the room`);
                     //? console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
                     io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
+                    // socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', message = `${usuari.userName} left the room`);
+                    socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', usuari.userName);
                     // io.broadcast.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
                     // io.broadcast.emit("user disconnected", { userId: socket.id });
 
