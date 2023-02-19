@@ -36,18 +36,40 @@ const showUsers = (room, usersInThisRoom, currentUser) => {
 
 }
 
-
+                  //! newMessages.style.display = "block";
+                  // usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${currentUser}</span> <br>`
+                  // document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
 const showUserNewRoom = (room, usersInThisRoom, currentUser) => {
       try {
             const usersInRoom = document.getElementById("usersList");
             const newMessages = document.getElementById("newMessages");
-            newMessages.style.display = "block";
+            const dataMessage = document.getElementById("notificationRoom")
             usersInRoom.innerHTML = "";
             // console.log('USER:', user);
+            console.log("DADES REBUDES A SHOWUSER NEW ROOM:", "room:", room, "usersInThisRoom:", usersInThisRoom, "currentUser:", currentUser)
             console.log("SESSIONSTORAGE en PUBLIC/showusers:", sessionStorage)
             console.log(" ++++++++++*****--------SSSSSSSSIIIIIIIIIIIGGGGGGGGGGUUUUUUUUUUEEEEEEEEEEE HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
+            
+            
+            if (sessionStorage.userName !== currentUser.userName) {
+                  console.log("AQUEST USUARI NO HA CREAT LA SALA")
+                  dataMessage.innerHTML += `L'usuari ${currentUser.userName} ha creat la ROOM ${room}`
+                  // newMessages.style.display = "block";
+                  // usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${currentUser}</span> <br>`
+                  // document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
+            }
 
-
+            // for (const user of usersInThisRoom) {
+            //       console.log('USER:', user);
+            //       console.log("SESSIONSTORAGE en PUBLIC/showusers:", sessionStorage)
+            //       // if (user === currentUser){
+            //       // if (user === currentUser){
+            //       if (sessionStorage.userName === user) {
+            //             usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${currentUser}</span> <br>`
+            //       } else if (sessionStorage.userName !== user) {
+            //             usersInRoom.innerHTML += `${user} <br>`
+            //       }
+            // };
 
       } catch (error) {
             return { status: "error", message: error };
