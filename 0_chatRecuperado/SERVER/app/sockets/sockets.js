@@ -207,8 +207,11 @@ const sockets = async (io) => {
                         const arrayUsersInRoom =  [usuari.userName];
                         console.log("JOINED RRROOOOMMM CREADA OK ROOM", arrayUsersInRoom);
                         console.log("HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos");
-                        console.log("dades per enviar a AVER", room,  arrayUsersInRoom, usuari)
+                        console.log("dades per enviar a AVER", room,  arrayUsersInRoom, usuari);
                         io.emit('userNewRoom', room, arrayUsersInRoom, usuari);
+                        // io.to(socket.id).emit("userNewRoom", room, arrayCurrentRooms, usuari);
+// io.emit("user", room, arrayUsersInRoom, usuari);
+// io.emit("user", room)
 
 
 

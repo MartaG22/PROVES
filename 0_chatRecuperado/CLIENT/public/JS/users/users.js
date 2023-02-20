@@ -41,7 +41,7 @@ const showUsers = (room, usersInThisRoom, currentUser) => {
 //! newMessages.style.display = "block";
 // usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${currentUser}</span> <br>`
 // document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
-const showUserNewRoom = (room, currentUser) => {
+const showUserNewRoom = (room, usuari) => {
       try {
             const usersInRoom = document.getElementById("usersList");
             // const newMessages = document.getElementById("newMessages");
@@ -53,12 +53,10 @@ const showUserNewRoom = (room, currentUser) => {
             console.log("SESSIONSTORAGE en PUBLIC/showusers:", sessionStorage)
             console.log(" ++++++++++*****--------SSSSSSSSIIIIIIIIIIIGGGGGGGGGGUUUUUUUUUUEEEEEEEEEEE HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA")
 
-
-
-            if (sessionStorage.userName !== currentUser.userName) {
+            if (sessionStorage.userName !== usuari.userName) {
                   console.log("AQUEST USUARI NO HA CREAT LA SALA")
 
-                  const message = `L'usuari ${currentUser.userName} ha creat la ROOM ${room}`;
+                  const message = `L'usuari ${usuari.userName} ha creat la ROOM ${room}`;
                   dataMessage.innerHTML += message;
                   setTimeout(() => {
                         dataMessage.innerHTML = dataMessage.innerHTML.replace(message, "");
@@ -66,6 +64,12 @@ const showUserNewRoom = (room, currentUser) => {
 
             };
 
+            if (sessionStorage.userName === usuari.userName) {
+                  console.log("DATOS A MOSTRAR DE LA ROM EN SHOWUSERSNEW ROOM, EN EL CONDICIONAL", usuari);
+                  usersInRoom.innerHTML += `<span style='color: rgb(205, 111, 186);'>${user}</span> <br>`
+                  document.getElementById("showCurrentRoom").innerHTML = `${room} <br>`
+
+            }
 
       } catch (error) {
             return { status: "error", message: error };

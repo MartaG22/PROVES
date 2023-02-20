@@ -56,7 +56,7 @@ socket.on('connect', async () => {
         // console.log('usersInThisRoom:', usersInThisRoom);
         console.log("dades enr a AVER para envar a SHOWUSERS:", "RROOMM:", room, "usersInThisRoom:", arrayUsersInRoom, "USUARI:", usuari)
         showNewRoom(room);
-        // showUsers(room, arrayUsersInRoom, usuari.userName);
+        showUsers(room, arrayUsersInRoom, usuari.userName);
         showUserNewRoom(room, usuari);
 
     });
@@ -88,7 +88,7 @@ socket.on('connect', async () => {
 
         // await showUsersChangeRoom(room, usersInThisRoom, currentUser.userName);
         showUsers(room, usersInThisRoom, currentUser);
-        await showMessages(previousMessages, currentUser, usersInThisRoom);
+        await showMessages(room, previousMessages, currentUser, usersInThisRoom);
         // socket.emit("joinUserNewRoom", room, currentUser);
     })
 
