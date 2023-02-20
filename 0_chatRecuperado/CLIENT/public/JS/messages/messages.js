@@ -175,13 +175,13 @@ const showNewMessage = async (newMessage, currentUser, room) => {
 
 
 const showDataMessage = (message) => {
-      // document.getElementById('notificationRoom').removeAttribute('id');
+      document.getElementById('notificationRoom').removeAttribute('id');
       console.log(message)
-      // const updateMessage = document.getElementById("notificationRoom");
-      // updateMessage.innerHTML += message;
-      // setTimeout(() => {
-      //       updateMessage.innerHTML = updateMessage.innerHTML.replace(message, "");
-      // }, 5000); // 5000 milisegundos (5 segundos) de tiempo de espera
+      const updateMessage = document.getElementById("notificationRoom");
+      updateMessage.innerHTML += message;
+      setTimeout(() => {
+            updateMessage.innerHTML = updateMessage.innerHTML.replace(message, "");
+      }, 5000); // 5000 milisegundos (5 segundos) de tiempo de espera
 
 
 

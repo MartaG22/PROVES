@@ -132,6 +132,7 @@ const sockets = async (io) => {
                     // console.log("previousMessages en SERVER/SOCKETs:", previousMessages)
 
                     // console.log("msg:", "DADES ABANS DE L'EMIT  JOINROOOM:", room, arrayUsersInRoom, usuari, previousMessages);
+                    // io.emit("joinRoom", room, arrayUsersInRoom, usuari.userName, previousMessages);
                     io.emit("joinRoom", room, arrayUsersInRoom, usuari.userName, previousMessages);
                     //!------
                     // io.to(usuari.userName).emit("success", room, arrayUsersInRoom, usuari.userName, previousMessages);
@@ -190,7 +191,7 @@ const sockets = async (io) => {
                 // const createNewRoom = await createRoom({newRoomName, usuari});
                 const createNewRoom = await createRoom({newRoomName, usuari});
                 
-
+//! PARA QUE NO ME REPITA EL NOMBRE Y NO GRABE EN LA NEW ROOM EL NOMBRE DEL USUARIO , LO TENGO QJE BORRRAR DE JOINROOM2
 
                 if (createNewRoom.status === "success"){
                     console.log("SALA CREADA OK");
@@ -308,7 +309,7 @@ const sockets = async (io) => {
                     socket.leave(getUsersRoom.currentRoom)
                     //? console.log("dades QUE SE PASSEN A UPDATEUSERSINROOM PARA MOSTRARLO EN PANRALLA", getUsersRoom.currentRoom, "NEW ARRAY USERS:", getUsersRoom.newArrayUsers, "currentUser:", usuari.userName);
                     io.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
-                    // socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', message = `${usuari.userName} left the room`);
+                    socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', message = `${usuari.userName} left the room`);
                     socket.broadcast.to(getUsersRoom.currentRoom).emit('newDataMessage', usuari.userName);
                     // io.broadcast.emit("updateUsersInRoom", getUsersRoom.currentRoom, getUsersRoom.newArrayUsers, usuari.userName);
                     // io.broadcast.emit("user disconnected", { userId: socket.id });

@@ -31,12 +31,12 @@ TODO [x] - actualització sales al crear-les un altre usuari
 TODO [x] - que entri a la main al iniciar o que desaparegui el form per parlar fins que estiguis dins d'una sala
 TODO [x] - missatges propis se'n van a l'esquerra quan canvies de sala
 
-TODO [] - aL entrar en una sala nueva, me salen dos veces el nombre del USUARIO
+TODO [] - aL entrar en una sala nueva, me salen dos veces el nombre del USUARIO (lo graba dos veces!!!?)
 TODO [] - al enviar un mensaje se ve 4 veces, como nuevo mensaje
 
 
 
 TODO [] - missatges de "usuari connectat/desconnectat"
 TODO [] - Cuando un usuario crea una sala, ha de entrar directamente a la sala creada.
-TODO [] - se cambian los mensajes de todos los usuarios aunque estén en otra sala
-TODO [] - cuando un usuario sale de una sala no se va su nombre del listado
+TODO [x] - se cambian los mensajes de todos los usuarios aunque estén en otra sala
+TODO [x] - cuando un usuario sale de una sala no se va su nombre del listado

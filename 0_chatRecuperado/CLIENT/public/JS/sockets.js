@@ -45,7 +45,7 @@ socket.on('connect', async () => {
 
     socket.on('newDataMessage', (message) => {
         console.log("MMMEESSSSEEEEEEEEEFFFFFFFFFFFFAAAAAAAFGGEEE", message)
-        // showDataMessage(message);
+        showDataMessage(message);
 
     })
 
