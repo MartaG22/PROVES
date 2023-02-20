@@ -30,13 +30,6 @@ socket.on('connect', async () => {
     await socket.emit("getRooms");
 
 
-    /*     socket.on('joinNewRoom', async(room, usersInThisRoom, currentUser, previousMessages) => {
-            console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
-            
-            showUsers(room, usersInThisRoom, currentUser.userName);
-            showMessages(previousMessages, currentUser, usersInThisRoom);
-        }); */
-
     socket.on('showRooms', (arrayCurrentRooms) => {
         console.log('DATOS RECIBIDOS EN  arrayCurrentRooms EN SHOWROOMS', arrayCurrentRooms)
         showRoom(arrayCurrentRooms);
@@ -60,27 +53,8 @@ socket.on('connect', async () => {
         showUserNewRoom(room, usuari);
 
     });
-    //! AAAAWQQQQQUUUUUUUIIIIII
 
-    // // socket.on('joinNewRoom',  async (room, arrayUsersInThisRoom, currentUser) => {
-    // socket.on('joinNewRoom',   (room,arrayUsersInRoom, currentUser) => {
-    //                 //! ME  quedo aquí para pasar los datos al front
-    //                 console.log(" --- aaaaaaaaaaaaaddddddddddiiiiiiiiiiooooooos--- HHHHHHHHHHHHOOOOOOOOOOOOLLLLLLLLLLAAAAAAAA");
-    //     console.log("DADES REBUDES EN JOIN NEW ROOM", "room:", room, arrayUsersInRoom,"usuari:", currentUser);
-    //     // const usersInThisRoom = [currentUser]
-    //     // usersInThisRoom.push(currentUser)
-    //     // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
-    //     // console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser);
-    //     showUsers(room, arrayUsersInRoom, currentUser);
-    //     //  showUsers(room, arrayUsersInRoom, currentUser.userName);
-    //     //  showUsersChangeRoom(room, usersInThisRoom, currentUser);
-    //     // await showUsers(room, usersInThisRoom, currentUser);
-    //     // await showUsers(room,  usersInThisRoom, currentUser.userName);
-    //     // await showMessages(previousMessages, currentUser, usersInThisRoom);
-
-    //     // msg: ROOOM: dia array: [ 'Gery' ] { userId: 4, userName: 'Gery' } MENSAJES PREVIOS: []
-
-    // });
+    
 
     socket.on("joinRoom", async (room, usersInThisRoom, currentUser, previousMessages) => {
         console.log("Han arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
@@ -92,33 +66,7 @@ socket.on('connect', async () => {
         // socket.emit("joinUserNewRoom", room, currentUser);
     })
 
-    // socket.on('joinFirstRoom', async (room, usersInThisRoom, currentUser, previousMessages) => {
-    //     console.log("Ha8n arribat aquestes dades a CLIENT/JOINNEWROOM:", room, usersInThisRoom, currentUser, previousMessages)
-    //     if (room == "Main") {
 
-    //         const arrayRooms = [];
-    //         arrayRooms.push(room);
-    //         console.log("*<.>*<.>*<.>*BUSCANDP EL ERROR en JOINNEWROOM 111:", arrayRooms)
-    //         showRoom(arrayRooms);
-    //         joinRoom(room);
-    //         showUsers(room, usersInThisRoom, currentUser.userName);
-    //         showMessages(previousMessages, currentUser, usersInThisRoom);
-    //     }
-    // });
-
-
-
-    // socket.on("joinFirstRoom", async (room, arrayUsers, usuari, previousMessages)  => {
-    //     console.log("Han arribat aquestes dades a CLIENT/joinfirstRom:", room, usuari )
-    //     showUsers(room, arrayUsers, usuari);
-    //     showMessages(previousMessages, usuari, arrayUsers);
-    // })
-
-
-
-
-
-    // socket.on("updateUsersInRoom", (usuari, room, arrayUsers) => {
     socket.on("updateUsersInRoom", (room, arrayUsers, usuari) => {
 
         // console.log (room, arrayUsers, usuari);
