@@ -191,7 +191,6 @@ const sockets = async (io) => {
                 // const createNewRoom = await createRoom({newRoomName, usuari});
                 const createNewRoom = await createRoom({newRoomName, usuari});
                 
-//! PARA QUE NO ME REPITA EL NOMBRE Y NO GRABE EN LA NEW ROOM EL NOMBRE DEL USUARIO , LO TENGO QJE BORRRAR DE JOINROOM2
 
                 if (createNewRoom.status === "success"){
                     console.log("SALA CREADA OK");

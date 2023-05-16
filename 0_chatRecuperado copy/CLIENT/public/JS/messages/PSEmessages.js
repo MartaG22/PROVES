@@ -1,39 +1,72 @@
-const showMessages = async (room, previousMessages, currentUser, usersInThisRoom) => {
+/* const showMessages = async (previousMessages) => {
+// const showMessages = async (previousMessages, user) => {
+      // console.log(previousMessages, "USER:", user, "USERS IN THIS ROOM:")
+      // console.log("previousMessages:", previousMessages)
+      const updateMissages = document.getElementById("oldMessages");
+      updateMissages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS"
+
+
+      
+      // for (const message of previousMessages) {
+      //       updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
+      //       // updateMissages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}</span> <br>`
+
+
+      //       // if (user === currentUser) {
+      //       //       updateMissages.innerHTML += `<span style='color:#ff0000;'>${message}</span> <br>`
+
+      //       // } else {
+      //       //       usersInRoom.innerHTML += `${message} <br>`
+      //       // };
+
+      // };
+
+
+
+            // console.log('USER:', user);
+            // if (user === currentUser){
+            //       usersInRoom.innerHTML += `<span style='color:#ff0000;'>${user}</span> <br>`
+            //       // usersInRoom.innerHTML += `<strong>${user}</strong> <br>`
+            //       // .style.setProperty("background-color", "#6ab150") `<br>`   //* PONER EL ESTILO DEL CURRENT USER AQUÍ !!!
+            //       // ul.style.setProperty("background-color", "#6ab150"); 
+            // } else {
+            //       usersInRoom.innerHTML += `${user} <br>`
+            // }
+      // };
+
+
+} */
+
+
+const showMessages = async (previousMessages, currentUser, usersInThisRoom) => {
       try {
 
             console.log("previousMessages:", previousMessages, "currentUser:", currentUser, "usersInThisRoom:", usersInThisRoom)
 
             const updateMessages = document.getElementById("oldMessages");
             // updateMessages.innerHTML = "AQUIIIII PONGO LOS MENSAJESSS <br>"
+            updateMessages.innerHTML = "";
 
-            if (sessionStorage.roomName === room) {
-
-                  updateMessages.innerHTML = "";
-
+            for (message of previousMessages) {
+                  console.log("MESSAGE:", message);
 
 
-                  for (message of previousMessages) {
-                        console.log("MESSAGE:", message);
+                  if (currentUser.userName === message.nomUsuari) {
+                        // updateMessages.innerHTML += `<strong>${currentUser.userName}: </strong>`;
+                        // updateMessages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}: </span><br>`;
+                        updateMessages.innerHTML += `<span style = 'float: right'><strong>${currentUser.userName}: </strong style='color:#ff0000;'>${message.missatge}: </span> <br>`;
 
-                        if (sessionStorage.userName === message.nomUsuari) {
-                              // if (currentUser.userName === message.nomUsuari) {
-                              // updateMessages.innerHTML += `<strong>${currentUser.userName}: </strong>`;
-                              // updateMessages.innerHTML += `<span style='color:#ff0000;'>${message.missatge}: </span><br>`;
-                              updateMessages.innerHTML += `<br><span style = 'float: right'><strong>${message.nomUsuari}: </strong><span>${message.missatge} </span>`;
-                              // updateMessages.innerHTML += `<span style = 'float: right'><strong>${currentUser.userName}: </strong><span style='color:#ff0000;'>${message.missatge} </span> `;
 
-                        } else {
-                              // updateMessages.innerHTML += `<strong>${message.nomUsuari}: </strong>`
-                              // updateMessages.innerHTML += `${message.missatge} <br>`;
-                              updateMessages.innerHTML += `<br><span style = 'float: left;'><strong>${message.nomUsuari}: </strong><span>${message.missatge}</span> <br>`;
-                        };
+                  } else {
+                        // updateMessages.innerHTML += `<strong>${message.nomUsuari}: </strong>`
+                        // updateMessages.innerHTML += `${message.missatge} <br>`;
+                        updateMessages.innerHTML += `<span style = 'float: left;'><strong>${message.nomUsuari}: </strong>${message.missatge}</span> <br>`;
+
                   };
-                  // };
             };
-
       } catch (error) {
             return { status: "error", message: error };
-      };
+      }
 };
 
 const sendMessage = async () => {
@@ -106,43 +139,25 @@ const showNewMessage = async (newMessage, currentUser, room) => {
             // console.log('newMessage.nomUsuari EN CLIENT/MESSAGES:', newMessage.nomUsuari)
             // console.log('newMessage.missatge EN CLIENT/MESSAGES:', newMessage.missatge)
 
-            if (sessionStorage.roomName === room) {
+            if (sessionStorage.userId == newMessage.idUsuari) {
+                  //! PONER LA CONDICIÓN CONN EL STORAGE
+                  // console.log("SSSSIIIIIII - coinciden los IDs")
+                  // updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`;
+                  // updateMessages.innerHTML += `<span style='color:#ff0000;'>${newMessage.missatge}: </span><br>`;
+                  updateMessages.innerHTML += `<br><span  style = 'float: right;'<strong> ${newMessage.nomUsuari}: </strong><span style='color: #822252;'>${newMessage.missatge} </span> `;
 
+            } else {
+                  // console.log("NOOOOOOOO  - coinciden los IDs")
+                  // updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`
+                  // updateMessages.innerHTML += `${newMessage.missatge} <br>`;
+                  updateMessages.innerHTML += `<span style = 'float:left;'<strong>${newMessage.nomUsuari}: </strong>${newMessage.missatge} </span><br>`;
 
-                  if (sessionStorage.userId == newMessage.idUsuari) {
-                        //! PONER LA CONDICIÓN CONN EL STORAGE
-                        // console.log("SSSSIIIIIII - coinciden los IDs")
-                        // updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`;
-                        // updateMessages.innerHTML += `<span style='color:#ff0000;'>${newMessage.missatge}: </span><br>`;
-                        updateMessages.innerHTML += `<br><span  style = 'float: right;'><strong> ${newMessage.nomUsuari}: </strong><span style='color: #822252;'>${newMessage.missatge} </span> `;
-
-                  } else {
-                        // console.log("NOOOOOOOO  - coinciden los IDs")
-                        // updateMessages.innerHTML += `<strong>${newMessage.nomUsuari}: </strong>`
-                        // updateMessages.innerHTML += `${newMessage.missatge} <br>`;
-                        updateMessages.innerHTML += `<br><span style = 'float:left;'><strong>${newMessage.nomUsuari}: </strong><span>${newMessage.missatge} </span><br>`;
-
-                  };
             };
+
             // updateMessages.innerHTML += newMessage;
             // "NUEVOS MENSAJES!!! <br>"
 
       } catch (error) {
             return { status: "error", message: error };
       }
-}
-
-
-
-const showDataMessage = (message) => {
-      document.getElementById('notificationRoom').removeAttribute('id');
-      console.log("MESSAGE EN SHOWDATAMESSAGE:", message)
-      const updateMessage = document.getElementById("notificationRoom");
-      updateMessage.innerHTML += message;
-      setTimeout(() => {
-            updateMessage.innerHTML = updateMessage.innerHTML.replace(message, "");
-      }, 5000); // 5000 milisegundos (5 segundos) de tiempo de espera
-
-
-
 }
